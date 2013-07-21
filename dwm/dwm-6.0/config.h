@@ -37,6 +37,7 @@ static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const Bool showsystray       = True;     /* False means no systray */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
+static const unsigned int dzen_height = 0;     /* Bottom bar */
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -88,6 +89,7 @@ static const char *mpcstop[]  = { "mpc", "stop", NULL };
 static const char *mpcnext[]  = { "mpc", "next", NULL };
 static const char *mpcprev[]  = { "mpc", "prev", NULL };
 static const char *bloquear[]  = { "slock", NULL };
+static const char *explorador[]  = { "thunar", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -125,6 +127,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,           {.v = bloquear } },
+	{ MODKEY|ShiftMask,             XK_t,      spawn,			{.v = explorador } },
 	{ 0,                            XF86XK_AudioRaiseVolume,      spawn,        {.v = volup } },
 	{ 0,                            XF86XK_AudioLowerVolume,      spawn,        {.v = voldown } },
 	{ 0,                            XF86XK_AudioMute,      spawn,        {.v = volmute } },

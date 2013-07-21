@@ -1786,7 +1786,7 @@ setup(void) {
 	root = RootWindow(dpy, screen);
 	initfont(font);
 	sw = DisplayWidth(dpy, screen);
-	sh = DisplayHeight(dpy, screen);
+	sh = DisplayHeight(dpy, screen) - dzen_height;
 	bh = dc.h = dc.font.height + 2;
 	updategeom();
 	/* init atoms */
@@ -2109,7 +2109,7 @@ updategeom(void) {
 					m->mx = m->wx = unique[i].x_org;
 					m->my = m->wy = unique[i].y_org;
 					m->mw = m->ww = unique[i].width;
-					m->mh = m->wh = unique[i].height;
+					m->mh = m->wh = unique[i].height - dzen_height;
 					updatebarpos(m);
 				}
 		}
