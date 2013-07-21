@@ -121,6 +121,7 @@ endif
 set numberwidth=4   " line numbering takes up 5 spaces
 set nowrap          " stop lines from wrapping
 
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
 "Syntatic
