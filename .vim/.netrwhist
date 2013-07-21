@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/uxio/Dropbox/FIC/uxio/ATF'
+let g:netrw_dirhist_2='/home/uxio/dwm/dwm-6.0'
+let g:netrw_dirhist_3='/home/uxio/scripts'
+let g:netrw_dirhist_4='/home/uxio/Dropbox'
+let g:netrw_dirhist_5='/run/media/uxio/50E6-2635/CP/csv'
+let g:netrw_dirhist_6='/home/uxio/Downloads'

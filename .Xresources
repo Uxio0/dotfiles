@@ -1,0 +1,60 @@
+urxvt*inheritPixmap:	true
+urxvt*shading:			10
+
+urxvt*background: rgb:00/00/00
+urxvt*foreground: rgb:a8/a8/a8
+urxvt*color0:     rgb:00/00/00
+urxvt*color1:     rgb:a8/00/00
+urxvt*color2:     rgb:00/a8/00
+urxvt*color3:     rgb:a8/54/00
+urxvt*color4:     rgb:00/00/a8
+urxvt*color5:     rgb:a8/00/a8
+urxvt*color6:     rgb:00/a8/a8
+urxvt*color7:     rgb:a8/a8/a8
+urxvt*color8:     rgb:54/50/54
+urxvt*color9:     rgb:f8/54/50
+urxvt*color10:    rgb:50/fc/50
+urxvt*color11:    rgb:f8/fc/50
+urxvt*color12:    rgb:50/54/f8
+urxvt*color13:    rgb:f8/54/f8
+urxvt*color14:    rgb:50/fc/f8
+urxvt*color15:    rgb:f8/fc/f8
+
+!*background: rgb:1a/1a/1a
+!*foreground: rgb:aa/aa/aa
+!*color0:     rgb:00/00/00
+!*color8:     rgb:66/66/66
+!*color1:     rgb:9e/18/28
+!*color9:     rgb:bc/57/66
+!*color2:     rgb:00/88/00
+!*color10:    rgb:61/a1/71
+!*color3:     rgb:d2/bb/4b
+!*color11:    rgb:e7/db/52
+!*color4:     rgb:41/41/71
+!*color12:    rgb:50/85/af
+!*color5:     rgb:96/3c/59
+!*color13:    rgb:a9/7a/99
+!*color6:     rgb:41/81/79
+!*color14:    rgb:6b/a4/a4
+!*color7:     rgb:be/be/be
+!*color15:    rgb:ff/ff/ff
+
+! Fix font space
+URxvt*letterSpace: 0
+
+!urxvt*transparent: true
+!urxvt*shading: 50
+urxvt*fading: 50
+urxvt*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*,-*-symbola-medium-*-*-*-17-*-*-*-*-*-*-*
+!urxvt*font: xft:Inconsolata:size=13:antialias=true:hinting=true
+!urxvt*italicFont: xft:Inconsolata:size=13:antialias=true:hinting=true
+!urxvt.boldFont: xft:inconsolata:pixelsize=13
+!urxvt.bolditalicFont: xft:inconsolata:pixelsize=13
+urxvt*boldFont:			-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
+urxvt*italicFont:		-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
+urxvt*bolditalicFont:	-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
+!urxvt*italicFont:		xft:Terminus
+!urxvt*bolditalicFont:	xft:Terminus
+!urxvt*font: xft:Bitstream\ Vera\ Sans\ Mono:style=roman:pixelsize=13
+urxvt*scrollBar: false
+urxvt*iso14755 : false
