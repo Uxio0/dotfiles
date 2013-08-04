@@ -54,10 +54,10 @@ set incsearch		" Incremental search
 set mouse=a			" Enable mouse usage (all modes)
 set novisualbell	" Quita la campanita
 set title			" Muestra los titulos en cada buffer
-map <F12> :set nu!<CR> 
+map <F12> :set nu!<CR>
 					"Muestra los números de línea, nonu lo contrario
 set ruler 			"Información de estado
-"set cursorline 		"Resalta línea
+"set cursorline 	"Resalta línea
 ":hi CursorLine   cterm=NONE ctermbg=green ctermfg=white guibg=darkred guifg=white
 
 " Source a global configuration file if available
@@ -72,13 +72,30 @@ map <F5> :match ExtraWhitespace /\s\+$/<CR>
 map <F6> :%s/\s\+$//e <CR>
 
 "Indentacion
-set tabstop=4 "Tamano tabulacion
+set tabstop=4 	 "Tamano tabulacion
 set shiftwidth=4 "Tamano autoindentar
 
-au FileType cpp,c,java,sh,pl,php,asp  set autoindent
-au FileType cpp,c,java,sh,pl,php,asp  set smartindent
-au FileType cpp,c,java,sh,pl,php,asp  set cindent
+"Latex
 au FileType tex setlocal spell spelllang=es
+"Html
+au FileType html setlocal shiftwidth=2 tabstop=2
+"Gzip
+augroup gzip
+	autocmd!
+	autocmd BufReadPre,FileReadPre	*.gz set bin
+    autocmd BufReadPost,FileReadPost	*.gz '[,']!gunzip
+    autocmd BufReadPost,FileReadPost	*.gz set nobin
+    autocmd BufReadPost,FileReadPost	*.gz execute ":doautocmd BufReadPost " . expand("%:r")
+    autocmd BufWritePost,FileWritePost	*.gz !mv <afile> <afile>:r
+    autocmd BufWritePost,FileWritePost	*.gz !gzip <afile>:r
+
+    autocmd FileAppendPre		*.gz !gunzip <afile>
+    autocmd FileAppendPre		*.gz !mv <afile>:r <afile>
+    autocmd FileAppendPost		*.gz !mv <afile> <afile>:r
+    autocmd FileAppendPost		*.gz !gzip <afile>:r
+augroup END
+"Python"
+au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
 
 map <F7> gg=G
 
@@ -88,20 +105,18 @@ map <F3> :next<CR>      " map F2 to open next buffer
 
 "Busquedas
 set hlsearch "ilumina las búsquedas
-map <F8> :nohlsearch <CR> 
+map <F8> :nohlsearch <CR>
 
 "Tabs
 set showtabline=1
 
 "Folding
-
 set nofen
 set foldmethod=indent
 set foldminlines=20
 map <F4> :set invfen<CR>
 
 "Completar
-filetype plugin on
 "set ofu=syntaxcomplete#Complete
 set ofu=ccomplete#Complete
 set tags+=~/.vim/systags
@@ -127,6 +142,5 @@ call pathogen#infect()
 "Syntatic
 let g:syntastic_check_on_open=1
 let g:syntastic_python_checker="flake8"
-
-"Python"
-au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
+let g:pymode_indent = 1
+map <C-n> :NERDTreeToggle<CR>

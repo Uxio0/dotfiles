@@ -90,6 +90,9 @@ static const char *mpcnext[]  = { "mpc", "next", NULL };
 static const char *mpcprev[]  = { "mpc", "prev", NULL };
 static const char *bloquear[]  = { "slock", NULL };
 static const char *explorador[]  = { "thunar", NULL };
+static const char *touchpad[]  = { "trackpad_toggle.sh", NULL };
+static const char *gvim[]  = { "gvim", NULL };
+static const char *scrolllock[]  = { "xset", "led", "named", "\"Scroll ", "Lock\"" };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -128,6 +131,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,           {.v = bloquear } },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,			{.v = explorador } },
+	{ MODKEY|ShiftMask,             XK_v,      spawn,			{.v = gvim } },
+	{ 0,                            XK_Scroll_Lock,      spawn,        {.v = scrolllock } },
 	{ 0,                            XF86XK_AudioRaiseVolume,      spawn,        {.v = volup } },
 	{ 0,                            XF86XK_AudioLowerVolume,      spawn,        {.v = voldown } },
 	{ 0,                            XF86XK_AudioMute,      spawn,        {.v = volmute } },
@@ -135,6 +140,7 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioPlay,      spawn,        {.v = mpctoggle } },
 	{ 0,                            XF86XK_AudioPrev,      spawn,        {.v = mpcprev } },
 	{ 0,                            XF86XK_AudioNext,      spawn,        {.v = mpcnext } },
+	{ 0,                            XF86XK_TouchpadToggle,      spawn,        {.v = touchpad } },
 };
 
 /* button definitions */

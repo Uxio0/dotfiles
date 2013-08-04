@@ -36,9 +36,11 @@ xset fp rehash
 #xset +dpms
 #xset dpms 0 0 300
 
-wicd-gtk -t &
-start-pulseaudio-x11
+#wicd-gtk -t &
+#start-pulseaudio-x11
 pulseaudio --start
+
+xrandr -q | grep VGA1 && xrandr --output VGA1 --mode 1920x1080 --output LVDS1 --off
 
 DEFAULT_SESSION=dwm
 
@@ -49,13 +51,11 @@ else
 fi
 
 case $mi_sesion in
-
 dwm)
 	wmname LG3D
 	#xfce4-power-manager &
 	parcellite &
 
-	xrandr -q | grep VGA1 && xrandr --output VGA1 --mode 1920x1080 --output LVDS1 --off
 	sh ~/.fehbg
 
 	#while true; do
@@ -73,13 +73,16 @@ xfce4)
 	exec startxfce4
 	;;
 openbox)
+	compton &
+	tint2 &
+	volumeicon &
+	avant-window-navigator &
+	sh ~/.fehbg
 	exec openbox
 	;;
 lxde)
+	exec openbox
 	exec startlxde
-	;;
-xbmc)
-	exec xbmc-standalone
 	;;
 *)
 	exec $DEFAULT_SESSION

@@ -58,3 +58,6 @@ urxvt*bolditalicFont:	-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
 !urxvt*font: xft:Bitstream\ Vera\ Sans\ Mono:style=roman:pixelsize=13
 urxvt*scrollBar: false
 urxvt*iso14755 : false
+
+!Scroll Buffer
+urxvt.saveLines:10000
