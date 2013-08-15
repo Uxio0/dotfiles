@@ -17,8 +17,9 @@ fi
 # ...or the Window Manager of your choice
 
 # enable restart X
-setxkbmap -option terminate:ctrl_alt_bksp
+setxkbmap -option terminate:ctrl_alt_bksp,grp:shifts_toggle es,us
 
+#setxkbmap -option grp:switch,grp:shifts_toggle,grp_led:scroll es,us
 setxkbmap es
 xset led named "Scroll Lock"
 
@@ -73,10 +74,13 @@ xfce4)
 	exec startxfce4
 	;;
 openbox)
-	compton &
+	obsetlayout 0 2 2 0
 	tint2 &
+	fbxkb &
+	compton &
 	volumeicon &
 	avant-window-navigator &
+	./dzenconky.sh &
 	sh ~/.fehbg
 	exec openbox
 	;;

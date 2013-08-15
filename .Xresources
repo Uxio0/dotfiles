@@ -42,9 +42,9 @@ urxvt*color15:    rgb:f8/fc/f8
 ! Fix font space
 URxvt*letterSpace: 0
 
-!urxvt*transparent: true
+!urxvt*transparent: false
 !urxvt*shading: 50
-urxvt*fading: 50
+!urxvt*fading: 50
 urxvt*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*,-*-symbola-medium-*-*-*-17-*-*-*-*-*-*-*
 !urxvt*font: xft:Inconsolata:size=13:antialias=true:hinting=true
 !urxvt*italicFont: xft:Inconsolata:size=13:antialias=true:hinting=true
@@ -61,3 +61,9 @@ urxvt*iso14755 : false
 
 !Scroll Buffer
 urxvt.saveLines:10000
+
+!Extensions
+URxvt.perl-ext-common:  default,matcher
+URxvt.url-launcher:     /usr/bin/firefox
+URxvt.matcher.button:   1
+URxvt.colorUL: #4682B4
