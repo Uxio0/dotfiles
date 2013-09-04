@@ -8,11 +8,33 @@
 
 " This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages available in Debian.
+
+" Source a global configuration file if available
 runtime! archlinux.vim
 
-source $VIMRUNTIME/mswin.vim
-behave mswin
-set keymodel-=stopsel
+if filereadable("/etc/vim/vimrc.local")
+   source /etc/vim/vimrc.local
+endif
+
+" Rebind <Leader> key
+" I like to have it here becuase it is easier to reach than the default and
+" it is next to ``m`` and ``n`` which I use for navigating between tabs.
+let mapleader = ","
+
+" CTRL-C and CTRL-Insert are Copy
+vnoremap <C-C> "+y
+vnoremap <C-Insert> "+y
+
+" CTRL-V and SHIFT-Insert are Paste
+map <C-V>		"+gP
+map <S-Insert>		"+gP
+
+"source $VIMRUNTIME/mswin.vim
+"behave mswin
+"set keymodel-=stopsel
+
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
 
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
@@ -34,6 +56,13 @@ endif
 "if has("autocmd")
 "  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 "endif
+
+" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
+" Every unnecessary keystroke that can be saved is good for your health :)
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
 
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
@@ -60,10 +89,12 @@ set ruler 			"Información de estado
 "set cursorline 	"Resalta línea
 ":hi CursorLine   cterm=NONE ctermbg=green ctermfg=white guibg=darkred guifg=white
 
-" Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-   source /etc/vim/vimrc.local
-endif
+" Bind nohl
+" Removes highlight of your last search
+" ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
+noremap <C-n> :nohl<CR>
+vnoremap <C-n> :nohl<CR>
+inoremap <C-n> :nohl<CR>
 
 "ExtraEspacios
 "Con F5 muestras los espacios en blanco, y con F6 los borras
@@ -125,9 +156,11 @@ set tags+=~/.vim/systags
 " :he algo
 "
 
-"color codeschool
-color desert256
 set bg=dark
+"color codeschool
+"color desert256
+color wombat256mod
+"highlight Normal ctermbg=None
 
 if has("gui_running")
 	set guifont=Inconsolata\ Medium\ 12
@@ -144,3 +177,6 @@ let g:syntastic_check_on_open=1
 let g:syntastic_python_checker="flake8"
 let g:pymode_indent = 1
 map <C-n> :NERDTreeToggle<CR>
+
+"Python
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>

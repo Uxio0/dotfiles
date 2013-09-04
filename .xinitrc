@@ -18,9 +18,7 @@ fi
 
 # enable restart X
 setxkbmap -option terminate:ctrl_alt_bksp,grp:shifts_toggle es,us
-
 #setxkbmap -option grp:switch,grp:shifts_toggle,grp_led:scroll es,us
-setxkbmap es
 xset led named "Scroll Lock"
 
 xrdb -merge ~/.Xresources &
@@ -75,14 +73,15 @@ xfce4)
 	;;
 openbox)
 	obsetlayout 0 2 2 0
-	tint2 &
 	fbxkb &
 	compton &
 	volumeicon &
 	avant-window-navigator &
-	./dzenconky.sh &
+	#./dzenconky.sh &
+	#tint2 &
+	#conky -c conkybar.conf &
 	sh ~/.fehbg
-	exec openbox
+	exec openbox-session
 	;;
 lxde)
 	exec openbox
