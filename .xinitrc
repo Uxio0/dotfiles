@@ -17,6 +17,7 @@ fi
 # ...or the Window Manager of your choice
 
 # enable restart X
+# Change keymap with both shifts
 setxkbmap -option terminate:ctrl_alt_bksp,grp:shifts_toggle es,us
 #setxkbmap -option grp:switch,grp:shifts_toggle,grp_led:scroll es,us
 xset led named "Scroll Lock"
@@ -30,26 +31,22 @@ urxvtd -q -o -f
 xset +fp /usr/share/fonts/local
 xset fp rehash
 
-#Bajar brillo de la pantalla auto
-#xset -q(sirve para mirar opciones
+#Auto lower brightness
+#xset -q (To check options)
 #xset +dpms
 #xset dpms 0 0 300
 
 #wicd-gtk -t &
 #start-pulseaudio-x11
-pulseaudio --start
+#pulseaudio --start
 
-xrandr -q | grep VGA1 && xrandr --output VGA1 --mode 1920x1080 --output LVDS1 --off
+#xrandr -q | grep VGA1 && xrandr --output VGA1 --mode 1920x1080 --output LVDS1 --off
 
 DEFAULT_SESSION=dwm
 
-if [ -z $1 ]; then
-	mi_sesion=dwm
-else
-	mi_sesion=$1
-fi
+#[ -z $1 ] && my_session=$DEFAULT_SESSION || my_session=$1
 
-case $mi_sesion in
+case $my_session in
 dwm)
 	wmname LG3D
 	#xfce4-power-manager &
@@ -84,11 +81,10 @@ openbox)
 	exec openbox-session
 	;;
 lxde)
-	exec openbox
+	obsetlayout 0 2 2 0
 	exec startlxde
 	;;
 *)
 	exec $DEFAULT_SESSION
 	;;
 esac
-
