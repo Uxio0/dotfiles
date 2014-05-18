@@ -46,8 +46,9 @@ DEFAULT_SESSION=dwm
 
 #[ -z $1 ] && my_session=$DEFAULT_SESSION || my_session=$1
 
-case $my_session in
+case $1 in
 dwm)
+	conky -c ~/conky.conf | while read -r; do xsetroot -name "$REPLY"; done &
 	wmname LG3D
 	#xfce4-power-manager &
 	parcellite &
@@ -60,7 +61,6 @@ dwm)
 	#	sleep 1
 	#done &
 
-	conky -c ~/conky.conf | while read -r; do xsetroot -name "$REPLY"; done &
 
 	exec dwm
 	;;
