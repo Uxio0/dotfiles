@@ -48,6 +48,7 @@ static const Rule rules[] = {
 	{ "Ekiga",    NULL,       NULL,       0,            True,        -1 },
 	{ "Skype",    NULL,       NULL,       0,            True,        -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       False,       -1 },
+	{ "Chromium", NULL,       NULL,       1 << 8,       False,       -1 },
 	{ "Dwb",  	  NULL,       NULL,       1 << 8,       False,       -1 },
 	{ "Eclipse",  NULL,       NULL,       1 << 7,       True,        -1 },
 };

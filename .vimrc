@@ -174,9 +174,11 @@ call pathogen#infect()
 
 "Syntatic
 let g:syntastic_check_on_open=1
-let g:syntastic_python_checker="flake8"
 let g:pymode_indent = 1
 map <C-n> :NERDTreeToggle<CR>
 
 "Python
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+"Airline
+set laststatus=2
