@@ -1,24 +1,10 @@
-urxvt*inheritPixmap:	true
+!urxvt*inheritPixmap:	true
 urxvt*shading:			10
 
-urxvt*background: rgb:00/00/00
-urxvt*foreground: rgb:a8/a8/a8
-urxvt*color0:     rgb:00/00/00
-urxvt*color1:     rgb:a8/00/00
-urxvt*color2:     rgb:00/a8/00
-urxvt*color3:     rgb:a8/54/00
-urxvt*color4:     rgb:00/00/a8
-urxvt*color5:     rgb:a8/00/a8
-urxvt*color6:     rgb:00/a8/a8
-urxvt*color7:     rgb:a8/a8/a8
-urxvt*color8:     rgb:54/50/54
-urxvt*color9:     rgb:f8/54/50
-urxvt*color10:    rgb:50/fc/50
-urxvt*color11:    rgb:f8/fc/50
-urxvt*color12:    rgb:50/54/f8
-urxvt*color13:    rgb:f8/54/f8
-urxvt*color14:    rgb:50/fc/f8
-urxvt*color15:    rgb:f8/fc/f8
+
+!#include "colors_default"
+#include "colors_solarized"
+URxvt.intensityStyles: false
 
 !*background: rgb:1a/1a/1a
 !*foreground: rgb:aa/aa/aa
@@ -45,14 +31,15 @@ URxvt*letterSpace: 0
 !urxvt*transparent: false
 !urxvt*shading: 50
 !urxvt*fading: 50
+*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
 urxvt*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*,-*-symbola-medium-*-*-*-17-*-*-*-*-*-*-*
 !urxvt*font: xft:Inconsolata:size=13:antialias=true:hinting=true
 !urxvt*italicFont: xft:Inconsolata:size=13:antialias=true:hinting=true
 !urxvt.boldFont: xft:inconsolata:pixelsize=13
 !urxvt.bolditalicFont: xft:inconsolata:pixelsize=13
-urxvt*boldFont:			-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
-urxvt*italicFont:		-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
-urxvt*bolditalicFont:	-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
+*boldFont:			-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
+*italicFont:		-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
+*bolditalicFont:	-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
 !urxvt*italicFont:		xft:Terminus
 !urxvt*bolditalicFont:	xft:Terminus
 !urxvt*font: xft:Bitstream\ Vera\ Sans\ Mono:style=roman:pixelsize=13

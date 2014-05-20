@@ -84,6 +84,9 @@ lxde)
 	obsetlayout 0 2 2 0
 	exec startlxde
 	;;
+xmonad)
+	exec xmonad
+	;;
 *)
 	exec $DEFAULT_SESSION
 	;;

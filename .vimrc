@@ -156,12 +156,6 @@ set tags+=~/.vim/systags
 " :he algo
 "
 
-set bg=dark
-"color codeschool
-"color desert256
-color wombat256mod
-"highlight Normal ctermbg=None
-
 if has("gui_running")
 	set guifont=Inconsolata\ Medium\ 12
 endif
@@ -182,3 +176,10 @@ map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 "Airline
 set laststatus=2
+
+set bg=dark
+"color codeschool
+"color desert256
+"color wombat256mod
+color solarized
+"highlight Normal ctermbg=None
