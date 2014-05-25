@@ -11,37 +11,43 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-# exec gnome-session
-# exec startkde
-# exec startxfce4
-# ...or the Window Manager of your choice
-
-# enable restart X
-# Change keymap with both shifts
+# Enable restart X ctrl + alt + back and change keymap with both shifts
 setxkbmap -option terminate:ctrl_alt_bksp,grp:shifts_toggle es,us
 #setxkbmap -option grp:switch,grp:shifts_toggle,grp_led:scroll es,us
 xset led named "Scroll Lock"
+xset r rate 250 60
+
+# Turns off the system bell
+/usr/bin/xset b off
+
+xset +fp /usr/share/fonts/local
+xset +fp /usr/share/fonts/misc
+xset +fp $HOME/.fonts
+xset fp rehash
 
 xrdb -merge ~/.Xresources &
 
-#mpd
-
-urxvtd -q -o -f
-
-xset +fp /usr/share/fonts/local
-xset fp rehash
+xsetroot -cursor_name left_ptr &
 
 #Auto lower brightness
 #xset -q (To check options)
 #xset +dpms
 #xset dpms 0 0 300
 
-#wicd-gtk -t &
+#mpd
+
+urxvtd -q -o -f
+
+wicd-gtk -t &
 #start-pulseaudio-x11
 #pulseaudio --start
 
 #xrandr -q | grep VGA1 && xrandr --output VGA1 --mode 1920x1080 --output LVDS1 --off
 
+# Auto mounts USB to /media/
+udiskie &
+
+# Normal cursor
 DEFAULT_SESSION=dwm
 
 #[ -z $1 ] && my_session=$DEFAULT_SESSION || my_session=$1
