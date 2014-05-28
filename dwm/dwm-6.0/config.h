@@ -131,7 +131,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,           {.v = bloquear } },
-	{ MODKEY|ShiftMask,             XK_t,      spawn,			{.v = explorador } },
+	{ MODKEY,	  					XK_e,      spawn,			{.v = explorador } },
 	{ MODKEY|ShiftMask,             XK_v,      spawn,			{.v = gvim } },
 	{ 0,                            XK_Scroll_Lock,      spawn,        {.v = scrolllock } },
 	{ 0,                            XF86XK_AudioRaiseVolume,      spawn,        {.v = volup } },
