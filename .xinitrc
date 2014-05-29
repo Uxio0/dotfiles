@@ -28,6 +28,7 @@ xset fp rehash
 xrdb -merge ~/.Xresources &
 
 xsetroot -cursor_name left_ptr &
+xmodmap ~/dotfiles/caps_scape
 
 #Auto lower brightness
 #xset -q (To check options)
