@@ -56,8 +56,9 @@ case $1 in
 dwm)
 	conky -c ~/conky.conf | while read -r; do xsetroot -name "$REPLY"; done &
 	wmname LG3D
+	fbxkb &
 	#xfce4-power-manager &
-	parcellite &
+	#parcellite &
 
 	sh ~/.fehbg
 

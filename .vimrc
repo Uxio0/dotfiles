@@ -180,6 +180,6 @@ set laststatus=2
 set bg=dark
 "color codeschool
 "color desert256
-"color wombat256mod
-color solarized
+color wombat256mod
+"color solarized
 "highlight Normal ctermbg=None

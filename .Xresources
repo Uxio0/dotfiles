@@ -3,7 +3,8 @@ urxvt*shading:			10
 
 
 !#include "colors_default"
-#include "colors_solarized"
+!#include "colors_solarized"
+#include "colors_wombat"
 URxvt.intensityStyles: false
 
 !*background: rgb:1a/1a/1a
