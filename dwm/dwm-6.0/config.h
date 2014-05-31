@@ -18,8 +18,8 @@ static const char colors[NUMCOLORS][ColLast][8] = {
    { "#0066ff", "#ffffff", "#0066ff" },  // 1 = selected
    { "#0066ff", "#0066ff", "#ffffff" },  // 2 = urgent/warning
    { "#ff0000", "#ffffff", "#ff0000" },  // 3 = error
-   { "#00ff00", "#48a627", "#000000" },  // 4 = verde sobre negro
-   { "#000000", "#ff7300", "#000000" },  // 5 = naranja sobre negro
+   { "#00ff00", "#95e454", "#000000" },  // 4 = verde sobre negro
+   { "#000000", "#e5786d", "#000000" },  // 5 = naranja sobre negro
    { "#000000", "#ffc726", "#000000" },  // 6 = amarillo sobre negro
    { "#000000", "#3790e8", "#000000" },  // 7 = azul sobre negro
    // add more here
