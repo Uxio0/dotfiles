@@ -30,6 +30,9 @@ xrdb -merge ~/.Xresources &
 xsetroot -cursor_name left_ptr &
 xmodmap ~/dotfiles/caps_scape
 
+#Swap mayus and ESC for ViM
+xmodmap ~/dotfiles/.Xmodmap
+
 #Auto lower brightness
 #xset -q (To check options)
 #xset +dpms
@@ -46,7 +49,7 @@ wicd-gtk -t &
 #xrandr -q | grep VGA1 && xrandr --output VGA1 --mode 1920x1080 --output LVDS1 --off
 
 # Auto mounts USB to /media/
-udiskie &
+udiskie --tray &
 
 # Normal cursor
 DEFAULT_SESSION=dwm
