@@ -183,3 +183,8 @@ set bg=dark
 color wombat256mod
 "color solarized
 "highlight Normal ctermbg=None
+
+"JavaScript
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+let g:syntastic_javascript_checkers = ['gjslint']
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab

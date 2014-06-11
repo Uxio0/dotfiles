@@ -9,3 +9,5 @@ ln -s$force $folder/.vimrc ~
 ln -s$force $folder/.vim ~
 ln -s$force $folder/.xinitrc ~
 ln -s$force $folder/.Xresources ~
+ln -s$force $folder/.Xmodmap ~
+ln -s$force $folder/.xprofile ~
