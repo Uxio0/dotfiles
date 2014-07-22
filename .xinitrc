@@ -28,7 +28,6 @@ xset fp rehash
 xrdb -merge ~/.Xresources &
 
 xsetroot -cursor_name left_ptr &
-xmodmap ~/dotfiles/caps_scape
 
 #Swap mayus and ESC for ViM
 xmodmap ~/dotfiles/.Xmodmap
@@ -38,7 +37,7 @@ xmodmap ~/dotfiles/.Xmodmap
 #xset +dpms
 #xset dpms 0 0 300
 
-#mpd
+mpd &
 
 urxvtd -q -o -f
 
@@ -50,6 +49,9 @@ wicd-gtk -t &
 
 # Auto mounts USB to /media/
 udiskie --tray &
+
+#Auto lock screen
+xss-lock slock &
 
 # Normal cursor
 DEFAULT_SESSION=dwm

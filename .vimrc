@@ -188,3 +188,6 @@ color wombat256mod
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 let g:syntastic_javascript_checkers = ['gjslint']
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
+
+"ControlP
+set runtimepath^=~/.vim/bundle/ctrlp.vim

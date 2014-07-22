@@ -44,13 +44,13 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            True,        -1 },
+	{ "Gimp",     NULL,       NULL,       0,            False,       -1 },
 	{ "Ekiga",    NULL,       NULL,       0,            True,        -1 },
 	{ "Skype",    NULL,       NULL,       0,            True,        -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       False,       -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 7,       False,       -1 },
 	{ "Chromium", NULL,       NULL,       1 << 8,       False,       -1 },
-	{ "Dwb",  	  NULL,       NULL,       1 << 8,       False,       -1 },
-	{ "Eclipse",  NULL,       NULL,       1 << 7,       True,        -1 },
+	{ "Dwb",  	  NULL,       NULL,       1 << 6,       False,       -1 },
+	{ "Eclipse",  NULL,       NULL,       1 << 2,       False,        -1 },
 	{ "Thunderbird",NULL,     NULL,       1 << 5,       False,       -1 },
 	{ "jetbrains-phpstorm",  NULL, NULL,  1 << 1,       False,       -1 },
 };
@@ -138,6 +138,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_v,      spawn,			{.v = gvim } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,			{.v = pavucontrol } },
 	{ 0,                            XK_Scroll_Lock,      spawn,        {.v = scrolllock } },
+	{ MODKEY,                       XK_F12,			     spawn,        {.v = volup } },
+	{ MODKEY,                       XK_F11,     		 spawn,        {.v = voldown } },
+	{ MODKEY,                       XK_F10,			     spawn,        {.v = mpctoggle } },
 	{ 0,                            XF86XK_AudioRaiseVolume,      spawn,        {.v = volup } },
 	{ 0,                            XF86XK_AudioLowerVolume,      spawn,        {.v = voldown } },
 	{ 0,                            XF86XK_AudioMute,      spawn,        {.v = volmute } },
