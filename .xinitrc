@@ -59,6 +59,18 @@ DEFAULT_SESSION=dwm
 #[ -z $1 ] && my_session=$DEFAULT_SESSION || my_session=$1
 
 case $1 in
+bspwm)
+	PANEL_FIFO=/tmp/panel-fifo
+	PANEL_HEIGHT=24
+	PANEL_FONT_FAMILY="-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1"
+	export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
+	#~/panel/panel &
+	wmname LG3D
+	fbxkb &
+	sxhkd &
+	sh ~/.fehbg
+	exec bspwm
+	;;
 dwm)
 	conky -c ~/conky.conf | while read -r; do xsetroot -name "$REPLY"; done &
 	wmname LG3D

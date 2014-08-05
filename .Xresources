@@ -2,10 +2,12 @@
 urxvt*shading:			10
 
 
-!#include "colors_default"
-!#include "colors_solarized"
-#include "colors_wombat"
-URxvt.intensityStyles: false
+!#include "colors/default"
+!#include "colors/solarized"
+!#include "colors/wombat"
+!#include "colors/hybrid"
+#include "colors/tomorrow"
+!URxvt.intensityStyles: false
 
 !*background: rgb:1a/1a/1a
 !*foreground: rgb:aa/aa/aa
@@ -27,25 +29,30 @@ URxvt.intensityStyles: false
 !*color15:    rgb:ff/ff/ff
 
 ! Fix font space
-URxvt*letterSpace: 0
+URxvt*letterSpace: -2
 
 !urxvt*transparent: false
 !urxvt*shading: 50
 !urxvt*fading: 50
 *font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
-urxvt*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*,-*-symbola-medium-*-*-*-17-*-*-*-*-*-*-*
-!urxvt*font: xft:Inconsolata:size=13:antialias=true:hinting=true
+!urxvt*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*,-*-symbola-medium-*-*-*-17-*-*-*-*-*-*-*
+!urxvt*boldFont: xft:terminus:bold:pixelsize=15
+urxvt.font: xft:Liberation Mono:pixelsize=14
+urxvt.boldFont: xft:Liberation Mono:pixelsize=14:style=bold
+urxvt.italicFont: xft:Liberation Mono:pixelsize=14:style=italic
+urxvt.boldItalicFont: xft:Liberation Mono:pixelsize=14:style=bold italic
 !urxvt*italicFont: xft:Inconsolata:size=13:antialias=true:hinting=true
-!urxvt.boldFont: xft:inconsolata:pixelsize=13
 !urxvt.bolditalicFont: xft:inconsolata:pixelsize=13
-*boldFont:			-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
-*italicFont:		-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
-*bolditalicFont:	-*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
-!urxvt*italicFont:		xft:Terminus
-!urxvt*bolditalicFont:	xft:Terminus
-!urxvt*font: xft:Bitstream\ Vera\ Sans\ Mono:style=roman:pixelsize=13
 urxvt*scrollBar: false
 urxvt*iso14755 : false
+
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+!Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
 
 !Scroll Buffer
 urxvt.saveLines:10000

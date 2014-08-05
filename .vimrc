@@ -12,8 +12,13 @@
 " Source a global configuration file if available
 runtime! archlinux.vim
 
+" Uncomment the next line to make Vim more Vi-compatible
+" NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
+" options, so any other options should be set AFTER setting 'compatible'.
+set nocompatible
+
 if filereadable("/etc/vim/vimrc.local")
-   source /etc/vim/vimrc.local
+	source /etc/vim/vimrc.local
 endif
 
 " Rebind <Leader> key
@@ -36,20 +41,11 @@ map <S-Insert>		"+gP
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 
-" Uncomment the next line to make Vim more Vi-compatible
-" NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
-" options, so any other options should be set AFTER setting 'compatible'.
-set nocompatible
-
 " Vim5 and later versions support syntax highlighting. Uncommenting the
 " following enables syntax highlighting by default.
 if has("syntax")
-   syntax on
+	syntax on
 endif
-
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
-"set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -67,7 +63,7 @@ map <c-h> <c-w>h
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
 if has("autocmd")
-   filetype plugin indent on
+	filetype plugin indent on
 endif
 
 " The following are commented out as they cause vim to behave a lot
@@ -84,14 +80,13 @@ set mouse=a			" Enable mouse usage (all modes)
 set novisualbell	" Quita la campanita
 set title			" Muestra los titulos en cada buffer
 map <F12> :set nu!<CR>
-					"Muestra los números de línea, nonu lo contrario
+"Muestra los números de línea, nonu lo contrario
 set ruler 			"Información de estado
 "set cursorline 	"Resalta línea
 ":hi CursorLine   cterm=NONE ctermbg=green ctermfg=white guibg=darkred guifg=white
 
 " Bind nohl
 " Removes highlight of your last search
-" ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
 noremap <C-n> :nohl<CR>
 vnoremap <C-n> :nohl<CR>
 inoremap <C-n> :nohl<CR>
@@ -105,6 +100,8 @@ map <F6> :%s/\s\+$//e <CR>
 "Indentacion
 set tabstop=4 	 "Tamano tabulacion
 set shiftwidth=4 "Tamano autoindentar
+set softtabstop=4
+set noexpandtab
 
 "Latex
 au FileType tex setlocal spell spelllang=es
@@ -114,21 +111,21 @@ au FileType html setlocal shiftwidth=2 tabstop=2
 augroup gzip
 	autocmd!
 	autocmd BufReadPre,FileReadPre	*.gz set bin
-    autocmd BufReadPost,FileReadPost	*.gz '[,']!gunzip
-    autocmd BufReadPost,FileReadPost	*.gz set nobin
-    autocmd BufReadPost,FileReadPost	*.gz execute ":doautocmd BufReadPost " . expand("%:r")
-    autocmd BufWritePost,FileWritePost	*.gz !mv <afile> <afile>:r
-    autocmd BufWritePost,FileWritePost	*.gz !gzip <afile>:r
+	autocmd BufReadPost,FileReadPost	*.gz '[,']!gunzip
+	autocmd BufReadPost,FileReadPost	*.gz set nobin
+	autocmd BufReadPost,FileReadPost	*.gz execute ":doautocmd BufReadPost " . expand("%:r")
+	autocmd BufWritePost,FileWritePost	*.gz !mv <afile> <afile>:r
+	autocmd BufWritePost,FileWritePost	*.gz !gzip <afile>:r
 
-    autocmd FileAppendPre		*.gz !gunzip <afile>
-    autocmd FileAppendPre		*.gz !mv <afile>:r <afile>
-    autocmd FileAppendPost		*.gz !mv <afile> <afile>:r
-    autocmd FileAppendPost		*.gz !gzip <afile>:r
+	autocmd FileAppendPre		*.gz !gunzip <afile>
+	autocmd FileAppendPre		*.gz !mv <afile>:r <afile>
+	autocmd FileAppendPost		*.gz !mv <afile> <afile>:r
+	autocmd FileAppendPost		*.gz !gzip <afile>:r
 augroup END
+
 "Python"
 au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
-
-map <F7> gg=G
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 "Buffers
 map <F2> :previous<CR>  " map F1 to open previous buffer
@@ -150,32 +147,57 @@ map <F4> :set invfen<CR>
 "Completar
 "set ofu=syntaxcomplete#Complete
 set ofu=ccomplete#Complete
-set tags+=~/.vim/systags
+"set tags+=~/.vim/systags
+set tags+=./tags;
 
 "Para llamar a la ayuda
 " :he algo
-"
 
 if has("gui_running")
-	set guifont=Inconsolata\ Medium\ 12
+	"set guifont=Inconsolata\ Medium\ 12
+	set guifont=Liberation\ Mono\ 10
 endif
 
 set numberwidth=4   " line numbering takes up 5 spaces
 set nowrap          " stop lines from wrapping
 
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'bling/vim-airline'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'majutsushi/tagbar'
+"Silver searcher
+Plugin 'rking/ag.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 
 "Syntatic
 let g:syntastic_check_on_open=1
 let g:pymode_indent = 1
-map <C-n> :NERDTreeToggle<CR>
 
-"Python
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+"YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+
+"NERDTree
+map <C-n> :NERDTreeToggle<CR>
 
 "Airline
 set laststatus=2
+
+"TagBar
+nmap <F7> :TagbarToggle<CR>
 
 set bg=dark
 "color codeschool
@@ -189,5 +211,13 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 let g:syntastic_javascript_checkers = ['gjslint']
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
 
-"ControlP
+"ControlP Fuzzy
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
