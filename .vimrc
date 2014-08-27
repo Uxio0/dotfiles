@@ -28,11 +28,11 @@ let mapleader = ","
 
 " CTRL-C and CTRL-Insert are Copy
 vnoremap <C-C> "+y
-vnoremap <C-Insert> "+y
+"vnoremap <C-Insert> "+y
 
 " CTRL-V and SHIFT-Insert are Paste
 map <C-V>		"+gP
-map <S-Insert>		"+gP
+"map <S-Insert>		"+gP
 
 "source $VIMRUNTIME/mswin.vim
 "behave mswin
@@ -59,6 +59,9 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+" Emacs end of line
+map <c-a> ^
+map <c-e> $
 
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
@@ -70,8 +73,8 @@ endif
 " differently from regular Vi. They are highly recommended though.
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
-set autochdir		" Pone siempre el directorio donde se trabaja
-"set ignorecase		" Do case insensitive matching
+"set autochdir		" Pone siempre el directorio donde se trabaja
+set ignorecase		" Do case insensitive matching
 "set smartcase		" Do smart case matching
 set incsearch		" Incremental search
 "set autowrite		" Automatically save before commands like :next and :make
@@ -87,15 +90,9 @@ set ruler 			"Información de estado
 
 " Bind nohl
 " Removes highlight of your last search
-noremap <C-n> :nohl<CR>
-vnoremap <C-n> :nohl<CR>
-inoremap <C-n> :nohl<CR>
-
-"ExtraEspacios
-"Con F5 muestras los espacios en blanco, y con F6 los borras
-highlight ExtraWhitespace ctermbg=red guibg=red
-map <F5> :match ExtraWhitespace /\s\+$/<CR>
-map <F6> :%s/\s\+$//e <CR>
+noremap <C-m> :nohl<CR>
+vnoremap <C-m> :nohl<CR>
+inoremap <C-m> :nohl<CR>
 
 "Indentacion
 set tabstop=4 	 "Tamano tabulacion
@@ -125,7 +122,12 @@ augroup END
 
 "Python"
 au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+au FileType python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+"JavaScript
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+let g:syntastic_javascript_checkers = ['gjslint']
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
 
 "Buffers
 map <F2> :previous<CR>  " map F1 to open previous buffer
@@ -150,13 +152,24 @@ set ofu=ccomplete#Complete
 "set tags+=~/.vim/systags
 set tags+=./tags;
 
-"Para llamar a la ayuda
-" :he algo
+"Themes and font
+set bg=dark
+"color codeschool
+"color desert256
+color wombat256mod
+"color solarized
+"highlight Normal ctermbg=None
 
 if has("gui_running")
 	"set guifont=Inconsolata\ Medium\ 12
 	set guifont=Liberation\ Mono\ 10
 endif
+
+"ExtraEspacios
+"Con F5 muestras los espacios en blanco, y con F6 los borras
+highlight ExtraWhitespace ctermbg=red guibg=red
+map <F5> :match ExtraWhitespace /\s\+$/<CR>
+map <F6> :%s/\s\+$//e <CR>
 
 set numberwidth=4   " line numbering takes up 5 spaces
 set nowrap          " stop lines from wrapping
@@ -169,7 +182,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
-Plugin 'davidhalter/jedi-vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
@@ -198,18 +210,6 @@ set laststatus=2
 
 "TagBar
 nmap <F7> :TagbarToggle<CR>
-
-set bg=dark
-"color codeschool
-"color desert256
-color wombat256mod
-"color solarized
-"highlight Normal ctermbg=None
-
-"JavaScript
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-let g:syntastic_javascript_checkers = ['gjslint']
-autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
 
 "ControlP Fuzzy
 set runtimepath^=~/.vim/bundle/ctrlp.vim
