@@ -32,6 +32,8 @@ xsetroot -cursor_name left_ptr &
 #Swap mayus and ESC for ViM
 xmodmap ~/dotfiles/.Xmodmap
 
+#Pulseaudio on systray
+pasystray &
 #Auto lower brightness
 #xset -q (To check options)
 #xset +dpms

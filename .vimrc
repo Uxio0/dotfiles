@@ -90,9 +90,9 @@ set ruler 			"Información de estado
 
 " Bind nohl
 " Removes highlight of your last search
-noremap <C-m> :nohl<CR>
-vnoremap <C-m> :nohl<CR>
-inoremap <C-m> :nohl<CR>
+"noremap <C-m> :nohl<CR>
+"vnoremap <C-m> :nohl<CR>
+"inoremap <C-m> :nohl<CR>
 
 "Indentacion
 set tabstop=4 	 "Tamano tabulacion
@@ -126,7 +126,6 @@ au FileType python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c
 
 "JavaScript
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-let g:syntastic_javascript_checkers = ['gjslint']
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
 
 "Buffers
@@ -154,15 +153,14 @@ set tags+=./tags;
 
 "Themes and font
 set bg=dark
-"color codeschool
-"color desert256
-color wombat256mod
-"color solarized
+
 "highlight Normal ctermbg=None
 
 if has("gui_running")
 	"set guifont=Inconsolata\ Medium\ 12
-	set guifont=Liberation\ Mono\ 10
+	set anti enc=utf-8
+	"set guifont=Liberation\ Mono\ 10
+	set guifont=Source\ Code\ Pro\ Semi-Bold\ 11
 endif
 
 "ExtraEspacios
@@ -180,24 +178,45 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+"Colorschemes http://www.vimninjas.com/2012/08/26/10-vim-color-schemes-you-need-to-own/
+"Plugin 'flazz/vim-colorschemes'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'vim-scripts/wombat256.vim'
+Plugin 'morhetz/gruvbox'
+"Plugin 'dsolstad/vim-wombat256i'
+"Plugin 'zeis/vim-kolor'
+"Git integration
 Plugin 'tpope/vim-fugitive'
+"Control + P search
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
+Plugin 'airblade/vim-rooter'
 "Silver searcher
 Plugin 'rking/ag.vim'
+"Auto Pair () []
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
+"Colors
+"color codeschool
+"color desert256
+"color solarized
+"color wombat256mod
+color jellybeans
+
 "Syntatic
 let g:syntastic_check_on_open=1
 let g:pymode_indent = 1
+let g:syntastic_javascript_gjslint_args = "--max_line_length 300"
+let g:syntastic_javascript_checkers = ['gjslint']
 
 "YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'

@@ -37,6 +37,7 @@ URxvt*letterSpace: -2
 *font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
 !urxvt*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*,-*-symbola-medium-*-*-*-17-*-*-*-*-*-*-*
 !urxvt*boldFont: xft:terminus:bold:pixelsize=15
+Xft.dpi: 96
 urxvt.font: xft:Liberation Mono:pixelsize=14
 urxvt.boldFont: xft:Liberation Mono:pixelsize=14:style=bold
 urxvt.italicFont: xft:Liberation Mono:pixelsize=14:style=italic
