@@ -49,6 +49,7 @@ static const Rule rules[] = {
 	{ "Skype",    NULL,       NULL,       0,            True,        -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 7,       False,       -1 },
 	{ "Chromium", NULL,       NULL,       1 << 8,       False,       -1 },
+	{ "Google-chrome-stable", NULL,NULL,  1 << 8,       False,       -1 },
 	{ "Dwb",  	  NULL,       NULL,       1 << 6,       False,       -1 },
 	{ "Eclipse",  NULL,       NULL,       1 << 2,       False,        -1 },
 	{ "Thunderbird",NULL,     NULL,       1 << 5,       False,       -1 },
