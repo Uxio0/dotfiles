@@ -28,16 +28,28 @@ urxvt*shading:			10
 !*color7:     rgb:be/be/be
 !*color15:    rgb:ff/ff/ff
 
-! Fix font space
-URxvt*letterSpace: -2
 
 !urxvt*transparent: false
 !urxvt*shading: 50
 !urxvt*fading: 50
+
+!Fonts
 *font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
 !urxvt*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*,-*-symbola-medium-*-*-*-17-*-*-*-*-*-*-*
 !urxvt*boldFont: xft:terminus:bold:pixelsize=15
-Xft.dpi: 96
+Xft.antialias:  1
+Xft.hinting:    1
+Xft.autohint:   0
+Xft.hintstyle:  hintfull
+!Xft.hintstyle:  hintmedium
+!Xft.hintstyle: hintslight
+Xft.lcdfilter:  lcddefault
+Xft.dpi:        96
+Xft.rgba:       rgb
+
+! Fix font space
+urxvt*letterSpace: -2
+
 urxvt.font: xft:Liberation Mono:pixelsize=14
 urxvt.boldFont: xft:Liberation Mono:pixelsize=14:style=bold
 urxvt.italicFont: xft:Liberation Mono:pixelsize=14:style=italic
@@ -47,13 +59,6 @@ urxvt.boldItalicFont: xft:Liberation Mono:pixelsize=14:style=bold italic
 urxvt*scrollBar: false
 urxvt*iso14755 : false
 
-Xft.autohint: 0
-Xft.lcdfilter:  lcddefault
-Xft.hintstyle:  hintfull
-!Xft.hintstyle: hintslight
-Xft.hinting: 1
-Xft.antialias: 1
-Xft.rgba: rgb
 
 !Scroll Buffer
 urxvt.saveLines:10000
