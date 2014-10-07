@@ -11,5 +11,9 @@ ln -s$force $folder/.xinitrc ~
 ln -s$force $folder/.Xresources ~
 ln -s$force $folder/.Xmodmap ~
 ln -s$force $folder/.xprofile ~
+mkdir -p ~/.config
+ln -s$force $folder/termite ~/.config
+
+#Vim bundle
 mkdir -p ~/.vim/bundle
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim

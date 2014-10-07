@@ -82,7 +82,7 @@ static const Layout layouts[] = {
 /* commands */
 //static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG],"-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
-static const char *termcmd[]  = { "urxvtc", NULL };
+static const char *termcmd[]  = { "termite", NULL };
 
 
 static const char *volup[]    = { "amixer", "-q", "sset", "Master", "5%+", "unmute", NULL };
