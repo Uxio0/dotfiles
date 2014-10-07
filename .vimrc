@@ -18,7 +18,7 @@ runtime! archlinux.vim
 set nocompatible
 
 if filereadable("/etc/vim/vimrc.local")
-	source /etc/vim/vimrc.local
+    source /etc/vim/vimrc.local
 endif
 
 " Rebind <Leader> key
@@ -44,7 +44,7 @@ autocmd! bufwritepost .vimrc source %
 " Vim5 and later versions support syntax highlighting. Uncommenting the
 " following enables syntax highlighting by default.
 if has("syntax")
-	syntax on
+    syntax on
 endif
 
 " Uncomment the following to have Vim jump to the last position when
@@ -66,7 +66,7 @@ map <c-e> $
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
 if has("autocmd")
-	filetype plugin indent on
+    filetype plugin indent on
 endif
 
 " The following are commented out as they cause vim to behave a lot
@@ -106,19 +106,23 @@ au FileType tex setlocal spell spelllang=es
 au FileType html setlocal shiftwidth=2 tabstop=2
 "Gzip
 augroup gzip
-	autocmd!
-	autocmd BufReadPre,FileReadPre	*.gz set bin
-	autocmd BufReadPost,FileReadPost	*.gz '[,']!gunzip
-	autocmd BufReadPost,FileReadPost	*.gz set nobin
-	autocmd BufReadPost,FileReadPost	*.gz execute ":doautocmd BufReadPost " . expand("%:r")
-	autocmd BufWritePost,FileWritePost	*.gz !mv <afile> <afile>:r
-	autocmd BufWritePost,FileWritePost	*.gz !gzip <afile>:r
+    autocmd!
+    autocmd BufReadPre,FileReadPre	*.gz set bin
+    autocmd BufReadPost,FileReadPost	*.gz '[,']!gunzip
+    autocmd BufReadPost,FileReadPost	*.gz set nobin
+    autocmd BufReadPost,FileReadPost	*.gz execute ":doautocmd BufReadPost " . expand("%:r")
+    autocmd BufWritePost,FileWritePost	*.gz !mv <afile> <afile>:r
+    autocmd BufWritePost,FileWritePost	*.gz !gzip <afile>:r
 
-	autocmd FileAppendPre		*.gz !gunzip <afile>
-	autocmd FileAppendPre		*.gz !mv <afile>:r <afile>
-	autocmd FileAppendPost		*.gz !mv <afile> <afile>:r
-	autocmd FileAppendPost		*.gz !gzip <afile>:r
+    autocmd FileAppendPre		*.gz !gunzip <afile>
+    autocmd FileAppendPre		*.gz !mv <afile>:r <afile>
+    autocmd FileAppendPost		*.gz !mv <afile> <afile>:r
+    autocmd FileAppendPost		*.gz !gzip <afile>:r
 augroup END
+
+setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
+"Php"
+au FileType php let g:vdebug_options['server'] = "10.0.1.79"
 
 "Python"
 au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
@@ -157,10 +161,10 @@ set bg=dark
 "highlight Normal ctermbg=None
 
 if has("gui_running")
-	"set guifont=Inconsolata\ Medium\ 12
-	set anti enc=utf-8
-	"set guifont=Liberation\ Mono\ 10
-	set guifont=Source\ Code\ Pro\ Semi-Bold\ 11
+    "set guifont=Inconsolata\ Medium\ 12
+    set anti enc=utf-8
+    "set guifont=Liberation\ Mono\ 10
+    set guifont=Source\ Code\ Pro\ Semi-Bold\ 11
 endif
 
 "ExtraEspacios
@@ -201,6 +205,8 @@ Plugin 'airblade/vim-rooter'
 Plugin 'rking/ag.vim'
 "Auto Pair () []
 Plugin 'jiangmiao/auto-pairs'
+"Vdebug
+Plugin 'joonty/vdebug'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -232,11 +238,13 @@ nmap <F7> :TagbarToggle<CR>
 
 "ControlP Fuzzy
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+nnoremap <leader>/ :Ag<space>
+if executable('ag')
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
