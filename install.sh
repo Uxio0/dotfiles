@@ -11,6 +11,7 @@ ln -s$force $folder/.xinitrc ~
 ln -s$force $folder/.Xresources ~
 ln -s$force $folder/.Xmodmap ~
 ln -s$force $folder/.xprofile ~
+ln -s$force $folder/.zshrc ~
 mkdir -p ~/.config
 ln -s$force $folder/termite ~/.config
 

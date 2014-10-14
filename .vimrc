@@ -207,6 +207,8 @@ Plugin 'rking/ag.vim'
 Plugin 'jiangmiao/auto-pairs'
 "Vdebug
 Plugin 'joonty/vdebug'
+"Django
+Plugin 'lambdalisue/vim-django-support'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -240,7 +242,7 @@ nmap <F7> :TagbarToggle<CR>
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-nnoremap <leader>/ :Ag<space>
+nnoremap <leader>/ :Ag -i<space>
 if executable('ag')
     " Use Ag over Grep
     set grepprg=ag\ --nogroup\ --nocolor
