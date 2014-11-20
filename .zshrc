@@ -44,3 +44,19 @@ compress() {
     name=${1##*/}
     tar -cv $1 | lzma -9 > $name.tar.lzma
 }
+
+# press ctrl-q to quote line:
+mquote () {
+      zle beginning-of-line
+      zle forward-word
+      # RBUFFER="'$RBUFFER'"
+      RBUFFER=${(q)RBUFFER}
+      zle end-of-line
+}
+zle -N mquote && bindkey '^q' mquote
+
+## ctrl-s will no longer freeze the terminal.
+# stty erase "^?"
+stty -ixon
+
+. ~/work.sh

@@ -133,8 +133,10 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
 
 "Buffers
-map <F2> :previous<CR>  " map F1 to open previous buffer
-map <F3> :next<CR>      " map F2 to open next buffer
+"map F1 to open previous buffer
+map <F2> :previous<CR>
+"map F2 to open next buffer
+map <F3> :next<CR>
 
 "Busquedas
 set hlsearch "ilumina las búsquedas
