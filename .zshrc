@@ -59,4 +59,5 @@ zle -N mquote && bindkey '^q' mquote
 # stty erase "^?"
 stty -ixon
 
-. ~/work.sh
+[[ -f ~/work.sh ]] && . ~/work.sh
+[[ -f ~/thinkpad.sh ]] && . ~/thinkpad.sh
