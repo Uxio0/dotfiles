@@ -69,7 +69,8 @@ bspwm)
 	PANEL_HEIGHT=15
 	PANEL_FONT_FAMILY="-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1"
 	export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
-	#~/panel/panel &
+	PATH=$PATH:~/.config/bspwm/panel
+    export PATH
 	fbxkb &
 	sxhkd &
 	sh ~/.fehbg

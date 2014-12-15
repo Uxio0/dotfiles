@@ -11,11 +11,13 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
 
-#export TERM="xterm-256color"
+export TERM="xterm-256color"
 export GOPATH=~/gocode
-export PATH="$PATH:$GOPATH/bin"
+PATH=$PATH:$GOPATH/bin
+export PATH
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
 # extract function
