@@ -13,8 +13,10 @@ ln -s$force $folder/.Xmodmap ~
 ln -s$force $folder/.xprofile ~
 ln -s$force $folder/.zshrc ~
 mkdir -p ~/.config
-ln -s$force $folder/termite ~/.config
 ln -s$force $folder/.ncmpcpp ~
+ln -s$force $folder/termite ~/.config
+ln -s$force $folder/bspwm ~/.config
+ln -s$force $folder/dunst ~/.config
 
 #Vim bundle
 mkdir -p ~/.vim/bundle
