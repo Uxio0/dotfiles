@@ -4,18 +4,20 @@
 #
 # Executed by startx (run your window manager from here)
 
-if [ -d /etc/X11/xinit/xinitrc.d ]; then
-  for f in /etc/X11/xinit/xinitrc.d/*; do
-    [ -x "$f" ] && . "$f"
-  done
-  unset f
-fi
+#if [ -d /etc/X11/xinit/xinitrc.d ]; then
+#  for f in /etc/X11/xinit/xinitrc.d/*; do
+#    [ -x "$f" ] && . "$f"
+#  done
+#  unset f
+#fi
 
 # Enable restart X ctrl + alt + back and change keymap with both shifts
 setxkbmap -option terminate:ctrl_alt_bksp,grp:shifts_toggle es,us
 #setxkbmap -option grp:switch,grp:shifts_toggle,grp_led:scroll es,us
 xset led named "Scroll Lock"
 xset r rate 250 60
+
+# redshift -l 49.26:-123.23 &
 
 # Turns off the system bell
 /usr/bin/xset b off
@@ -30,7 +32,9 @@ xrdb -merge ~/.Xresources &
 xsetroot -cursor_name left_ptr &
 
 #Swap mayus and ESC for ViM
-xmodmap ~/dotfiles/.Xmodmap
+if [ -s xmodmap ~/dotfiles/.Xmodmap ]; then
+    xmodmap ~/dotfiles/.Xmodmap
+fi
 
 #Pulseaudio on systray
 pasystray &
@@ -41,7 +45,8 @@ pasystray &
 
 mpd &
 
-urxvtd -q -o -f
+#Now using termite
+#urxvtd -q -o -f
 
 wicd-gtk -t &
 #start-pulseaudio-x11
@@ -73,6 +78,8 @@ bspwm)
     export PATH
 	fbxkb &
 	sxhkd &
+	compton &
+    dunst &
 	sh ~/.fehbg
 	wmname LG3D
 	exec bspwm

@@ -206,11 +206,13 @@ Plugin 'airblade/vim-rooter'
 "Silver searcher
 Plugin 'rking/ag.vim'
 "Auto Pair () []
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'Raimondi/delimitMate'
 "Vdebug
 Plugin 'joonty/vdebug'
 "Django
 Plugin 'lambdalisue/vim-django-support'
+"Ctags Cscope
+Plugin 'steffanc/cscopemaps.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -252,3 +254,10 @@ if executable('ag')
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
+
+" ALT + ] -> Open the definition in a vertical split
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+"Syntastic colors
+hi SpellBad	guifg=NONE	guibg=NONE	guisp=#c03000
+hi SpellCap	guifg=NONE	guibg=NONE	guisp=#2060a8

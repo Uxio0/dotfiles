@@ -14,6 +14,7 @@ ln -s$force $folder/.xprofile ~
 ln -s$force $folder/.zshrc ~
 mkdir -p ~/.config
 ln -s$force $folder/termite ~/.config
+ln -s$force $folder/.ncmpcpp ~
 
 #Vim bundle
 mkdir -p ~/.vim/bundle
