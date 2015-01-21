@@ -33,3 +33,7 @@ MUSIC=`echo -e $i_musk`
 TEMPIC=`echo -e $i_tmp`
 PACIC=`echo -e $i_pkgs`
 CLKIC=`echo -e $i_time`
+
+PANEL_FIFO=/tmp/panel-fifo
+PANEL_HEIGHT=15
+PANEL_FONT_FAMILY="-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1"

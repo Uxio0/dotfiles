@@ -14,7 +14,8 @@
 # Enable restart X ctrl + alt + back and change keymap with both shifts
 setxkbmap -option terminate:ctrl_alt_bksp,grp:shifts_toggle es,us
 #setxkbmap -option grp:switch,grp:shifts_toggle,grp_led:scroll es,us
-xset led named "Scroll Lock"
+numlockx on
+#xset led named "Scroll Lock"
 xset r rate 250 60
 
 # redshift -l 49.26:-123.23 &
@@ -32,7 +33,7 @@ xrdb -merge ~/.Xresources &
 xsetroot -cursor_name left_ptr &
 
 #Swap mayus and ESC for ViM
-if [ -s xmodmap ~/dotfiles/.Xmodmap ]; then
+if [ -s ~/dotfiles/.Xmodmap ]; then
     xmodmap ~/dotfiles/.Xmodmap
 fi
 
@@ -70,10 +71,6 @@ DEFAULT_SESSION=dwm
 
 case $1 in
 bspwm)
-	PANEL_FIFO=/tmp/panel-fifo
-	PANEL_HEIGHT=15
-	PANEL_FONT_FAMILY="-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1"
-	export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
 	PATH=$PATH:~/.config/bspwm/panel
     export PATH
 	fbxkb &
