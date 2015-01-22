@@ -17,6 +17,7 @@ ln -s$force $folder/.ncmpcpp ~
 ln -s$force $folder/termite ~/.config
 ln -s$force $folder/bspwm ~/.config
 ln -s$force $folder/dunst ~/.config
+ln -s$force $folder/sxhkd ~/.config
 
 #Vim bundle
 mkdir -p ~/.vim/bundle

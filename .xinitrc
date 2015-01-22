@@ -46,8 +46,7 @@ pasystray &
 
 mpd &
 
-#Now using termite
-#urxvtd -q -o -f
+urxvtd -q -o -f
 
 wicd-gtk -t &
 #start-pulseaudio-x11
