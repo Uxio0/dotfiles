@@ -11,9 +11,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-alias vi='nvim'
-alias vim='nvim'
-
 export TERM="xterm-256color"
 export GOPATH=~/gocode
 PATH=$PATH:$GOPATH/bin

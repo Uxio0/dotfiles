@@ -1,5 +1,5 @@
 !urxvt*inheritPixmap:	true
-urxvt*shading:			10
+!urxvt*shading:			10
 
 
 !#include "colors/default"
@@ -29,8 +29,9 @@ urxvt*shading:			10
 !*color15:    rgb:ff/ff/ff
 
 
-!urxvt*transparent: false
-!urxvt*shading: 50
+urxvt*transparent: true
+urxvt*shading: 20
+
 !urxvt*fading: 50
 
 !Fonts
@@ -47,15 +48,22 @@ Xft.lcdfilter:  lcddefault
 Xft.dpi:        96
 Xft.rgba:       rgb
 
-! Fix font space
-urxvt*letterSpace: -2
-
-urxvt.font: xft:Liberation Mono:pixelsize=14,xft:Dejavu Sans Mono:pixelsize=14
+urxvt.font: xft:Liberation Mono:pixelsize=14,xft:Dejavu Sans Mono:pixelsize=14, \
+            xft:FreeSerif:style=Regular, \
+            xft:unifont:style=Medium:antialias=false
 urxvt.boldFont: xft:Liberation Mono:pixelsize=14:style=bold,xft:Dejavu Sans Mono:pixelsize=14:style=bold
 urxvt.italicFont: xft:Liberation Mono:pixelsize=14:style=italic,xft:Dejavu Sans Mono:pixelsize=14:style=italic
 urxvt.boldItalicFont: xft:Liberation Mono:pixelsize=14:style=bold italic,xft:Dejavu Sans Mono:pixelsize=14:style=bold italic
-!urxvt*italicFont: xft:Inconsolata:size=13:antialias=true:hinting=true
-!urxvt.bolditalicFont: xft:inconsolata:pixelsize=13
+! Fix font space
+urxvt*letterSpace: -2
+
+!urxvt.font: xft:Liberation Mono:pixelsize=14,xft:Dejavu Sans Mono:pixelsize=14
+!urxvt.boldFont: xft:Liberation Mono:pixelsize=14:style=bold,xft:Dejavu Sans Mono:pixelsize=14:style=bold
+!urxvt.italicFont: xft:Liberation Mono:pixelsize=14:style=italic,xft:Dejavu Sans Mono:pixelsize=14:style=italic
+!urxvt.boldItalicFont: xft:Liberation Mono:pixelsize=14:style=bold italic,xft:Dejavu Sans Mono:pixelsize=14:style=bold italic
+! Fix font space
+!urxvt*letterSpace: -2
+
 urxvt*scrollBar: false
 urxvt*iso14755 : false
 
