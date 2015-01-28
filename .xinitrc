@@ -63,6 +63,9 @@ xss-lock slock &
 #SSH agent
 eval $(ssh-agent)
 
+#Redshift for auto regulate screen colors temperature
+redshift -l 43.34:8.45&
+
 # Normal cursor
 DEFAULT_SESSION=dwm
 
