@@ -26,6 +26,11 @@ endif
 " it is next to ``m`` and ``n`` which I use for navigating between tabs.
 let mapleader = ","
 
+"Backup and SWP dirs
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
+
 " CTRL-C and CTRL-Insert are Copy
 vnoremap <C-C> "+y
 "vnoremap <C-Insert> "+y
@@ -166,7 +171,8 @@ if has("gui_running")
     "set guifont=Inconsolata\ Medium\ 12
     set anti enc=utf-8
     "set guifont=Liberation\ Mono\ 10
-    set guifont=Source\ Code\ Pro\ Semi-Bold\ 11
+    "set guifont=Source\ Code\ Pro\ Semi-Bold\ 11
+    set guifont=Inconsolata\ for\ Powerline\ 12
 endif
 
 "ExtraEspacios
@@ -238,15 +244,19 @@ map <C-n> :NERDTreeToggle<CR>
 
 "Airline
 set laststatus=2
+let g:airline_powerline_fonts = 1
 
 "TagBar
 nmap <F7> :TagbarToggle<CR>
 
 "ControlP Fuzzy
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+nnoremap <leader>b :CtrlPBuffer<CR>
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 nnoremap <leader>/ :Ag -i<space>
+map K :Ag -i "<cword>"<CR>
+
 if executable('ag')
     " Use Ag over Grep
     set grepprg=ag\ --nogroup\ --nocolor

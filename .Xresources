@@ -38,7 +38,7 @@ urxvt*shading: 20
 *font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
 !urxvt*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*,-*-symbola-medium-*-*-*-17-*-*-*-*-*-*-*
 !urxvt*boldFont: xft:terminus:bold:pixelsize=15
-Xft.antialias:  1
+!Xft.antialias:  1
 Xft.hinting:    1
 Xft.autohint:   0
 Xft.hintstyle:  hintfull
@@ -48,14 +48,12 @@ Xft.lcdfilter:  lcddefault
 Xft.dpi:        96
 Xft.rgba:       rgb
 
-urxvt.font: xft:Liberation Mono:pixelsize=14,xft:Dejavu Sans Mono:pixelsize=14, \
-            xft:FreeSerif:style=Regular, \
-            xft:unifont:style=Medium:antialias=false
-urxvt.boldFont: xft:Liberation Mono:pixelsize=14:style=bold,xft:Dejavu Sans Mono:pixelsize=14:style=bold
-urxvt.italicFont: xft:Liberation Mono:pixelsize=14:style=italic,xft:Dejavu Sans Mono:pixelsize=14:style=italic
-urxvt.boldItalicFont: xft:Liberation Mono:pixelsize=14:style=bold italic,xft:Dejavu Sans Mono:pixelsize=14:style=bold italic
-! Fix font space
-urxvt*letterSpace: -2
+!infinality-bundle-fonts/otf-inconsolata-pwl-ibx
+URxvt.font: xft:inconsolata for powerline:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:pixelsize=16:antialias=true:hinting=true
+URxvt.boldFont: xft:inconsolata for powerline:bold:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:bold:pixelsize=16:antialias=true:hinting=true
+URxvt.italicFont: xft:inconsolata for powerline:italic:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:italic:pixelsize=16:antialias=true:hinting=true
+URxvt.boldItalicFont: xft:inconsolata for powerline:bold:italic:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:bold:italic:pixelsize=16:antialias=true:hinting=true
+URxvt.letterSpace: -1
 
 !urxvt.font: xft:Liberation Mono:pixelsize=14,xft:Dejavu Sans Mono:pixelsize=14
 !urxvt.boldFont: xft:Liberation Mono:pixelsize=14:style=bold,xft:Dejavu Sans Mono:pixelsize=14:style=bold
