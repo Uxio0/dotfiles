@@ -1,3 +1,0 @@
-#!/bin/sh
-
-trayer --transparent true --alpha 0 --tint 0 --edge top --width 8 --height 15 --distance 550 --distancefrom left --SetPartialStrut false

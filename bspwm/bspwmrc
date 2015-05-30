@@ -22,5 +22,4 @@ bspc rule -a jetbrains-pycharm desktop=^2
 #bspc config wm_name LG3D
 #wmname LG3D #Sometimes it doesnt work
 panel&
-trayerbar&
 ~/dotfiles/bin/java_nonreparenting_wm_hack.sh

@@ -2,11 +2,15 @@
 
 source $(dirname $0)/config.sh
 
-if [ $(pgrep -cx panel) -gt 1 ] ; then
-	printf "%s\n" "The panel is already running." >&2
-	exit 1
-fi
+while [ $(pgrep -cx panel) -gt 1 ] ; do
+	pkill -ox -9 panel
+done
 
+killall -9 stalonetray
+killall -9 xtitle
+
+# Setup taken from example, tell bspwm to avoid our status/tray and to start
+# sending status updates to a FIFO
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
@@ -24,6 +28,8 @@ PANEL_FONT_FAMILY='-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1'
 PANEL_FONT_2='-misc-stlarch-medium-r-normal--10-100-75-75-c-80-iso10646-1'
 cat "$PANEL_FIFO" | panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY","$PANEL_FONT_2" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
 
+TRAY_GEOM='1x1+180'
+stalonetray --geometry $TRAY_GEOM -i $PANEL_HEIGHT -bg "#34322e" --grow-gravity NE --kludges force_icons_size &
 wait
 
 #vim: set ft=sh ts=4 sw=4 tw=500 et :
