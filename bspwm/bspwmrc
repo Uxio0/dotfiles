@@ -19,7 +19,11 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a jetbrains-pycharm desktop=^2
 
+# manage windows left from previous session
+bspc control --adopt-orphans
 #bspc config wm_name LG3D
 #wmname LG3D #Sometimes it doesnt work
-panel&
+# do this here so that we know the NetWM anchor window is up
 ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
+
+panel&
