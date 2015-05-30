@@ -231,7 +231,8 @@ call vundle#end()            " required
 color jellybeans
 
 "Syntatic
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 let g:pymode_indent = 1
 let g:syntastic_javascript_gjslint_args = "--max_line_length 300"
 let g:syntastic_javascript_checkers = ['gjslint']
