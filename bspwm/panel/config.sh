@@ -8,7 +8,7 @@ THECOLOR='#FF3F4B9C'
 BLUE='#FFAA9A4B'
 YELLOW='#FFBABE3F'
 
-. panel_colors
+. $(dirname $0)/panel_colors.sh
 
 # Info used in bar
 # Icons declarations

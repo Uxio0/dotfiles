@@ -22,7 +22,7 @@ bspc control --subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
 clock -sf 'S%I:%M %p' > "$PANEL_FIFO" &
 
-. panel_colors
+. $(dirname $0)/panel_colors.sh
 
 PANEL_FONT_FAMILY='-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1'
 PANEL_FONT_2='-misc-stlarch-medium-r-normal--10-100-75-75-c-80-iso10646-1'

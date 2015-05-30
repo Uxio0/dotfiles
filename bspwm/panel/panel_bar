@@ -4,7 +4,7 @@
 
 source $(dirname $0)/config.sh
 
-. panel_colors
+. $(dirname $0)/panel_colors.sh
 
 num_mon=$(bspc query -M | wc -l)
 
@@ -25,7 +25,7 @@ while read -r line ; do
             #batt=`./bat.sh`
             package=`pacman -Qu | wc -l`
             clk=`date "+%H:%M %d/%m"`
-                  
+
             sys_infos="%{F$COLOR_STATUS_FG}%{B$COLOR_STATUS_BG} %{F$YELLOW}${PACIC}%{F$FOREG} ${package} | %{F$THECOLOR}${SOUNDIC} %{F$FOREG}${vol}%% | ${wifistr}%{F$FOREG} ${wifissid} | %{F$THECOLOR}${MEMIC} %{F$FOREG}${mem} | %{F$THECOLOR}${TEMPIC} %{F$FOREG}${tmp}%{F$FOREG} | %{F$FOREG}${batt}%{F$FOREG} | %{F$THECOLOR}${CLKIC} %{F$FOREG}${clk}"
             ;;
 		T*)
