@@ -22,7 +22,7 @@ clock -sf 'S%I:%M %p' > "$PANEL_FIFO" &
 
 PANEL_FONT_FAMILY='-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1'
 PANEL_FONT_2='-misc-stlarch-medium-r-normal--10-100-75-75-c-80-iso10646-1'
-cat "$PANEL_FIFO" | panel_bar | bar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY","$PANEL_FONT_2" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
+cat "$PANEL_FIFO" | panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY","$PANEL_FONT_2" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
 
 wait
 

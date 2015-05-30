@@ -80,7 +80,8 @@ bspwm)
 	compton &
     dunst &
 	sh ~/.fehbg
-	wmname LG3D
+    source ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
+	#wmname LG3D
 	exec bspwm
 	;;
 dwm)
