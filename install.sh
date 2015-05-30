@@ -20,5 +20,6 @@ ln -s$force $folder/dunst ~/.config
 ln -s$force $folder/sxhkd ~/.config
 
 #Vim bundle
-mkdir -p ~/.vim/{bundle,backup,swap,undo}
+mkdir -p ~/.vim/bundle
+mkdir -p /.vim/{swap,undo,backup}
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
