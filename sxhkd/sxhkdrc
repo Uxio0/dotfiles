@@ -103,10 +103,10 @@ XF86AudioMute
     pamixer --toggle-mute
 
 XF86AudioNext
-    mpc next
+    mpc next; dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
 XF86AudioPrev
-    mpc prev
+    mpc prev; dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 XF86AudioPlay
     mpc toggle; dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
@@ -120,11 +120,15 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
     xbacklight -dec 10%
 
-Print 
+Print
     scrot '%F--%I:%M:%S:%p--$wx$h--scrot.png' -e 'mv $f /home/uxio/'
 
-alt + Print 
+alt + Print
     scrot -u '%F--%I:%M:%S:%p--$wx$h--scrot.png' -e 'mv $f /home/uxio/'
+
+super + Print
+    scrot -s '%F--%I:%M:%S:%p--$wx$h--scrot.png' -e 'mv $f /home/uxio/'
+
 
 # make sxhkd reload its configuration files:
 super + Escape
