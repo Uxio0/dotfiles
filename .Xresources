@@ -29,8 +29,8 @@
 !*color15:    rgb:ff/ff/ff
 
 
-urxvt*transparent: true
-urxvt*shading: 20
+!urxvt*transparent: true
+!urxvt*shading: 20
 
 !urxvt*fading: 50
 
@@ -49,7 +49,7 @@ Xft.dpi:        96
 Xft.rgba:       rgb
 
 !infinality-bundle-fonts/otf-inconsolata-pwl-ibx
-URxvt.font: xft:inconsolata for powerline:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:pixelsize=16:antialias=true:hinting=true,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*
+URxvt.font: xft:inconsolata for powerline:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:pixelsize=16:antialias=true:hinting=true,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*,xft:FontAwesome:pixelsize=16
 URxvt.boldFont: xft:inconsolata for powerline:bold:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:bold:pixelsize=16:antialias=true:hinting=true
 URxvt.italicFont: xft:inconsolata for powerline:italic:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:italic:pixelsize=16:antialias=true:hinting=true
 URxvt.boldItalicFont: xft:inconsolata for powerline:bold:italic:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:bold:italic:pixelsize=16:antialias=true:hinting=true

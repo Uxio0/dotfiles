@@ -23,13 +23,13 @@ xset r rate 250 60
 # Turns off the system bell
 /usr/bin/xset b off
 
+# Fonts
 xset +fp /usr/share/fonts/local
 xset +fp /usr/share/fonts/misc
 xset +fp $HOME/.fonts
 xset fp rehash
 
 xrdb -merge ~/.Xresources &
-
 xsetroot -cursor_name left_ptr &
 
 #Swap mayus and ESC for ViM
@@ -39,13 +39,13 @@ fi
 
 #Pulseaudio on systray
 pasystray &
+
 #Auto lower brightness
 #xset -q (To check options)
 #xset +dpms
 #xset dpms 0 0 300
 
 mpd &
-
 urxvtd -q -o -f
 
 wicd-gtk -t &
@@ -53,8 +53,7 @@ wicd-gtk -t &
 pulseaudio --start
 
 #xrandr -q | grep VGA1 && xrandr --output VGA1 --mode 1920x1080 --output LVDS1 --off
-#xrandr --output HDMI3 --primary --preferred --auto --right-of LVDS1
-xrandr --output LVDS1 --primary --preferred --auto --left-of HDMI3
+xrandr -q | grep HDMI3 && xrandr --output LVDS1 --primary --preferred --auto --left-of HDMI3
 
 # Auto mounts USB to /media/
 udiskie --tray &
@@ -75,18 +74,21 @@ DEFAULT_SESSION=bspwm
 
 case $1 in
     bspwm)
+        # Reparenting Java
         export _JAVA_AWT_WM_NONREPARENTING=1
         wmname LG3D
+        # Install xorg-xprop
+        source ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
+
         PATH=$PATH:~/.config/bspwm/panel
         export PATH
         fbxkb &
         sxhkd &
+        clipit &
         #compton &
         dunst &
         # Install feh
         sh ~/.fehbg
-        # Install xorg-xprop
-        source ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
         exec bspwm
         ;;
     dwm)
