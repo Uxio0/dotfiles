@@ -4,8 +4,8 @@ source $(dirname $0)/config.sh
 # WIFI ICONS
 # 
 
-QUAL=`iwconfig wlp7s0 | grep 'Link Quality=' | awk '{gsub(/[=/]/," "); print $3}'`
-MAX=`iwconfig wlp7s0 | grep 'Link Quality=' | awk '{gsub(/[=/]/," "); print $4}'`
+QUAL=`iwconfig $WIFI_INTERFACE| grep 'Link Quality=' | awk '{gsub(/[=/]/," "); print $3}'`
+MAX=`iwconfig $WIFI_INTERFACE| grep 'Link Quality=' | awk '{gsub(/[=/]/," "); print $4}'`
 PERC=`echo $QUAL*100/$MAX | bc`
 
 icon=""

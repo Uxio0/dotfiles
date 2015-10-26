@@ -24,12 +24,10 @@ clock -sf 'S%I:%M %p' > "$PANEL_FIFO" &
 
 . $(dirname $0)/panel_colors.sh
 
-PANEL_FONT_FAMILY='-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1'
-PANEL_FONT_2='-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*'
 cat "$PANEL_FIFO" | panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -f "$PANEL_FONT_2" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
 
 TRAY_GEOM='1x1+180'
-stalonetray --geometry $TRAY_GEOM -i $PANEL_HEIGHT -bg "#34322e" --grow-gravity NE --kludges force_icons_size &
+sleep 3 && stalonetray --geometry $TRAY_GEOM -i $PANEL_HEIGHT -bg "#34322e" --grow-gravity NE --kludges force_icons_size &
 wait
 
 #vim: set ft=sh ts=4 sw=4 tw=500 et :

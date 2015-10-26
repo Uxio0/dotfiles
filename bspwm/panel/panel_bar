@@ -12,21 +12,19 @@ while read -r line ; do
 	case $line in
 		S*)
 			# clock output
-            #tmp=`echo -e "$(sensors coretemp-isa-0000 | awk '/Physical/ { print $4 }')"`
             tmp=`sensors | grep 'Core 0'| awk '{print $3}'`
             mem=`free -w -h | grep --color=never Mem | awk '{print $3"/"$2}'`
             #art=`[[ $(mpc -f %artist% | awk '{print $1}' ) == "volume:100%" ]]  || echo -e "%{F$BLUE}$MUSIC %{F$THECOLOR}$(mpc -f %artist% | awk 'NR==1') -"`
             #tit=`[[ $(mpc -f %title% | awk '{print $1}' ) == "volume:100%" ]]  || echo -e "$(mpc -f %title% | awk 'NR==1')"`
             tit=`echo -e "$(spotify-sh metadata | grep title | cut -d'|' -f2)"`
-            vol=`amixer sget Master | sed -n "0,/.*\[\([0-9]\+\)%\].*/s//\1/p"`
-            #wifissid=`if [[ $(iwgetid -r) == "" ]]; then echo -e "Wifi Down"; else iwgetid -r; fi`
+            vol=`pamixer --get-volume`
             #wifistr=`./panel_wifi`
-            #batt=`acpi -b | awk '{ split($5,a,":"); print substr($3,0,2), $4, "["a[1]":"a[2]"]" }' | tr -d ',' | sed -e 's/\[//g;s/\]//g'`
-            #batt=`./bat.sh`
+            batt=`$(dirname $0)/bat.sh`
+            ip=`ip addr | awk '/inet/ && /enp12s0/{sub(/\/.*$/,"",$2); print $2}'`
             package=`pacman -Qu | wc -l`
             clk=`date "+%H:%M %d/%m"`
 
-            sys_infos="%{F$COLOR_STATUS_FG}%{B$COLOR_STATUS_BG} %{F$YELLOW}${PACIC}%{F$FOREG} ${package} | %{F$THECOLOR}${SOUNDIC} %{F$FOREG}${vol}%% | ${wifistr}%{F$FOREG} ${wifissid} | %{F$THECOLOR}${MEMIC} %{F$FOREG}${mem} | %{F$THECOLOR}${TEMPIC} %{F$FOREG}${tmp}%{F$FOREG} | %{F$FOREG}${batt}%{F$FOREG} | %{F$THECOLOR}${CLKIC} %{F$FOREG}${clk}"
+            sys_infos="%{F$COLOR_STATUS_FG}%{B$COLOR_STATUS_BG} %{F$YELLOW}${PACIC}%{F$FOREG} ${package} | %{F$THECOLOR}${SOUNDIC} %{F$FOREG}${vol}%% | ${ip} ${wifistr}%{F$FOREG} ${wifissid} | %{F$THECOLOR}${MEMIC} %{F$FOREG}${mem} | %{F$THECOLOR}${TEMPIC} %{F$FOREG}${tmp}%{F$FOREG} | %{F$FOREG}${batt}%{F$FOREG} | %{F$THECOLOR}${CLKIC} %{F$FOREG}${clk}"
             ;;
 		T*)
 			# xtitle output
@@ -79,12 +77,12 @@ while read -r line ; do
 						;;
 					L*)
 						# layout
-						#wm_infos="$wm_infos  %{F$COLOR_LAYOUT_FG}%{B$COLOR_LAYOUT_BG} ${name} %{B-}%{F-}"
+						wm_infos="$wm_infos  %{F$COLOR_LAYOUT_FG}%{B$COLOR_LAYOUT_BG} ${name} %{B-}%{F-}"
 						;;
 				esac
 				shift
 			done
 			;;
 	esac
-	printf "%s\n" "%{l}${wm_infos}  %{F$THECOLOR}${art}%{F$FOREG} ${tit} %{c} $title %{r} $sys_infos "
+	printf "%%{S1}%s\n" "%{l}${wm_infos}  %{F$THECOLOR}${art}%{F$FOREG} ${tit} %{c} $title %{r} $sys_infos "
 done

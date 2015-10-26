@@ -36,4 +36,6 @@ CLKIC=`echo -e $i_time`
 
 PANEL_FIFO=/tmp/panel-fifo
 PANEL_HEIGHT=15
-PANEL_FONT_FAMILY="-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1"
+#PANEL_FONT_FAMILY="-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1"
+PANEL_FONT_FAMILY="xft:inconsolata for powerline:pixelsize=10"
+PANEL_FONT_2='-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*'

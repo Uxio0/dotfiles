@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/bash
 
 bspc config border_width        2
 bspc config window_gap         3
@@ -8,21 +8,29 @@ bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 bspc config focus_by_distance   true
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+if [[ `bspc query -M | wc -l` == 2 ]]
+then
+    bspc monitor LVDS1 -d I II III
+    bspc monitor HDMI3 -d IV V VI VII VIII IX X
+else
+    bspc monitor -d I II III IV V VI VII VIII IX X
+fi
 
 bspc rule -a Gimp desktop=^8 follow=on floating=on
-bspc rule -a Spotify desktop=^5
+bspc rule -a Spotify desktop=^2
 bspc rule -a Thunderbird desktop=^6
 bspc rule -a Chromium desktop=^9
+bspc rule -a Google-chrome-stable desktop=^9
 bspc rule -a mplayer2 floating=on
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a jetbrains-pycharm desktop=^2
+bspc rule -a Eclipse desktop=^4
 
 # manage windows left from previous session
 bspc control --adopt-orphans
-#bspc config wm_name LG3D
-#wmname LG3D #Sometimes it doesnt work
+bspc config wm_name LG3D
+wmname LG3D #Sometimes it doesnt work
 # do this here so that we know the NetWM anchor window is up
 ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
 
