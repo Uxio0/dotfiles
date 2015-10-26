@@ -82,10 +82,13 @@ super + @button{1-3}
 #
 
 super + Return
-    urxvtc
+    termite
 
 super + p
 	dmenu_run
+
+super + e
+	thunar
 
 super + {_,shift + }q
     slock
