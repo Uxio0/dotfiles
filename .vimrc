@@ -10,16 +10,55 @@
 " properly set to work with the Vim-related packages available in Debian.
 
 " Source a global configuration file if available
-runtime! archlinux.vim
+" runtime! archlinux.vim
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" Uncomment the next line to make Vim more Vi-compatible
-" NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
-" options, so any other options should be set AFTER setting 'compatible'.
-set nocompatible
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-if filereadable("/etc/vim/vimrc.local")
-    source /etc/vim/vimrc.local
-endif
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+"Colorschemes http://www.vimninjas.com/2012/08/26/10-vim-color-schemes-you-need-to-own/
+"Plugin 'flazz/vim-colorschemes'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'vim-scripts/wombat256.vim'
+Plugin 'morhetz/gruvbox'
+"Plugin 'dsolstad/vim-wombat256i'
+"Plugin 'zeis/vim-kolor'
+"Git integration
+Plugin 'tpope/vim-fugitive'
+"Control + P search
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'bling/vim-airline'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'majutsushi/tagbar'
+Plugin 'airblade/vim-rooter'
+"Silver searcher
+Plugin 'rking/ag.vim'
+"Auto Pair () []
+Plugin 'Raimondi/delimitMate'
+"Vdebug
+Plugin 'joonty/vdebug'
+"Django
+Plugin 'lambdalisue/vim-django-support'
+"Ctags Cscope
+Plugin 'steffanc/cscopemaps.vim'
+"Scala
+Plugin 'derekwyatt/vim-scala'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on
+
+"if filereadable("/etc/vim/vimrc.local")
+"    source /etc/vim/vimrc.local
+"endif
 
 " Rebind <Leader> key
 " I like to have it here becuase it is easier to reach than the default and
@@ -67,12 +106,6 @@ map <c-h> <c-w>h
 " Emacs end of line
 map <c-a> ^
 map <c-e> $
-
-" Uncomment the following to have Vim load indentation rules and plugins
-" according to the detected filetype.
-if has("autocmd")
-    filetype plugin indent on
-endif
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
@@ -184,44 +217,6 @@ map <F6> :%s/\s\+$//e <CR>
 set numberwidth=4   " line numbering takes up 5 spaces
 set nowrap          " stop lines from wrapping
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-"Colorschemes http://www.vimninjas.com/2012/08/26/10-vim-color-schemes-you-need-to-own/
-"Plugin 'flazz/vim-colorschemes'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'vim-scripts/wombat256.vim'
-Plugin 'morhetz/gruvbox'
-"Plugin 'dsolstad/vim-wombat256i'
-"Plugin 'zeis/vim-kolor'
-"Git integration
-Plugin 'tpope/vim-fugitive'
-"Control + P search
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'bling/vim-airline'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'majutsushi/tagbar'
-Plugin 'airblade/vim-rooter'
-"Silver searcher
-Plugin 'rking/ag.vim'
-"Auto Pair () []
-Plugin 'Raimondi/delimitMate'
-"Vdebug
-Plugin 'joonty/vdebug'
-"Django
-Plugin 'lambdalisue/vim-django-support'
-"Ctags Cscope
-Plugin 'steffanc/cscopemaps.vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
 
 "Colors
 "color codeschool
@@ -236,6 +231,12 @@ let g:syntastic_check_on_wq = 0
 let g:pymode_indent = 1
 let g:syntastic_javascript_gjslint_args = "--max_line_length 300"
 let g:syntastic_javascript_checkers = ['gjslint']
+"Scala
+let g:syntastic_ignore_files = ['\m\c\.h$', '\m\.sbt$']
+
+" Scala has fsc and scalac checkers--running both is pretty redundant and
+" " slow. An explicit `:SyntasticCheck scalac` can always run the other.
+let g:syntastic_scala_checkers = ['fsc']
 
 "YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
