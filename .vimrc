@@ -51,10 +51,17 @@ Plugin 'lambdalisue/vim-django-support'
 Plugin 'steffanc/cscopemaps.vim'
 "Scala
 Plugin 'derekwyatt/vim-scala'
+"Javascript
+Plugin 'pangloss/vim-javascript'
+"Vue
+Plugin 'posva/vim-vue'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on
+
+"When a file has been detected to have been changed outside of Vim and it has not been changed inside of Vim, automatically read it again.
+set autoread
 
 "if filereadable("/etc/vim/vimrc.local")
 "    source /etc/vim/vimrc.local
@@ -167,8 +174,17 @@ au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shift
 au FileType python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 "JavaScript
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
+" General conceal settings. Will keep things concealed
+" even when your cursor is on top of them.
+"set conceallevel=1
+"set concealcursor=nvic
+"let g:javascript_conceal_function = "λ"
+"let g:javascript_conceal_this = "@"
+"let g:javascript_conceal_return = "<"
+"let g:javascript_conceal_prototype = "#"
+"let g:javascript_conceal_arrow_function = "⇒"
+autocmd bufwritepost *.js silent !standard-format -w %
+set autoread
 
 "Buffers
 "map F1 to open previous buffer
@@ -225,13 +241,13 @@ set nowrap          " stop lines from wrapping
 "color wombat256mod
 color jellybeans
 
-"Syntatic
+"Syntastic
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:pymode_indent = 1
-let g:syntastic_javascript_gjslint_args = "--max_line_length 300"
-let g:syntastic_javascript_checkers = ['gjslint']
-"Scala
+let g:syntastic_javascript_checkers = ['standard'] "npm install -g standard https://github.com/feross/standard
+"autocmd bufwritepost *.js silent !standard-format -w % "npm install -g standard-format
+"Syntastic Scala
 let g:syntastic_ignore_files = ['\m\c\.h$', '\m\.sbt$']
 
 " Scala has fsc and scalac checkers--running both is pretty redundant and

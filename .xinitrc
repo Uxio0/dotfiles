@@ -74,6 +74,7 @@ DEFAULT_SESSION=bspwm
 
 case $1 in
     bspwm)
+        # Required packages bspwm sxhkd dunst fbxkb feh compton clipit
         # Reparenting Java
         export _JAVA_AWT_WM_NONREPARENTING=1
         wmname LG3D
@@ -89,6 +90,7 @@ case $1 in
         dunst &
         # Install feh
         sh ~/.fehbg
+        [ -f ~/.runonce ] && sh ~/.runonce
         exec bspwm
         ;;
     dwm)

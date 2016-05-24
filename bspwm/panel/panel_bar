@@ -84,5 +84,5 @@ while read -r line ; do
 			done
 			;;
 	esac
-	printf "%%{S1}%s\n" "%{l}${wm_infos}  %{F$THECOLOR}${art}%{F$FOREG} ${tit} %{c} $title %{r} $sys_infos "
+	printf "%%{S1}%s\n" "%{l}${wm_infos}  %{F$THECOLOR}${art}%{F$FOREG}                        ${tit} %{c} $title %{r} $sys_infos "
 done
