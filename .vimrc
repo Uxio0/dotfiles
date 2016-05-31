@@ -46,7 +46,7 @@ Plugin 'Raimondi/delimitMate'
 "Vdebug
 Plugin 'joonty/vdebug'
 "Django
-Plugin 'lambdalisue/vim-django-support'
+"Plugin 'lambdalisue/vim-django-support'
 "Ctags Cscope
 Plugin 'steffanc/cscopemaps.vim'
 "Scala

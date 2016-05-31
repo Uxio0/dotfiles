@@ -10,8 +10,8 @@ bspc config focus_by_distance   true
 
 if [[ `bspc query -M | wc -l` == 2 ]]
 then
-    bspc monitor LVDS1 -d I II III
-    bspc monitor HDMI3 -d IV V VI VII VIII IX X
+    bspc monitor HDMI1 -d I II III IV V VI VII VIII IX
+    bspc monitor VGA1 -d X
 else
     bspc monitor -d I II III IV V VI VII VIII IX X
 fi
@@ -28,6 +28,9 @@ bspc rule -a jetbrains-pycharm desktop=^2
 bspc rule -a Eclipse desktop=^4
 bspc rule -a Skype desktop=^3
 
+# mouse support
+bspc config pointer_modifier control
+bspc config click_to_focus true
 # manage windows left from previous session
 bspc control --adopt-orphans
 bspc config wm_name LG3D
