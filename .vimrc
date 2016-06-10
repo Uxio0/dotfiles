@@ -20,14 +20,18 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
 "Colorschemes http://www.vimninjas.com/2012/08/26/10-vim-color-schemes-you-need-to-own/
-"Plugin 'flazz/vim-colorschemes'
-Plugin 'altercation/vim-colors-solarized'
+"Plugin 'altercation/vim-colors-solarized'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'vim-scripts/wombat256.vim'
 Plugin 'morhetz/gruvbox'
 "Plugin 'dsolstad/vim-wombat256i'
 "Plugin 'zeis/vim-kolor'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Bundle 'vim-scripts/peaksea'
+
+"Plugin 'flazz/vim-colorschemes'
 "Git integration
 Plugin 'tpope/vim-fugitive'
 "Control + P search
@@ -44,7 +48,7 @@ Plugin 'rking/ag.vim'
 "Auto Pair () []
 Plugin 'Raimondi/delimitMate'
 "Vdebug
-Plugin 'joonty/vdebug'
+"Plugin 'joonty/vdebug'
 "Django
 "Plugin 'lambdalisue/vim-django-support'
 "Ctags Cscope
@@ -113,6 +117,7 @@ map <c-h> <c-w>h
 " Emacs end of line
 map <c-a> ^
 map <c-e> $
+map <F12> :set nu!<CR>
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
@@ -127,7 +132,6 @@ set incsearch		" Incremental search
 set mouse=a			" Enable mouse usage (all modes)
 set novisualbell	" Quita la campanita
 set title			" Muestra los titulos en cada buffer
-map <F12> :set nu!<CR>
 "Muestra los números de línea, nonu lo contrario
 set ruler 			"Información de estado
 "set cursorline 	"Resalta línea
@@ -139,16 +143,13 @@ set ruler 			"Información de estado
 "vnoremap <C-m> :nohl<CR>
 "inoremap <C-m> :nohl<CR>
 
-"Indentacion
-set tabstop=4 	 "Tamano tabulacion
-set shiftwidth=4 "Tamano autoindentar
-set softtabstop=4
-set noexpandtab
-
+"associate *.foo with php filetype
+au BufRead,BufNewFile *.tmpl set filetype=html
 "Latex
 au FileType tex setlocal spell spelllang=es
 "Html
 au FileType html setlocal shiftwidth=2 tabstop=2
+
 "Gzip
 augroup gzip
     autocmd!
@@ -165,12 +166,11 @@ augroup gzip
     autocmd FileAppendPost		*.gz !gzip <afile>:r
 augroup END
 
-setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
 "Php"
-au FileType php let g:vdebug_options['server'] = "10.0.1.79"
+"au FileType php let g:vdebug_options['server'] = "10.0.1.79"
 
 "Python"
-au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
+"au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
 au FileType python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 "JavaScript
@@ -183,14 +183,14 @@ au FileType python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c
 "let g:javascript_conceal_return = "<"
 "let g:javascript_conceal_prototype = "#"
 "let g:javascript_conceal_arrow_function = "⇒"
+let g:syntastic_javascript_checkers = ['eslint', 'standard'] "npm install -g standard https://github.com/feross/standard
 autocmd bufwritepost *.js silent !standard-format -w %
-set autoread
 
 "Buffers
 "map F1 to open previous buffer
-map <F2> :previous<CR>
+map <F2> :bp<CR>
 "map F2 to open next buffer
-map <F3> :next<CR>
+map <F3> :bn<CR>
 
 "Busquedas
 set hlsearch "ilumina las búsquedas
@@ -233,20 +233,21 @@ map <F6> :%s/\s\+$//e <CR>
 set numberwidth=4   " line numbering takes up 5 spaces
 set nowrap          " stop lines from wrapping
 
-
 "Colors
 "color codeschool
 "color desert256
 "color solarized
 "color wombat256mod
-color jellybeans
+"color jellybeans
+"color peaksea
+color Tomorrow-Night 
 
 "Syntastic
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:pymode_indent = 1
-let g:syntastic_javascript_checkers = ['standard'] "npm install -g standard https://github.com/feross/standard
-"autocmd bufwritepost *.js silent !standard-format -w % "npm install -g standard-format
+let g:syntastic_ignore_files = ['^/usr/', '*node_modules*', '*vendor*', '*build*', '*LOCAL*', '*BASE', '*REMOTE*']
+"
 "Syntastic Scala
 let g:syntastic_ignore_files = ['\m\c\.h$', '\m\.sbt$']
 
@@ -263,6 +264,10 @@ map <C-n> :NERDTreeToggle<CR>
 "Airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
+"Show buffers
+let g:airline#extensions#tabline#enabled = 1
+" Just show the filename (no path) in the tab
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 "TagBar
 nmap <F7> :TagbarToggle<CR>
