@@ -149,6 +149,8 @@ au BufRead,BufNewFile *.tmpl set filetype=html
 au FileType tex setlocal spell spelllang=es
 "Html
 au FileType html setlocal shiftwidth=2 tabstop=2
+"Xml
+au FileType xml setlocal shiftwidth=2 tabstop=2
 
 "Gzip
 augroup gzip
