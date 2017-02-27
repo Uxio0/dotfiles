@@ -86,7 +86,7 @@ vnoremap <C-C> "+y
 "vnoremap <C-Insert> "+y
 
 " CTRL-V and SHIFT-Insert are Paste
-map <C-V>		"+gP
+"map <C-V>		"+gP
 "map <S-Insert>		"+gP
 
 "source $VIMRUNTIME/mswin.vim
@@ -223,7 +223,7 @@ if has("gui_running")
     set anti enc=utf-8
     "set guifont=Liberation\ Mono\ 10
     "set guifont=Source\ Code\ Pro\ Semi-Bold\ 11
-    set guifont=Inconsolata\ for\ Powerline\ 12
+    set guifont=Inconsolata\ 12
 endif
 
 "ExtraEspacios
