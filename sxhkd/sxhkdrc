@@ -21,13 +21,13 @@ super + w
     rofi -show window -font "snap 10" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
 
 XF86AudioLowerVolume
-    pamixer --decrease 5
+    amixer -q sset PCM 3%-
 
 XF86AudioRaiseVolume
-    pamixer --increase 5
+    amixer -q sset PCM 3%+
 
 XF86AudioMute
-    pamixer --toggle-mute
+    amixer -q sset PCM toggle
 
 XF86AudioNext
     mpc next; dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
