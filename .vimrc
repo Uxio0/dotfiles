@@ -74,20 +74,20 @@ set autoread
 " Rebind <Leader> key
 " I like to have it here becuase it is easier to reach than the default and
 " it is next to ``m`` and ``n`` which I use for navigating between tabs.
-let mapleader = ","
+let mapleader = "\<Space>"
 
 "Backup and SWP dirs
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
 
-" CTRL-C and CTRL-Insert are Copy
-vnoremap <C-C> "+y
-"vnoremap <C-Insert> "+y
-
-" CTRL-V and SHIFT-Insert are Paste
-"map <C-V>		"+gP
-"map <S-Insert>		"+gP
+" Copy and Paste to/from Clipboard with leader key
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
 
 "source $VIMRUNTIME/mswin.vim
 "behave mswin

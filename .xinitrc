@@ -50,7 +50,7 @@ urxvtd -q -o -f
 
 wicd-gtk -t &
 #start-pulseaudio-x11
-#pulseaudio --start
+pulseaudio --start
 
 #xrandr -q | grep VGA1 && xrandr --output VGA1 --mode 1920x1080 --output LVDS1 --off
 xrandr -q | grep VGA1 && xrandr --output HDMI1 --primary --preferred --auto --left-of VGA1 

@@ -26,7 +26,7 @@ clock -sf 'S%I:%M %p' > "$PANEL_FIFO" &
 
 cat "$PANEL_FIFO" | panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -f "$PANEL_FONT_2" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
 
-TRAY_GEOM='1x1+180'
+TRAY_GEOM='1x1+500'
 sleep 3 && stalonetray --geometry $TRAY_GEOM -i $PANEL_HEIGHT -bg "#34322e" --grow-gravity NE --kludges force_icons_size &
 wait
 
