@@ -16,7 +16,7 @@ while read -r line ; do
             mem=`free -w -h | grep --color=never Mem | awk '{print $3"/"$2}'`
             #art=`[[ $(mpc -f %artist% | awk '{print $1}' ) == "volume:100%" ]]  || echo -e "%{F$BLUE}$MUSIC %{F$THECOLOR}$(mpc -f %artist% | awk 'NR==1') -"`
             #tit=`[[ $(mpc -f %title% | awk '{print $1}' ) == "volume:100%" ]]  || echo -e "$(mpc -f %title% | awk 'NR==1')"`
-            tit=`echo -e "$(spotify-sh metadata | grep title | cut -d'|' -f2)"`
+            tit="$(playerctl metadata xesam:title) - $(playerctl metadata xesam:artist)"
 	    vol=`awk -F"[][]" '/dB/ { print $2 }' <(amixer sget Master)`
             #wifistr=`./panel_wifi`
             batt=`$(dirname $0)/bat.sh`
