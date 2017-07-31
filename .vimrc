@@ -143,14 +143,19 @@ set ruler 			"Información de estado
 "vnoremap <C-m> :nohl<CR>
 "inoremap <C-m> :nohl<CR>
 
-"associate *.foo with php filetype
+"associate *.tmpl with html filetype
 au BufRead,BufNewFile *.tmpl set filetype=html
+au BufRead,BufNewFile *.vue set filetype=html
 "Latex
 au FileType tex setlocal spell spelllang=es
 "Html
-au FileType html setlocal shiftwidth=2 tabstop=2
+au FileType html setlocal tabstop=2 shiftwidth=2 expandtab
 "Xml
-au FileType xml setlocal shiftwidth=2 tabstop=2
+au FileType xml setlocal shiftwidth=2 tabstop=2 expandtab
+"Python"
+"au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
+au FileType python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
 
 "Gzip
 augroup gzip
@@ -170,10 +175,6 @@ augroup END
 
 "Php"
 "au FileType php let g:vdebug_options['server'] = "10.0.1.79"
-
-"Python"
-"au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
-au FileType python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 "JavaScript
 " General conceal settings. Will keep things concealed
@@ -242,7 +243,7 @@ set nowrap          " stop lines from wrapping
 "color wombat256mod
 "color jellybeans
 "color peaksea
-color Tomorrow-Night 
+color Tomorrow-Night
 
 "Syntastic
 let g:syntastic_check_on_open = 0
