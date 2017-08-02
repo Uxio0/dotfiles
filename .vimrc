@@ -39,7 +39,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
-Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-rooter'
@@ -47,10 +46,6 @@ Plugin 'airblade/vim-rooter'
 Plugin 'rking/ag.vim'
 "Auto Pair () []
 Plugin 'Raimondi/delimitMate'
-"Vdebug
-"Plugin 'joonty/vdebug'
-"Django
-"Plugin 'lambdalisue/vim-django-support'
 "Ctags Cscope
 Plugin 'steffanc/cscopemaps.vim'
 "Scala
@@ -59,6 +54,8 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'pangloss/vim-javascript'
 "Vue
 Plugin 'posva/vim-vue'
+"GoLang
+Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -117,6 +114,7 @@ map <c-h> <c-w>h
 " Emacs end of line
 map <c-a> ^
 map <c-e> $
+" Show number of line
 map <F12> :set nu!<CR>
 
 " The following are commented out as they cause vim to behave a lot
@@ -152,10 +150,11 @@ au FileType tex setlocal spell spelllang=es
 au FileType html setlocal tabstop=2 shiftwidth=2 expandtab
 "Xml
 au FileType xml setlocal shiftwidth=2 tabstop=2 expandtab
-"Python"
-"au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
+"Python
+au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
 au FileType python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-
+"GoLang
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 "Gzip
 augroup gzip
@@ -189,14 +188,17 @@ augroup END
 let g:syntastic_javascript_checkers = ['eslint', 'standard'] "npm install -g standard https://github.com/feross/standard
 autocmd bufwritepost *.js silent !standard-format -w %
 
+"GoLang
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+
 "Buffers
 "map F1 to open previous buffer
 map <F2> :bp<CR>
 "map F2 to open next buffer
 map <F3> :bn<CR>
 
-"Busquedas
-set hlsearch "ilumina las búsquedas
+"Search
+set hlsearch "highlight search terms
 map <F8> :nohlsearch <CR>
 
 "Tabs
@@ -208,9 +210,9 @@ set foldmethod=indent
 set foldminlines=20
 map <F4> :set invfen<CR>
 
-"Completar
+"Completion
 "set ofu=syntaxcomplete#Complete
-set ofu=ccomplete#Complete
+"set ofu=ccomplete#Complete
 "set tags+=~/.vim/systags
 set tags+=./tags;
 
