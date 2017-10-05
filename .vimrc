@@ -50,6 +50,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'steffanc/cscopemaps.vim'
 "Scala
 Plugin 'derekwyatt/vim-scala'
+Plugin 'gre/play2vim'
 "Javascript
 Plugin 'pangloss/vim-javascript'
 "Vue
@@ -153,6 +154,8 @@ au FileType xml setlocal shiftwidth=2 tabstop=2 expandtab
 "Python
 au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
 au FileType python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+"Xml
+au FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
 "GoLang
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
