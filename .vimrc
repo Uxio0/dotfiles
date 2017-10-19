@@ -38,7 +38,8 @@ Plugin 'airblade/vim-gitgutter'
 "Control + P search
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
+"Change Syntastic for ALE(async)
+Plugin 'w0rp/ale'
 Plugin 'bling/vim-airline'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
