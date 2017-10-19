@@ -34,6 +34,7 @@ Bundle 'vim-scripts/peaksea'
 "Plugin 'flazz/vim-colorschemes'
 "Git integration
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 "Control + P search
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
@@ -43,7 +44,9 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-rooter'
 "Silver searcher
-Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
+"Multiple syntax files
+Plugin 'sheerun/vim-polyglot'
 "Auto Pair () []
 Plugin 'Raimondi/delimitMate'
 "Ctags Cscope
@@ -291,6 +294,9 @@ map K :Ag -i "<cword>"<CR>
 if executable('ag')
     " Use Ag over Grep
     set grepprg=ag\ --nogroup\ --nocolor
+
+    " Use Ag over ack in ack.vim
+    let g:ackprg = 'ag --vimgrep'
 
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
