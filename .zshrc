@@ -1,20 +1,11 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/uxio/.zshrc'
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-
-export TERM="xterm-256color"
-export GOPATH=~/gocode
-PATH=$PATH:$GOPATH/bin
-export PATH
+export EDITOR=vim
+export VISUAL=$EDITOR
+export TERM=xterm-256color
+export PATH=$PATH:~/scripts
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
 # extract function
@@ -54,9 +45,35 @@ mquote () {
 }
 zle -N mquote && bindkey '^q' mquote
 
+replaceAg() {
+    if [ "$#" -eq 2 ]; then
+        for f in $(ag $1 -l); do sed -i "s/$1/$2/g" $f; done
+    else
+        echo "Illegal number of parameters"
+    fi
+}
+
+deleteAg() {
+    if [ "$#" -eq 1 ]; then
+        for f in $(ag $1 -l); do sed -i "/$1/d" $f; done
+    else
+        echo "Illegal number of parameters"
+    fi
+}
+
+weather() {
+    curl 'http://wttr.in'
+}
+
+
 ## ctrl-s will no longer freeze the terminal.
 # stty erase "^?"
 stty -ixon
 
-[[ -f ~/work.sh ]] && . ~/work.sh
-[[ -f ~/thinkpad.sh ]] && . ~/thinkpad.sh
+[[ -s ~/work.sh ]] && . ~/work.sh
+[[ -s ~/thinkpad.sh ]] && . ~/thinkpad.sh
+
+if [[ -s /usr/share/fzf/key-bindings.zsh ]]; then
+    .  /usr/share/fzf/key-bindings.zsh
+    .  /usr/share/fzf/completion.zsh
+fi
