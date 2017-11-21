@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-char font[] = "Inconsolata-g for Powerline:pixelsize=15:antialias=true:autohint=true";
+char font[] = "Inconsolata-g for Powerline:pixelsize=14:antialias=true:autohint=true";
 int borderpx = 2;
 
 /*
