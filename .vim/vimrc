@@ -146,7 +146,7 @@ set ruler 			"Información de estado
 "vnoremap <C-m> :nohl<CR>
 "inoremap <C-m> :nohl<CR>
 
-"associate *.tmpl with html filetype
+"associate Vue *.tmpl with html filetype
 au BufRead,BufNewFile *.tmpl set filetype=html
 au BufRead,BufNewFile *.vue set filetype=html
 "Latex
@@ -162,22 +162,6 @@ au FileType python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c
 au FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
 "GoLang
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-
-"Gzip
-augroup gzip
-    autocmd!
-    autocmd BufReadPre,FileReadPre	*.gz set bin
-    autocmd BufReadPost,FileReadPost	*.gz '[,']!gunzip
-    autocmd BufReadPost,FileReadPost	*.gz set nobin
-    autocmd BufReadPost,FileReadPost	*.gz execute ":doautocmd BufReadPost " . expand("%:r")
-    autocmd BufWritePost,FileWritePost	*.gz !mv <afile> <afile>:r
-    autocmd BufWritePost,FileWritePost	*.gz !gzip <afile>:r
-
-    autocmd FileAppendPre		*.gz !gunzip <afile>
-    autocmd FileAppendPre		*.gz !mv <afile>:r <afile>
-    autocmd FileAppendPost		*.gz !mv <afile> <afile>:r
-    autocmd FileAppendPost		*.gz !gzip <afile>:r
-augroup END
 
 "Php"
 "au FileType php let g:vdebug_options['server'] = "10.0.1.79"
@@ -197,6 +181,22 @@ autocmd bufwritepost *.js silent !standard-format -w %
 
 "GoLang
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+
+"Gzip
+augroup gzip
+    autocmd!
+    autocmd BufReadPre,FileReadPre	*.gz set bin
+    autocmd BufReadPost,FileReadPost	*.gz '[,']!gunzip
+    autocmd BufReadPost,FileReadPost	*.gz set nobin
+    autocmd BufReadPost,FileReadPost	*.gz execute ":doautocmd BufReadPost " . expand("%:r")
+    autocmd BufWritePost,FileWritePost	*.gz !mv <afile> <afile>:r
+    autocmd BufWritePost,FileWritePost	*.gz !gzip <afile>:r
+
+    autocmd FileAppendPre		*.gz !gunzip <afile>
+    autocmd FileAppendPre		*.gz !mv <afile>:r <afile>
+    autocmd FileAppendPost		*.gz !mv <afile> <afile>:r
+    autocmd FileAppendPost		*.gz !gzip <afile>:r
+augroup END
 
 "Buffers
 "map F1 to open previous buffer
@@ -236,8 +236,8 @@ if has("gui_running")
     set guifont=Inconsolata\ 12
 endif
 
-"ExtraEspacios
-"Con F5 muestras los espacios en blanco, y con F6 los borras
+"Trailing spaces
+"F5 shows blank spaces, F6 deletes them
 highlight ExtraWhitespace ctermbg=red guibg=red
 map <F5> :match ExtraWhitespace /\s\+$/<CR>
 map <F6> :%s/\s\+$//e <CR>
@@ -253,19 +253,6 @@ set nowrap          " stop lines from wrapping
 "color jellybeans
 "color peaksea
 color Tomorrow-Night
-
-"Syntastic
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:pymode_indent = 1
-let g:syntastic_ignore_files = ['^/usr/', '*node_modules*', '*vendor*', '*build*', '*LOCAL*', '*BASE', '*REMOTE*']
-"
-"Syntastic Scala
-let g:syntastic_ignore_files = ['\m\c\.h$', '\m\.sbt$']
-
-" Scala has fsc and scalac checkers--running both is pretty redundant and
-" " slow. An explicit `:SyntasticCheck scalac` can always run the other.
-let g:syntastic_scala_checkers = ['fsc']
 
 "YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
@@ -305,7 +292,3 @@ endif
 
 " ALT + ] -> Open the definition in a vertical split
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-
-"Syntastic colors
-hi SpellBad	guifg=NONE	guibg=NONE	guisp=#c03000
-hi SpellCap	guifg=NONE	guibg=NONE	guisp=#2060a8
