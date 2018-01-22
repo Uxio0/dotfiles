@@ -2,9 +2,9 @@
 #
 # Example panel for LemonBoy's bar
 
-source $(dirname $0)/config.sh
+source $(dirname $0)/profile
 
-. $(dirname $0)/panel_colors.sh
+. $(dirname $0)/panel_colors
 
 num_mon=$(bspc query -M | wc -l)
 

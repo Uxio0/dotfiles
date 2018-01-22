@@ -1,6 +1,6 @@
 #! /bin/sh
 
-source $(dirname $0)/config.sh
+source $(dirname $0)/profile
 
 while [ $(pgrep -cx panel) -gt 1 ] ; do
 	pkill -ox -9 panel
@@ -22,7 +22,7 @@ bspc subscribe all > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
 clock -sf 'S%I:%M %p' > "$PANEL_FIFO" &
 
-. $(dirname $0)/panel_colors.sh
+. $(dirname $0)/panel_colors
 
 cat "$PANEL_FIFO" | panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -f "$PANEL_FONT_2" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
 
