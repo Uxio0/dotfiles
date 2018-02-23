@@ -61,6 +61,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'posva/vim-vue'
 "GoLang
 Plugin 'fatih/vim-go'
+"Solidity
+Plugin 'tomlion/vim-solidity'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -146,6 +148,9 @@ set ruler 			"Información de estado
 "vnoremap <C-m> :nohl<CR>
 "inoremap <C-m> :nohl<CR>
 
+"By default, 4 spaces and tabindents
+setlocal expandtab tabstop=4 shiftwidth=4
+
 "associate Vue *.tmpl with html filetype
 au BufRead,BufNewFile *.tmpl set filetype=html
 au BufRead,BufNewFile *.vue set filetype=html
@@ -158,6 +163,7 @@ au FileType xml setlocal shiftwidth=2 tabstop=2 expandtab
 "Python
 au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
 au FileType python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+" Ignore Python line
 let g:ale_python_flake8_args = '--ignore=E501'
 "Xml
 au FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
@@ -177,7 +183,13 @@ autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 "let g:javascript_conceal_return = "<"
 "let g:javascript_conceal_prototype = "#"
 "let g:javascript_conceal_arrow_function = "⇒"
-"let g:syntastic_javascript_checkers = ['eslint', 'standard'] "npm install -g standard https://github.com/feross/standard
+
+"Use standard javascript https://github.com/feross/standard
+"npm install -g standard
+let g:syntastic_javascript_checkers = ['eslint', 'standard']
+let g:ale_linters = {
+\   'javascript': ['standard'],
+\}
 autocmd bufwritepost *.js silent !standard-format -w %
 
 "GoLang
