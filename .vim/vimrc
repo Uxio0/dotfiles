@@ -158,6 +158,7 @@ au FileType xml setlocal shiftwidth=2 tabstop=2 expandtab
 "Python
 au FileType python setlocal expandtab textwidth=79 tabstop=8 softtabstop=4 shiftwidth=4
 au FileType python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+let g:ale_python_flake8_args = '--ignore=E501'
 "Xml
 au FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
 "GoLang
@@ -176,11 +177,11 @@ autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 "let g:javascript_conceal_return = "<"
 "let g:javascript_conceal_prototype = "#"
 "let g:javascript_conceal_arrow_function = "⇒"
-let g:syntastic_javascript_checkers = ['eslint', 'standard'] "npm install -g standard https://github.com/feross/standard
+"let g:syntastic_javascript_checkers = ['eslint', 'standard'] "npm install -g standard https://github.com/feross/standard
 autocmd bufwritepost *.js silent !standard-format -w %
 
 "GoLang
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+"let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 
 "Gzip
 augroup gzip
@@ -277,7 +278,7 @@ nnoremap <leader>b :CtrlPBuffer<CR>
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 nnoremap <leader>/ :Ag -i<space>
-map K :Ag -i "<cword>"<CR>
+map K :Ack -i "<cword>"<CR>
 
 if executable('ag')
     " Use Ag over Grep
