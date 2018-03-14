@@ -61,6 +61,10 @@ deleteAg() {
 	fi
 }
 
+pyclean () {
+        find . -regex "\(.*__pycache__.*\|*.py[co]\)" -delete
+}
+
 weather() {
 	curl 'http://wttr.in'
 }
