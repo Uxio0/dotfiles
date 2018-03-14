@@ -88,7 +88,13 @@ case $1 in
 		sxhkd &
 		clipit &
 		#compton &
-		dunst &
+
+		if [ -f /usr/lib/xfce4/notifyd/xfce4-notifyd ]; then
+			/usr/lib/xfce4/notifyd/xfce4-notifyd &
+		else
+			dunst &
+		fi
+
 		# Install feh
 		sh ~/.fehbg
 		[ -f ~/.runonce ] && sh ~/.runonce
