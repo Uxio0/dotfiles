@@ -1,10 +1,9 @@
 # Colors declaration
 
-FOREG='#FF797979'
 FGM='#FFAE2841'
 WIRE='#FF424242'
 BATTERY='#FF2A4649'
-THECOLOR='#FF3F4B9C'
+THECOLOR='#CCFF99'
 BLUE='#FFAA9A4B'
 YELLOW='#FFBABE3F'
 
@@ -36,6 +35,7 @@ CLKIC=`echo -e $i_time`
 
 PANEL_FIFO=/tmp/panel-fifo
 PANEL_HEIGHT=15
-#PANEL_FONT_FAMILY="-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1"
-PANEL_FONT_FAMILY="xft:inconsolata for powerline:pixelsize=10"
+# PANEL_FONT="-*-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+PANEL_FONT="xft:inconsolata for powerline:pixelsize=10"
 PANEL_FONT_2='-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*'
+PANEL_WM_NAME=bspwm_panel

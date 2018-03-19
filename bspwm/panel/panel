@@ -2,29 +2,29 @@
 
 source $(dirname $0)/profile
 
-while [ $(pgrep -cx panel) -gt 1 ] ; do
-	pkill -ox -9 panel
-done
-
 killall -9 stalonetray
 killall -9 xtitle
 
-# Setup taken from example, tell bspwm to avoid our status/tray and to start
-# sending status updates to a FIFO
+if xdo id -a "$PANEL_WM_NAME" > /dev/null ; then
+	printf "%s\n" "The panel is already running." >&2
+	exit 1
+fi
+
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
 
-bspc config top_padding $PANEL_HEIGHT
-bspc subscribe all > "$PANEL_FIFO" &
+xtitle -sf 'T%s\n' > "$PANEL_FIFO" &
+clock -sf 'S%d/%m %H:%M' > "$PANEL_FIFO" &
+bspc subscribe report > "$PANEL_FIFO" &
 
-xtitle -sf 'T%s' > "$PANEL_FIFO" &
-clock -sf 'S%I:%M %p' > "$PANEL_FIFO" &
+. panel_colors
 
-. $(dirname $0)/panel_colors
+panel_bar < "$PANEL_FIFO" | lemonbar -a 32 -u 2 -n "$PANEL_WM_NAME" -g x$PANEL_HEIGHT -f "$PANEL_FONT" -f "$PANEL_FONT_2" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
 
-cat "$PANEL_FIFO" | panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -f "$PANEL_FONT_2" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
+wid=$(xdo id -m -a "$PANEL_WM_NAME")
+xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
 
 TRAY_GEOM='1x1+500'
 sleep 3 && stalonetray --geometry $TRAY_GEOM -i $PANEL_HEIGHT -bg "#34322e" --grow-gravity NE --kludges force_icons_size &

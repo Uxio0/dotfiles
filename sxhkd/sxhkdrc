@@ -2,17 +2,20 @@
 # wm independent hotkeys
 #
 
+# terminal emulator
 super + Return
     st
 
+# program launcher
 super + p
     rofi -show run -font "snap 10" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
 
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
 super + e
 	thunar
-
-super + F12
-	/home/uxio/Dropbox/jiras.py
 
 super + {_,shift + }q
     slock
