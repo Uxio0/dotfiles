@@ -16,19 +16,22 @@ else
     bspc monitor -d I II III IV V VI VII VIII IX X
 fi
 
-bspc rule -a Gimp desktop=^8
+# xprop | grep WM_CLASS
 bspc rule -a Spotify desktop=^2
-bspc rule -a Thunderbird desktop=^6
-bspc rule -a Chromium desktop=^9
-bspc rule -a Google-chrome-stable desktop=^9
-bspc rule -a mplayer2 floating=on
-bspc rule -a Screenkey manage=off
 bspc rule -a Skype desktop=^3
 bspc rule -a jetbrains-pycharm desktop=^4
 bspc rule -a jetbrains-pycharm-ce desktop=^4
 bspc rule -a jetbrains-idea desktop=^4
 bspc rule -a jetbrains-idea-ce desktop=^4
 bspc rule -a Eclipse desktop=^4
+bspc rule -a DBeaver desktop=^5
+bspc rule -a Thunderbird desktop=^6
+bspc rule -a Gimp desktop=^7
+bspc rule -a Firefox desktop=^9
+bspc rule -a Chromium desktop=^9
+bspc rule -a Google-chrome-stable desktop=^9
+bspc rule -a mplayer2 floating=on
+bspc rule -a Screenkey manage=off
 
 # mouse support
 bspc config pointer_modifier mod4

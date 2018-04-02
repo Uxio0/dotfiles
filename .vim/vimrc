@@ -190,7 +190,7 @@ let g:syntastic_javascript_checkers = ['eslint', 'standard']
 let g:ale_linters = {
 \   'javascript': ['standard'],
 \}
-autocmd bufwritepost *.js silent !standard-format -w %
+"autocmd bufwritepost *.js silent !standard --fix %
 
 "GoLang
 "let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
