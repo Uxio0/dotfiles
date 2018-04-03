@@ -17,7 +17,7 @@ while read -r line ; do
 			vol=`awk -F"[][]" '/dB/ { print $2 }' <(amixer sget Master)`
 			#wifistr=`./panel_wifi`
 			batt=`$(dirname $0)/bat.sh`
-			ip=`ip addr | awk '/inet/ && /enp12s0/{sub(/\/.*$/,"",$2); print $2}'`
+			ip=`hostname -i | cut -d' ' -f1`
 			package=`pacman -Qu | wc -l`
 
 			sys="%{B$COLOR_SYS_BG} %{F$YELLOW}${PACIC}%{F$COLOR_SYS_FG} ${package} | %{F$THECOLOR}${SOUNDIC} %{F$COLOR_SYS_FG}${vol} | ${ip} ${wifistr}%{F$COLOR_SYS_FG} ${wifissid} | %{F$THECOLOR}${MEMIC} %{F$COLOR_SYS_FG}${mem} | %{F$THECOLOR}${TEMPIC} %{F$COLOR_SYS_FG}${tmp}%{F$COLOR_SYS_FG} | %{F$COLOR_SYS_FG}${batt}%{F$COLOR_SYS_FG} | %{F$THECOLOR}${CLKIC} %{F$COLOR_SYS_FG}%{B$COLOR_SYS_BG} ${line#?} %{B-}%{F-}"
