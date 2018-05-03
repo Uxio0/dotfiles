@@ -289,7 +289,7 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 nnoremap <leader>b :CtrlPBuffer<CR>
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-nnoremap <leader>/ :Ag -i<space>
+nnoremap <leader>/ :Ack -i<space>
 map K :Ack -i "<cword>"<CR>
 
 if executable('ag')
