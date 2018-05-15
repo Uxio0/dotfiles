@@ -1,15 +1,15 @@
-HISTFILE=~/.zhistory
-HISTSIZE=1000
-SAVEHIST=1000
-
 if [[ -s ~/.zplugin/bin/zplugin.zsh ]]; then
     source ~/.zplugin/bin/zplugin.zsh
 
     autoload -Uz _zplugin
     (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
+    zplugin load zdharma/history-search-multi-word
+
     zplugin light zsh-users/zsh-autosuggestions
     zplugin light zsh-users/zsh-syntax-highlighting
+
+    zplugin light chrissicool/zsh-256color
 
     zplugin ice blockf
     zplugin light zsh-users/zsh-completions
@@ -27,10 +27,10 @@ if [[ -s ~/.zplugin/bin/zplugin.zsh ]]; then
     zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
     # zplugin snippet OMZ::themes/amuse.zsh-theme
     # zplugin light denysdovhan/spaceship-prompt
-
-    autoload -Uz compinit
-    compinit
 fi
+
+autoload -Uz compinit
+compinit
 
 eval "$(dircolors --sh)"
 alias ls="ls --color=auto"
@@ -44,10 +44,13 @@ zle -N zle-line-init
 zle -N zle-line-finish
 bindkey "\e[3~" delete-char
 
-export EDITOR=vim
-export VISUAL=$EDITOR
-export PATH=~/.local/bin:$PATH
-# export TERM=xterm-256color
+HISTFILE=~/.zhistory
+HISTSIZE=1000
+SAVEHIST=1000
+EDITOR=vim
+VISUAL=$EDITOR
+PATH=~/.local/bin:$PATH
+# TERM=xterm-256color
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
 setopt append_history
