@@ -1,12 +1,63 @@
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-	source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+HISTFILE=~/.zhistory
+HISTSIZE=1000
+SAVEHIST=1000
+
+if [[ -s ~/.zplugin/bin/zplugin.zsh ]]; then
+    source ~/.zplugin/bin/zplugin.zsh
+
+    autoload -Uz _zplugin
+    (( ${+_comps} )) && _comps[zplugin]=_zplugin
+
+    zplugin light zsh-users/zsh-autosuggestions
+    zplugin light zsh-users/zsh-syntax-highlighting
+
+    zplugin ice blockf
+    zplugin light zsh-users/zsh-completions
+    # zplugin creinstall zsh-users/zsh-completions
+
+    # Load completion library for those sweet [tab] squares
+    zplugin snippet OMZ::lib/completion.zsh
+
+    zplugin snippet OMZ::lib/git.zsh
+    zplugin snippet OMZ::plugins/git/git.plugin.zsh
+    zplugin snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
+
+    # Load theme from OMZ
+    setopt promptsubst
+    zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
+    # zplugin snippet OMZ::themes/amuse.zsh-theme
+    # zplugin light denysdovhan/spaceship-prompt
+
+    autoload -Uz compinit
+    compinit
 fi
+
+eval "$(dircolors --sh)"
+alias ls="ls --color=auto"
+
+bindkey -e emacs
+
+# DEL KEY http://zsh.sourceforge.net/FAQ/zshfaq03.html#l25
+function zle-line-init () { echoti smkx }
+function zle-line-finish () { echoti rmkx }
+zle -N zle-line-init
+zle -N zle-line-finish
+bindkey "\e[3~" delete-char
 
 export EDITOR=vim
 export VISUAL=$EDITOR
-export TERM=xterm-256color
-export PATH=$PATH:~/scripts
+export PATH=~/.local/bin:$PATH
+# export TERM=xterm-256color
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
 
 # extract function
 extract() {
@@ -68,14 +119,6 @@ pyclean () {
 weather() {
 	curl 'http://wttr.in'
 }
-
-cleanpython() {
-	find -name '*.pyc' -delete
-	find -name '__pycache__'
-	rm -rf 'dist'
-	rm -rf *\.egg-info
-}
-
 
 ## ctrl-s will no longer freeze the terminal.
 # stty erase "^?"
