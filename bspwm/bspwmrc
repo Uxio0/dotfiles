@@ -10,8 +10,8 @@ bspc config focus_follows_pointer   true
 
 if [[ `bspc query -M | wc -l` == 2 ]]
 then
-    bspc monitor HDMI-1 -d I II III IV V VI VII VIII IX
-    bspc monitor LVDS-1 -d X
+    bspc monitor '^1' -d I II III IV V VI VII VIII IX
+    bspc monitor '^2' -d X
 else
     bspc monitor -d I II III IV V VI VII VIII IX X
 fi
@@ -27,7 +27,7 @@ bspc rule -a Eclipse desktop=^4
 bspc rule -a DBeaver desktop=^5
 bspc rule -a Thunderbird desktop=^6
 bspc rule -a Gimp desktop=^7
-bspc rule -a Firefox desktop=^9
+bspc rule -a Firefox desktop=^8
 bspc rule -a Chromium desktop=^9
 bspc rule -a Google-chrome-stable desktop=^9
 bspc rule -a mplayer2 floating=on
