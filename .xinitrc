@@ -46,15 +46,15 @@ fi
 #xset dpms 0 0 300
 
 mpd &
-urxvtd -q -o -f
+# urxvtd -q -o -f
 
 wicd-gtk -t &
 #start-pulseaudio-x11
 pulseaudio --start
 
 #xrandr -q | grep VGA1 && xrandr --output VGA1 --mode 1920x1080 --output LVDS1 --off
-xrandr -q | grep VGA1 && xrandr --output HDMI1 --primary --preferred --auto --left-of VGA1
 xrandr -q | grep HDMI-1 && xrandr --output HDMI-1 --primary --preferred --auto --left-of LVDS-1
+xrandr -q | grep HDMI1 && xrandr --output HDMI1 --primary --preferred --auto --left-of LVDS1
 
 # Auto mounts USB to /media/
 udiskie --tray &

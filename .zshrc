@@ -38,10 +38,6 @@ alias ls="ls --color=auto"
 bindkey -e emacs
 
 # DEL KEY http://zsh.sourceforge.net/FAQ/zshfaq03.html#l25
-function zle-line-init () { echoti smkx }
-function zle-line-finish () { echoti rmkx }
-zle -N zle-line-init
-zle -N zle-line-finish
 bindkey "\e[3~" delete-char
 
 HISTFILE=~/.zhistory
@@ -50,7 +46,7 @@ SAVEHIST=1000
 EDITOR=vim
 VISUAL=$EDITOR
 PATH=~/.local/bin:$PATH
-# TERM=xterm-256color
+TERM=xterm-256color
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
 setopt append_history
