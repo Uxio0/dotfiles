@@ -18,14 +18,16 @@ if [[ -s ~/.zplugin/bin/zplugin.zsh ]]; then
     # Load completion library for those sweet [tab] squares
     zplugin snippet OMZ::lib/completion.zsh
 
+    zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+
     zplugin snippet OMZ::lib/git.zsh
     zplugin snippet OMZ::plugins/git/git.plugin.zsh
     zplugin snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
 
     # Load theme from OMZ
-    setopt promptsubst
     zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
-    # zplugin snippet OMZ::themes/amuse.zsh-theme
+    # setopt promptsubst
+    # zplugin snippet OMZ::themes/alanpeabody.zsh-theme
     # zplugin light denysdovhan/spaceship-prompt
 fi
 
