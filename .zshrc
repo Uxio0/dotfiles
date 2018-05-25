@@ -20,6 +20,11 @@ if [[ -s ~/.zplugin/bin/zplugin.zsh ]]; then
 
     zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
+    # ZSH_TMUX_AUTOSTART=true
+    # ZSH_TMUX_AUTOCONNECT=false
+    # zplugin snippet OMZ::plugins/tmux/tmux.plugin.zsh
+    # zplugin light jreese/zsh-titles
+
     zplugin snippet OMZ::lib/git.zsh
     zplugin snippet OMZ::plugins/git/git.plugin.zsh
     zplugin snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
@@ -48,7 +53,7 @@ SAVEHIST=1000
 EDITOR=vim
 VISUAL=$EDITOR
 PATH=~/.local/bin:$PATH
-TERM=xterm-256color
+#TERM=xterm-256color
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
 setopt append_history

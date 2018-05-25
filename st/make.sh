@@ -1,0 +1,2 @@
+#!/bin/sh
+makepkg -si
