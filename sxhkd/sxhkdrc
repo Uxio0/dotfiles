@@ -50,14 +50,17 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
     xbacklight -dec 10%
 
+super + shift + s
+    maim -s | xclip -selection clipboard -t image/png
+
 Print
-    scrot '%F--%I:%M:%S:%p--$wx$h--scrot.png' -e 'mv $f /home/uxio/'
+    maim ~/screenshot-$(date +%s).png
 
 alt + Print
-    scrot -u '%F--%I:%M:%S:%p--$wx$h--scrot.png' -e 'mv $f /home/uxio/'
+    maim -i $(xdotool getactivewindow) ~/screenshot-$(date +%s).png
 
 super + Print
-    scrot -s '%F--%I:%M:%S:%p--$wx$h--scrot.png' -e 'mv $f /home/uxio/'
+    maim -s ~/screenshot-$(date +%s).png
 
 #
 # bspwm hotkeys
