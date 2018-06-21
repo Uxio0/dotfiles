@@ -87,7 +87,7 @@ case $1 in
 		fbxkb &
 		sxhkd &
 		clipit &
-		#compton &
+        # compton --backend glx --paint-on-overlay --vsync opengl-mswc &
 
 		if [ -f /usr/lib/xfce4/notifyd/xfce4-notifyd ]; then
 			/usr/lib/xfce4/notifyd/xfce4-notifyd &

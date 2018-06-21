@@ -28,6 +28,8 @@ if [[ -s ~/.zplugin/bin/zplugin.zsh ]]; then
     zplugin snippet OMZ::lib/git.zsh
     zplugin snippet OMZ::plugins/git/git.plugin.zsh
     zplugin snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
+    # Check if we are in a virtualenv directory when zshrc is loaded
+    workon_cwd
 
     # Load theme from OMZ
     zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
@@ -137,5 +139,7 @@ if [[ -s /usr/share/fzf/key-bindings.zsh ]]; then
 	.  /usr/share/fzf/key-bindings.zsh
 	.  /usr/share/fzf/completion.zsh
 fi
+
+[[ -z "$TMUX" && -n "$DISPLAY" ]] && tmux
 
 # vim: ft=sh ts=4 sw=4 tw=0 fdm=marker foldlevel=0 :
