@@ -37,9 +37,6 @@ if [ -s ~/dotfiles/.Xmodmap ]; then
 	xmodmap ~/dotfiles/.Xmodmap
 fi
 
-#Pulseaudio on systray
-#pasystray &
-
 #Auto lower brightness
 #xset -q (To check options)
 #xset +dpms
@@ -49,8 +46,13 @@ mpd &
 # urxvtd -q -o -f
 
 wicd-gtk -t &
-#start-pulseaudio-x11
-pulseaudio --start
+
+# Pulseaudio is always running if installed
+# https://wiki.archlinux.org/index.php/PulseAudio#Running
+#pulseaudio --start
+
+#Pulseaudio on systray
+#pasystray &
 
 #xrandr -q | grep VGA1 && xrandr --output VGA1 --mode 1920x1080 --output LVDS1 --off
 xrandr -q | grep HDMI-1 && xrandr --output HDMI-1 --primary --preferred --auto --left-of LVDS-1
