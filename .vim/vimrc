@@ -50,19 +50,8 @@ Plugin 'mileszs/ack.vim'
 Plugin 'sheerun/vim-polyglot'
 "Auto Pair () []
 Plugin 'Raimondi/delimitMate'
-"Ctags Cscope
-Plugin 'steffanc/cscopemaps.vim'
-"Scala
-Plugin 'derekwyatt/vim-scala'
-Plugin 'gre/play2vim'
-"Javascript
-Plugin 'pangloss/vim-javascript'
-"Vue
-Plugin 'posva/vim-vue'
 "GoLang
 Plugin 'fatih/vim-go'
-"Solidity
-Plugin 'tomlion/vim-solidity'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
