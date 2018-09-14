@@ -94,16 +94,6 @@ compress() {
 	tar -cv $1 | lzma -9 > $name.tar.lzma
 }
 
-# press ctrl-q to quote line:
-mquote () {
-	zle beginning-of-line
-	zle forward-word
-	# RBUFFER="'$RBUFFER'"
-	RBUFFER=${(q)RBUFFER}
-	zle end-of-line
-}
-zle -N mquote && bindkey '^q' mquote
-
 replaceAg() {
 	if [ "$#" -eq 2 ]; then
 		for f in $(ag $1 -l); do sed -i "s/$1/$2/g" $f; done
