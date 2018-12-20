@@ -91,8 +91,8 @@ case $1 in
 		clipit &
         # compton --backend glx --paint-on-overlay --vsync opengl-mswc &
 
-		if [ -f /usr/lib/xfce4/notifyd/xfce4-notifyd ]; then
-			/usr/lib/xfce4/notifyd/xfce4-notifyd &
+		if [ -f /usr/bin/lxqt-notificationd ]; then
+			 /usr/bin/lxqt-notificationd &
 		else
 			dunst &
 		fi
@@ -124,6 +124,11 @@ case $1 in
 
 	xfce4)
 		exec startxfce4
+		;;
+	lxqt)
+		sxhkd &
+		fbxkb &
+		exec startlxqt
 		;;
 	openbox)
 		obsetlayout 0 2 2 0

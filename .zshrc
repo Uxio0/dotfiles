@@ -54,7 +54,8 @@ HISTSIZE=1000
 SAVEHIST=1000
 EDITOR=vim
 VISUAL=$EDITOR
-PATH=~/.local/bin:$PATH
+export GOPATH=~/go
+PATH=~/.local/bin:~/.yarn/bin:${GOPATH//://bin:}/bin:$PATH
 #TERM=xterm-256color
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
