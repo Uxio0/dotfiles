@@ -46,6 +46,7 @@ mpd &
 # urxvtd -q -o -f
 
 wicd-gtk -t &
+nm-applet   2>&1 > /dev/null &
 
 # Pulseaudio is always running if installed
 # https://wiki.archlinux.org/index.php/PulseAudio#Running
@@ -57,6 +58,7 @@ wicd-gtk -t &
 #xrandr -q | grep VGA1 && xrandr --output VGA1 --mode 1920x1080 --output LVDS1 --off
 xrandr -q | grep HDMI-1 && xrandr --output HDMI-1 --primary --preferred --auto --left-of LVDS-1
 xrandr -q | grep HDMI1 && xrandr --output HDMI1 --primary --preferred --auto --left-of LVDS1
+xrandr -q | grep DP1 && xrandr --output DP1 --primary --preferred --auto --left-of eDP1
 
 # Auto mounts USB to /media/
 udiskie --tray &
@@ -80,6 +82,9 @@ case $1 in
 		# Required packages bspwm sxhkd dunst fbxkb feh compton clipit
 		# Reparenting Java
 		export _JAVA_AWT_WM_NONREPARENTING=1
+
+        # https://github.com/lxqt/lxqt-qtplugin#configuration-usage
+        export QT_QPA_PLATFORMTHEME=lxqt
 		wmname LG3D
 		# Install xorg-xprop
 		source ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
