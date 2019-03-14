@@ -55,10 +55,10 @@ nm-applet   2>&1 > /dev/null &
 #Pulseaudio on systray
 #pasystray &
 
-#xrandr -q | grep VGA1 && xrandr --output VGA1 --mode 1920x1080 --output LVDS1 --off
-xrandr -q | grep HDMI-1 && xrandr --output HDMI-1 --primary --preferred --auto --left-of LVDS-1
-xrandr -q | grep HDMI1 && xrandr --output HDMI1 --primary --preferred --auto --left-of LVDS1
-xrandr -q | grep DP1 && xrandr --output DP1 --primary --preferred --auto --left-of eDP1
+DISPLAYS=($(xrandr -q | grep ' connected' | sed -e 's/\(.*\)connected.*/\1/g'))
+if [[ ${#DISPLAYS[@]} == 2 ]]; then
+    xrandr --output ${DISPLAYS[2]} --primary --preferred --auto --left-of ${DISPLAYS[1]}
+fi
 
 # Auto mounts USB to /media/
 udiskie --tray &
