@@ -19,6 +19,7 @@ ln -s$force $folder/bspwm ~/.config
 ln -s$force $folder/dunst ~/.config
 ln -s$force $folder/sxhkd ~/.config
 ln -s$force $folder/fontconfig ~/.config
+ln -s$force $folder/polybar ~/.config
 
 #Vim bundle
 mkdir -p ~/.vim/bundle

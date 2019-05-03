@@ -42,5 +42,4 @@ bspc config wm_name LG3D
 wmname LG3D #Sometimes it doesnt work
 # do this here so that we know the NetWM anchor window is up
 ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
-
-panel&
+~/dotfiles/polybar/launch.sh

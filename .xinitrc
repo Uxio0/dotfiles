@@ -34,7 +34,7 @@ xsetroot -cursor_name left_ptr &
 
 #Swap mayus and ESC for ViM
 if [ -s ~/dotfiles/.Xmodmap ]; then
-	xmodmap ~/dotfiles/.Xmodmap
+    xmodmap ~/dotfiles/.Xmodmap
 fi
 
 #Auto lower brightness
@@ -42,23 +42,11 @@ fi
 #xset +dpms
 #xset dpms 0 0 300
 
-mpd &
-# urxvtd -q -o -f
-
-wicd-gtk -t &
+# Network manager applet
 nm-applet   2>&1 > /dev/null &
 
-# Pulseaudio is always running if installed
-# https://wiki.archlinux.org/index.php/PulseAudio#Running
-#pulseaudio --start
-
-#Pulseaudio on systray
-#pasystray &
-
-DISPLAYS=($(xrandr -q | grep ' connected' | sed -e 's/\(.*\)connected.*/\1/g'))
-if [[ ${#DISPLAYS[@]} == 2 ]]; then
-    xrandr --output ${DISPLAYS[2]} --primary --preferred --auto --left-of ${DISPLAYS[1]}
-fi
+# Pulseaudio applet
+pasystray &
 
 # Auto mounts USB to /media/
 udiskie --tray &
@@ -72,90 +60,51 @@ eval $(ssh-agent)
 #Redshift for auto regulate screen colors temperature
 #redshift -l 43.34:8.45&
 
-# Normal cursor
-DEFAULT_SESSION=bspwm
-
-#[ -z $1 ] && my_session=$DEFAULT_SESSION || my_session=$1
+DISPLAYS=($(xrandr -q | grep ' connected' | sed -e 's/\(.*\)connected.*/\1/g'))
+if [[ ${#DISPLAYS[@]} == 2 ]]; then
+    xrandr --output ${DISPLAYS[2]} --primary --preferred --auto --left-of ${DISPLAYS[1]}
+fi
 
 case $1 in
-	bspwm)
-		# Required packages bspwm sxhkd dunst fbxkb feh compton clipit
-		# Reparenting Java
-		export _JAVA_AWT_WM_NONREPARENTING=1
+    bspwm)
+        # Reparenting Java
+        export _JAVA_AWT_WM_NONREPARENTING=1
 
         # https://github.com/lxqt/lxqt-qtplugin#configuration-usage
         export QT_QPA_PLATFORMTHEME=lxqt
-		wmname LG3D
-		# Install xorg-xprop
-		source ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
+        wmname LG3D
+        # Install xorg-xprop
+        source ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
 
-		PATH=$PATH:~/.config/bspwm/panel
-		export PATH
-		fbxkb &
-		sxhkd &
-		clipit &
+        sxhkd &
+        clipit &
         # compton --backend glx --paint-on-overlay --vsync opengl-mswc &
 
-		if [ -f /usr/bin/lxqt-notificationd ]; then
-			 /usr/bin/lxqt-notificationd &
-		else
-			dunst &
-		fi
+        if [ -f /usr/bin/lxqt-notificationd ]; then
+            /usr/bin/lxqt-notificationd &
+        else
+            dunst &
+        fi
 
-		# Install feh
-		sh ~/.fehbg
-		[ -f ~/.runonce ] && sh ~/.runonce
-		exec bspwm
-		;;
-	dwm)
-		export _JAVA_AWT_WM_NONREPARENTING=1
-		wmname LG3D
-		conky -c ~/conky.conf | while read -r; do xsetroot -name "$REPLY"; done &
-		fbxkb &
-		#xfce4-power-manager &
-		#parcellite &
-
-		# Install feh
-		sh ~/.fehbg
-
-		#while true; do
-		#	CURVOL=`amixer get Master | awk '/Mono.+/ {print $6=="[off]"?$6:$4}' | tr -d '[]'`
-		#	xsetroot -name "Vol: $CURVOL Bateria: $(acpi | awk -F' '  '{print $4,$5}') Espacio libre: $(df -h|grep root|awk '{print $4}') $(date +"%d/%m - %H:%M:%S")"
-		#	sleep 1
-		#done &
-
-		exec dwm
-		;;
-
-	xfce4)
-		exec startxfce4
-		;;
-	lxqt)
-		sxhkd &
-		fbxkb &
-		exec startlxqt
-		;;
-	openbox)
-		obsetlayout 0 2 2 0
-		fbxkb &
-		#compton &
-		volumeicon &
-		avant-window-navigator &
-		#./dzenconky.sh &
-		#tint2 &
-		#conky -c conkybar.conf &
-		sh ~/.fehbg
-		exec openbox-session
-		;;
-	lxde)
-		obsetlayout 0 2 2 0
-		exec startlxde
-		;;
-	lxqt)
-		exec startlxqt
-		;;
-	*)
-		exec $DEFAULT_SESSION
-		;;
+        # Install feh
+        sh ~/.fehbg
+        [ -f ~/.runonce ] && sh ~/.runonce
+        exec bspwm
+        ;;
+    xfce4)
+        exec startxfce4
+        ;;
+    lxqt)
+        sxhkd &
+        fbxkb &
+        exec startlxqt
+        ;;
+    lxde)
+        obsetlayout 0 2 2 0
+        exec startlxde
+        ;;
+    *)
+        exec startlxqt
+        ;;
 esac
 # vim: ft=sh ts=4 sw=4 tw=0 fdm=marker foldlevel=0 :
