@@ -1,23 +1,31 @@
 if [[ -s ~/.zplugin/bin/zplugin.zsh ]]; then
     source ~/.zplugin/bin/zplugin.zsh
 
+    # https://github.com/zdharma/zplugin/blob/master/doc/INSTALLATION.adoc#manual-installation
     autoload -Uz _zplugin
     (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-    zplugin load zdharma/history-search-multi-word
-
+    zplugin ice wait"0" atload"_zsh_autosuggest_start" lucid
     zplugin light zsh-users/zsh-autosuggestions
-    zplugin light zsh-users/zsh-syntax-highlighting
+
+    # `blockf` will block the traditional method of adding completions, zplugin uses its own
+    zplugin ice blockf
+    zplugin light zsh-users/zsh-completions
+
+    zplugin ice wait"0" atinit"zpcompinit; zpcdreplay" lucid
+    zplugin light zdharma/fast-syntax-highlighting
+
+    zplugin load zdharma/history-search-multi-word
 
     zplugin light chrissicool/zsh-256color
 
-    zplugin ice blockf
-    zplugin light zsh-users/zsh-completions
-    # zplugin creinstall zsh-users/zsh-completions
+    zplugin ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh"
+    zplugin load trapd00r/LS_COLORS
 
     # Load completion library for those sweet [tab] squares
     zplugin snippet OMZ::lib/completion.zsh
 
+    zplugin ice wait"0" lucid
     zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
     # ZSH_TMUX_AUTOSTART=true
@@ -25,23 +33,26 @@ if [[ -s ~/.zplugin/bin/zplugin.zsh ]]; then
     # zplugin snippet OMZ::plugins/tmux/tmux.plugin.zsh
     # zplugin light jreese/zsh-titles
 
-    zplugin snippet OMZ::lib/git.zsh
-    zplugin snippet OMZ::plugins/git/git.plugin.zsh
-    zplugin snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
     # Check if we are in a virtualenv directory when zshrc is loaded
-    workon_cwd
+    zplugin ice nocd wait'!0' atload'workon_cwd'
+    zplugin snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
+
+    # Load OMZ Git library
+    zplugin snippet OMZ::lib/git.zsh
+
+    # Load Git plugin from OMZ
+    zplugin snippet OMZ::plugins/git/git.plugin.zsh
+    zplugin cdclear -q # <- forget completions provided up to this moment
 
     # Load theme from OMZ
     zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
     # setopt promptsubst
     # zplugin snippet OMZ::themes/alanpeabody.zsh-theme
     # zplugin light denysdovhan/spaceship-prompt
+else
+    autoload -Uz compinit; compinit
 fi
 
-autoload -Uz compinit
-compinit
-
-eval "$(dircolors --sh)"
 alias ls="ls --color=auto"
 
 bindkey -e emacs
