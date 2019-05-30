@@ -5,12 +5,22 @@ if [[ -s ~/.zplugin/bin/zplugin.zsh ]]; then
     autoload -Uz _zplugin
     (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
+    # Breaks completion
+    # zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
+
     zplugin ice wait"0" atload"_zsh_autosuggest_start" lucid
     zplugin light zsh-users/zsh-autosuggestions
 
     # `blockf` will block the traditional method of adding completions, zplugin uses its own
     zplugin ice blockf
     zplugin light zsh-users/zsh-completions
+
+    # Aws completion
+    zplugin ice wait"0" lucid
+    zplugin snippet OMZ::plugins/aws/aws.plugin.zsh
+
+    zplugin ice as"completion"
+    zplugin snippet OMZ::plugins/docker/_docker
 
     zplugin ice wait"0" atinit"zpcompinit; zpcdreplay" lucid
     zplugin light zdharma/fast-syntax-highlighting
@@ -45,7 +55,8 @@ if [[ -s ~/.zplugin/bin/zplugin.zsh ]]; then
     zplugin cdclear -q # <- forget completions provided up to this moment
 
     # Load theme from OMZ
-    zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
+    zplugin ice pick"async.zsh" src"pure.zsh"
+    zplugin light sindresorhus/pure
     # setopt promptsubst
     # zplugin snippet OMZ::themes/alanpeabody.zsh-theme
     # zplugin light denysdovhan/spaceship-prompt

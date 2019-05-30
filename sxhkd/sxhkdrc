@@ -33,16 +33,16 @@ XF86AudioMute
     amixer -q sset PCM toggle || amixer -q -D pulse set Master toggle
 
 XF86AudioNext
-    mpc next; dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+    playerctl next || mpc next; dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
 XF86AudioPrev
-    mpc prev; dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+    playerctl previous || mpc prev; dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 XF86AudioPlay
-    mpc toggle; dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+    playerctl play-pause || mpc toggle; dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
 XF86AudioStop
-    mpc stop
+    playerctl stop || mpc stop
 
 XF86MonBrightnessUp
     xbacklight -inc 10%
