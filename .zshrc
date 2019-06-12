@@ -65,6 +65,7 @@ else
 fi
 
 alias ls="ls --color=auto"
+alias vim="nvim"
 
 bindkey -e emacs
 

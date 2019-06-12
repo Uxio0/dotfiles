@@ -41,7 +41,15 @@ Plugin 'scrooloose/nerdtree'
 "Change Syntastic for ALE(async)
 Plugin 'w0rp/ale'
 Plugin 'bling/vim-airline'
-Plugin 'Valloric/YouCompleteMe'
+
+"Next 2 plugins required if not using neovim
+if !has('nvim')
+    Plugin 'roxma/nvim-yarp'
+    Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+Plugin 'Shougo/deoplete.nvim'
+"Python completion
+Plugin 'deoplete-plugins/deoplete-jedi'
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-rooter'
 "Silver searcher
@@ -256,8 +264,7 @@ set nowrap          " stop lines from wrapping
 "color peaksea
 color Tomorrow-Night
 
-"YouCompleteMe
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:deoplete#enable_at_startup = 1
 
 "NERDTree
 map <C-n> :NERDTreeToggle<CR>

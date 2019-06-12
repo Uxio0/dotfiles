@@ -1,0 +1,54 @@
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'chriskempson/base16-vim'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'junegunn/fzf.vim'
+"Completion
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+"Close autocomplete window
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+"Syntax check with ALE(async)
+Plug 'w0rp/ale'
+"Multiple syntax files
+Plug 'sheerun/vim-polyglot'
+"Auto Pair () []
+Plug 'Raimondi/delimitMate'
+Plug 'airblade/vim-rooter'
+"Powerline
+Plug 'itchyny/lightline.vim'
+"Comment out a line -> <leader>cc, un-comment -> <leader>cu
+Plug 'scrooloose/nerdcommenter'
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+call plug#end()
+
+"Ignore virtualenvs
+let g:python3_host_prog = '/usr/bin/python3'
+let mapleader = "\<Space>"
+
+"FZF Control + P 
+nnoremap <C-p> :Files<Cr>
+
+"NERDTree
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+"Trailing spaces
+"F5 shows blank spaces, F6 deletes them
+highlight ExtraWhitespace ctermbg=red guibg=red
+map <F5> :match ExtraWhitespace /\s\+$/<CR>
+map <F6> :%s/\s\+$//e <CR>
+
+"color Tomorrow-Night
+"
+"Copy and Paste to/from Clipboard with leader key
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
