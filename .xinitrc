@@ -62,7 +62,7 @@ eval $(ssh-agent)
 
 DISPLAYS=($(xrandr -q | grep ' connected' | sed -e 's/\(.*\)connected.*/\1/g'))
 if [[ ${#DISPLAYS[@]} == 2 ]]; then
-    xrandr --output ${DISPLAYS[2]} --primary --preferred --auto --left-of ${DISPLAYS[1]}
+    xrandr --output ${DISPLAYS[@]:1:1} --primary --preferred --auto --left-of ${DISPLAYS[@]:0:1}
 fi
 
 case $1 in
@@ -71,7 +71,7 @@ case $1 in
         export _JAVA_AWT_WM_NONREPARENTING=1
 
         # https://github.com/lxqt/lxqt-qtplugin#configuration-usage
-        export QT_QPA_PLATFORMTHEME=lxqt
+        # export QT_QPA_PLATFORMTHEME=lxqt
         wmname LG3D
         # Install xorg-xprop
         source ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
@@ -80,8 +80,8 @@ case $1 in
         clipit &
         # compton --backend glx --paint-on-overlay --vsync opengl-mswc &
 
-        if [ -f /usr/bin/lxqt-notificationd ]; then
-            /usr/bin/lxqt-notificationd &
+		if [ -f /usr/lib/xfce4/notifyd/xfce4-notifyd ]; then
+			/usr/lib/xfce4/notifyd/xfce4-notifyd &
         else
             dunst &
         fi
@@ -104,7 +104,7 @@ case $1 in
         exec startlxde
         ;;
     *)
-        exec startlxqt
+        exec startxfce4
         ;;
 esac
 # vim: ft=sh ts=4 sw=4 tw=0 fdm=marker foldlevel=0 :
