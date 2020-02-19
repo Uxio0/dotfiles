@@ -92,6 +92,7 @@ case $1 in
         exec bspwm
         ;;
     xfce4)
+        sxhkd &
         exec startxfce4
         ;;
     lxqt)
@@ -102,6 +103,9 @@ case $1 in
     lxde)
         obsetlayout 0 2 2 0
         exec startlxde
+        ;;
+    plasma)
+        exec startplasma-x11
         ;;
     *)
         exec startxfce4
