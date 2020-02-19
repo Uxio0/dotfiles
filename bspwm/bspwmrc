@@ -7,6 +7,8 @@ bspc config split_ratio         0.52
 bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 bspc config focus_follows_pointer   true
+bspc config remove_disabled_monitors	true
+bspc config remove_unplugged_monitors	true
 
 if [[ `bspc query -M | wc -l` == 2 ]]
 then
@@ -35,9 +37,9 @@ bspc rule -a Screenkey manage=off
 
 # mouse support
 bspc config pointer_modifier mod4
-bspc config click_to_focus true
+bspc config click_to_focus button1
 # manage windows left from previous session
-bspc control --adopt-orphans
+bspc wm --adopt-orphans
 bspc config wm_name LG3D
 wmname LG3D #Sometimes it doesnt work
 # do this here so that we know the NetWM anchor window is up
