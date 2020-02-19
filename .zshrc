@@ -1,69 +1,73 @@
-if [[ -s ~/.zplugin/bin/zplugin.zsh ]]; then
-    source ~/.zplugin/bin/zplugin.zsh
+if [[ -s ~/.zinit/bin/zinit.zsh ]]; then
+	# http://zdharma.org/zinit/wiki/INTRODUCTION/
+    source ~/.zinit/bin/zinit.zsh
 
-    # https://github.com/zdharma/zplugin/blob/master/doc/INSTALLATION.adoc#manual-installation
-    autoload -Uz _zplugin
-    (( ${+_comps} )) && _comps[zplugin]=_zplugin
+    # https://github.com/zdharma/zinit/blob/master/doc/INSTALLATION.adoc#manual-installation
+    autoload -Uz _zinit
+    (( ${+_comps} )) && _comps[zinit]=_zinit
 
     # Breaks completion
-    # zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
+    # zinit snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
 
-    zplugin ice wait"0" atload"_zsh_autosuggest_start" lucid
-    zplugin light zsh-users/zsh-autosuggestions
+    zinit ice wait"0" atload"_zsh_autosuggest_start" lucid
+    zinit light zsh-users/zsh-autosuggestions
 
-    # `blockf` will block the traditional method of adding completions, zplugin uses its own
-    zplugin ice blockf
-    zplugin light zsh-users/zsh-completions
+    # `blockf` will block the traditional method of adding completions, zinit uses its own
+    zinit ice blockf
+    zinit light zsh-users/zsh-completions
 
     # Aws completion
-    zplugin ice wait"0" lucid
-    zplugin snippet OMZ::plugins/aws/aws.plugin.zsh
+    zinit ice wait"0" lucid
+    zinit snippet OMZ::plugins/aws/aws.plugin.zsh
 
-    zplugin ice as"completion"
-    zplugin snippet OMZ::plugins/docker/_docker
+	zinit ice as"completion"
+	zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
-    zplugin ice wait"0" atinit"zpcompinit; zpcdreplay" lucid
-    zplugin light zdharma/fast-syntax-highlighting
+    zinit ice wait"0" atinit"zpcompinit; zpcdreplay" lucid
+    zinit light zdharma/fast-syntax-highlighting
 
-    zplugin load zdharma/history-search-multi-word
+    zinit load zdharma/history-search-multi-word
 
-    zplugin light chrissicool/zsh-256color
+    zinit light chrissicool/zsh-256color
 
-    zplugin ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh"
-    zplugin load trapd00r/LS_COLORS
+	zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
+		atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+		atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+	zinit light trapd00r/LS_COLORS
 
     # Load completion library for those sweet [tab] squares
-    zplugin snippet OMZ::lib/completion.zsh
+    zinit snippet OMZ::lib/completion.zsh
 
-    zplugin ice wait"0" lucid
-    zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+    zinit ice wait"0" lucid
+    zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
     # ZSH_TMUX_AUTOSTART=true
     # ZSH_TMUX_AUTOCONNECT=false
-    # zplugin snippet OMZ::plugins/tmux/tmux.plugin.zsh
-    # zplugin light jreese/zsh-titles
+    # zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
+    # zinit light jreese/zsh-titles
 
     # Check if we are in a virtualenv directory when zshrc is loaded
-    zplugin ice nocd wait'!0' atload'workon_cwd'
-    zplugin snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
+    zinit ice nocd wait'!0' atload'workon_cwd'
+    zinit snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
 
     # Load OMZ Git library
-    zplugin snippet OMZ::lib/git.zsh
+    zinit snippet OMZ::lib/git.zsh
 
     # Load Git plugin from OMZ
-    zplugin snippet OMZ::plugins/git/git.plugin.zsh
-    zplugin cdclear -q # <- forget completions provided up to this moment
+    zinit snippet OMZ::plugins/git/git.plugin.zsh
+    zinit cdclear -q # <- forget completions provided up to this moment
 
     # Load theme from OMZ
-    zplugin ice pick"async.zsh" src"pure.zsh"
-    zplugin light sindresorhus/pure
+    zinit ice pick"async.zsh" src"pure.zsh"
+    zinit light sindresorhus/pure
     # setopt promptsubst
-    # zplugin snippet OMZ::themes/alanpeabody.zsh-theme
-    # zplugin light denysdovhan/spaceship-prompt
+    # zinit snippet OMZ::themes/alanpeabody.zsh-theme
+    # zinit light denysdovhan/spaceship-prompt
 else
     autoload -Uz compinit; compinit
 fi
 
+alias cal="cal -m"
 alias ls="ls --color=auto"
 alias vim="nvim"
 
@@ -75,10 +79,10 @@ bindkey "\e[3~" delete-char
 HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
-EDITOR=vim
-VISUAL=$EDITOR
+export EDITOR=vim
+export VISUAL=$EDITOR
 export GOPATH=~/go
-PATH=~/.local/bin:~/.yarn/bin:${GOPATH//://bin:}/bin:$PATH
+export PATH=~/.local/bin:~/.yarn/bin:${GOPATH//://bin:}/bin:$PATH
 #TERM=xterm-256color
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
@@ -149,6 +153,7 @@ stty -ixon
 [[ -s ~/work.sh ]] && . ~/work.sh
 [[ -s ~/thinkpad.sh ]] && . ~/thinkpad.sh
 
+# FZF
 if [[ -s /usr/share/fzf/key-bindings.zsh ]]; then
 	.  /usr/share/fzf/key-bindings.zsh
 	.  /usr/share/fzf/completion.zsh
@@ -157,3 +162,4 @@ fi
 [[ -z "$TMUX" && -n "$DISPLAY" ]] && tmux
 
 # vim: ft=sh ts=4 sw=4 tw=0 fdm=marker foldlevel=0 :
+source /usr/share/nvm/init-nvm.sh
