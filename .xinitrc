@@ -11,14 +11,37 @@
 #  unset f
 #fi
 
+function xinit_run_programs {
+    # Network manager applet
+    nm-applet   2>&1 > /dev/null &
+
+    # Bluetooth applet
+    blueman-applet 2>&1 > /dev/null &
+
+    # Pulseaudio applet
+    pasystray &
+
+    # Auto mounts USB to /media/
+    udiskie --tray &
+
+    #Auto lock screen
+    xss-lock slock &
+
+    #SSH agent
+    eval $(ssh-agent)
+
+    #Redshift for auto regulate screen colors temperature
+    #redshift -l 43.34:8.45&
+    # redshift -l 49.26:-123.23 &
+
+}
+
 # Enable restart X ctrl + alt + back and change keymap with both shifts
 setxkbmap -option terminate:ctrl_alt_bksp,grp:shifts_toggle es,us
 #setxkbmap -option grp:switch,grp:shifts_toggle,grp_led:scroll es,us
 numlockx on
 #xset led named "Scroll Lock"
 xset r rate 250 60
-
-# redshift -l 49.26:-123.23 &
 
 # Turns off the system bell
 /usr/bin/xset b off
@@ -42,31 +65,15 @@ fi
 #xset +dpms
 #xset dpms 0 0 300
 
-# Network manager applet
-nm-applet   2>&1 > /dev/null &
-
-# Pulseaudio applet
-pasystray &
-
-# Auto mounts USB to /media/
-udiskie --tray &
-
-#Auto lock screen
-xss-lock slock &
-
-#SSH agent
-eval $(ssh-agent)
-
-#Redshift for auto regulate screen colors temperature
-#redshift -l 43.34:8.45&
-
 DISPLAYS=($(xrandr -q | grep ' connected' | sed -e 's/\(.*\)connected.*/\1/g'))
 if [[ ${#DISPLAYS[@]} == 2 ]]; then
     xrandr --output ${DISPLAYS[@]:1:1} --primary --preferred --auto --left-of ${DISPLAYS[@]:0:1}
 fi
 
+session=${1:-plasma}
 case $1 in
     bspwm)
+        xinit_run_programs
         # Reparenting Java
         export _JAVA_AWT_WM_NONREPARENTING=1
 
@@ -92,23 +99,30 @@ case $1 in
         exec bspwm
         ;;
     xfce4)
+        xinit_run_programs
         sxhkd &
         exec startxfce4
         ;;
     lxqt)
+        xinit_run_programs
         sxhkd &
         fbxkb &
         exec startlxqt
         ;;
     lxde)
+        xinit_run_programs
         obsetlayout 0 2 2 0
         exec startlxde
         ;;
     plasma)
+        export DESKTOP_SESSION=plasma
         exec startplasma-x11
+        # Using wayland
+        # XDG_SESSION_TYPE=wayland dbus-run-session startplasma-wayland
         ;;
     *)
-        exec startxfce4
+        export DESKTOP_SESSION=plasma
+        exec startplasma-x11
         ;;
 esac
 # vim: ft=sh ts=4 sw=4 tw=0 fdm=marker foldlevel=0 :

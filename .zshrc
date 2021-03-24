@@ -161,5 +161,5 @@ fi
 
 [[ -z "$TMUX" && -n "$DISPLAY" ]] && tmux
 
-# vim: ft=sh ts=4 sw=4 tw=0 fdm=marker foldlevel=0 :
 source /usr/share/nvm/init-nvm.sh
+# vim: ft=sh ts=4 sw=4 tw=0 fdm=marker foldlevel=0 :
