@@ -70,7 +70,7 @@ if [[ ${#DISPLAYS[@]} == 2 ]]; then
     xrandr --output ${DISPLAYS[@]:1:1} --primary --preferred --auto --left-of ${DISPLAYS[@]:0:1}
 fi
 
-session=${1:-plasma}
+VBoxClient-all
 case $1 in
     bspwm)
         xinit_run_programs

@@ -57,18 +57,30 @@ if [[ -s ~/.zinit/bin/zinit.zsh ]]; then
     zinit snippet OMZ::plugins/git/git.plugin.zsh
     zinit cdclear -q # <- forget completions provided up to this moment
 
+    # Load kubectl completion
+    zinit light-mode lucid wait has"kubectl" for \
+      id-as"kubectl_completion" \
+      as"completion" \
+      atclone"kubectl completion zsh > _kubectl" \
+      atpull"%atclone" \
+      run-atpull \
+        zdharma/null
+
     # Load theme from OMZ
     zinit ice pick"async.zsh" src"pure.zsh"
     zinit light sindresorhus/pure
     # setopt promptsubst
     # zinit snippet OMZ::themes/alanpeabody.zsh-theme
     # zinit light denysdovhan/spaceship-prompt
+
+    zinit load agkozak/zsh-z  # https://github.com/agkozak/zsh-z
 else
     autoload -Uz compinit; compinit
 fi
 
 alias cal="cal -m"
 alias ls="ls --color=auto"
+alias k=kubectl
 alias vim="nvim"
 
 bindkey -e emacs
@@ -76,13 +88,16 @@ bindkey -e emacs
 # DEL KEY http://zsh.sourceforge.net/FAQ/zshfaq03.html#l25
 bindkey "\e[3~" delete-char
 
+## ctrl-s will no longer freeze the terminal.
+# stty erase "^?"
+stty -ixon
+
 HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
 export EDITOR=vim
 export VISUAL=$EDITOR
-export GOPATH=~/go
-export PATH=~/.local/bin:~/.yarn/bin:${GOPATH//://bin:}/bin:$PATH
+export PATH=~/.local/bin:~/.yarn/bin:${GOPATH//://bin:}/bin:~/.cargo/bin:$PATH
 #TERM=xterm-256color
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
@@ -95,6 +110,13 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
+# FZF
+if [[ -s /usr/share/fzf/key-bindings.zsh ]]; then
+	.  /usr/share/fzf/key-bindings.zsh
+	.  /usr/share/fzf/completion.zsh
+fi
+
+###### Functions ########
 # extract function
 extract() {
 	if [[ -f $1 ]]; then
@@ -139,27 +161,20 @@ deleteAg() {
 }
 
 pyclean () {
-        find . -regex "\(.*__pycache__.*\|*.py[co]\)" -delete
+    find . -regex "\(.*__pycache__.*\|*.py[co]\)" -delete
 }
 
 weather() {
 	curl 'http://wttr.in'
 }
 
-## ctrl-s will no longer freeze the terminal.
-# stty erase "^?"
-stty -ixon
 
 [[ -s ~/work.sh ]] && . ~/work.sh
 [[ -s ~/thinkpad.sh ]] && . ~/thinkpad.sh
 
-# FZF
-if [[ -s /usr/share/fzf/key-bindings.zsh ]]; then
-	.  /usr/share/fzf/key-bindings.zsh
-	.  /usr/share/fzf/completion.zsh
-fi
-
 [[ -z "$TMUX" && -n "$DISPLAY" ]] && tmux
 
-source /usr/share/nvm/init-nvm.sh
+# Javascript NVM
+[[ -s /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
+
 # vim: ft=sh ts=4 sw=4 tw=0 fdm=marker foldlevel=0 :
