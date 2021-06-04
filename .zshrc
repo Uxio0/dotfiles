@@ -1,16 +1,14 @@
 if [[ -s ~/.zinit/bin/zinit.zsh ]]; then
-	# http://zdharma.org/zinit/wiki/INTRODUCTION/
+    # https://zdharma.github.io/zinit/wiki/INTRODUCTION
     source ~/.zinit/bin/zinit.zsh
 
     # https://github.com/zdharma/zinit/blob/master/doc/INSTALLATION.adoc#manual-installation
     autoload -Uz _zinit
     (( ${+_comps} )) && _comps[zinit]=_zinit
 
-    # Breaks completion
-    # zinit snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
-
-    zinit ice wait"0" atload"_zsh_autosuggest_start" lucid
     zinit light zsh-users/zsh-autosuggestions
+    zinit light zdharma/history-search-multi-word
+
 
     # `blockf` will block the traditional method of adding completions, zinit uses its own
     zinit ice blockf
@@ -23,17 +21,12 @@ if [[ -s ~/.zinit/bin/zinit.zsh ]]; then
 	zinit ice as"completion"
 	zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
-    zinit ice wait"0" atinit"zpcompinit; zpcdreplay" lucid
-    zinit light zdharma/fast-syntax-highlighting
-
-    zinit load zdharma/history-search-multi-word
 
     zinit light chrissicool/zsh-256color
-
-	zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
-		atpull'%atclone' pick"clrs.zsh" nocompile'!' \
-		atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
-	zinit light trapd00r/LS_COLORS
+    # For GNU ls (the binaries can be gls, gdircolors, e.g. on OS X when installing the
+    # coreutils package from Homebrew; you can also use https://github.com/ogham/exa)
+    zinit ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
+    zinit light trapd00r/LS_COLORS
 
     # Load completion library for those sweet [tab] squares
     zinit snippet OMZ::lib/completion.zsh
@@ -50,21 +43,13 @@ if [[ -s ~/.zinit/bin/zinit.zsh ]]; then
     zinit ice nocd wait'!0' atload'workon_cwd'
     zinit snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
 
+    # Load kubectl completion
+    zinit snippet OMZP::kubectl
+
     # Load OMZ Git library
     zinit snippet OMZ::lib/git.zsh
-
     # Load Git plugin from OMZ
     zinit snippet OMZ::plugins/git/git.plugin.zsh
-    zinit cdclear -q # <- forget completions provided up to this moment
-
-    # Load kubectl completion
-    zinit light-mode lucid wait has"kubectl" for \
-      id-as"kubectl_completion" \
-      as"completion" \
-      atclone"kubectl completion zsh > _kubectl" \
-      atpull"%atclone" \
-      run-atpull \
-        zdharma/null
 
     # Load theme from OMZ
     zinit ice pick"async.zsh" src"pure.zsh"
@@ -74,6 +59,9 @@ if [[ -s ~/.zinit/bin/zinit.zsh ]]; then
     # zinit light denysdovhan/spaceship-prompt
 
     zinit load agkozak/zsh-z  # https://github.com/agkozak/zsh-z
+
+    zinit ice wait lucid atinit'zpcompinit; zpcdreplay'
+    zinit light zdharma/fast-syntax-highlighting
 else
     autoload -Uz compinit; compinit
 fi
