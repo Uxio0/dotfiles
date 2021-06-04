@@ -1,3 +1,8 @@
+bspwm
+sxhkd
+sutils-git
+xtitle
+xdo
 fzf
 polybar
 siji-git
