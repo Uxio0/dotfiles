@@ -88,6 +88,7 @@ export VISUAL=$EDITOR
 export PATH=~/.local/bin:~/.yarn/bin:${GOPATH//://bin:}/bin:~/.cargo/bin:$PATH
 #TERM=xterm-256color
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+export DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1
 
 setopt append_history
 setopt extended_history
