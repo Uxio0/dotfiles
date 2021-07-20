@@ -5,14 +5,17 @@ xtitle
 xdo
 fzf
 polybar
-siji-git
 rofi
 termite
-pcmanfm-qt
 slock
 maim
 pasystray 
 xss-lock
-lxqt-notificationd
+thunar
+xfce4-notifyd
 feh
 zsh
+picom
+# Fonts
+ttf-nerd-fonts-symbols-mono
+neosiji

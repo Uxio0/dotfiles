@@ -86,6 +86,8 @@ case $1 in
         sxhkd &
         clipit &
         # compton --backend glx --paint-on-overlay --vsync opengl-mswc &
+        picom &
+
 
 		if [ -f /usr/lib/xfce4/notifyd/xfce4-notifyd ]; then
 			/usr/lib/xfce4/notifyd/xfce4-notifyd &
