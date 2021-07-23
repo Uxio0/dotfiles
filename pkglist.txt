@@ -18,4 +18,5 @@ zsh
 picom
 # Fonts
 ttf-nerd-fonts-symbols-mono
+nerd-fonts-iosevka
 neosiji
