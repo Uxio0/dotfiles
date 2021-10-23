@@ -55,6 +55,7 @@ font-0 = Noto Sans:pixelsize=9;1
 font-1 = Symbols Nerd Font:pixelsize=10;2
 font-2 = Siji:pixelsize=10;1
 font-3 = Noto Color Emoji:scale=13;2
+font-4 = Dejavu sans:pixelsize=10;2
 
 modules-left = bspwm xkeyboard xwindow playerctl
 modules-center =
