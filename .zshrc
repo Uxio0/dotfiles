@@ -6,9 +6,8 @@ if [[ -s ~/.zinit/bin/zinit.zsh ]]; then
     autoload -Uz _zinit
     (( ${+_comps} )) && _comps[zinit]=_zinit
 
+    zinit light zdharma-continuum/history-search-multi-word
     zinit light zsh-users/zsh-autosuggestions
-    zinit light zdharma/history-search-multi-word
-
 
     # `blockf` will block the traditional method of adding completions, zinit uses its own
     zinit ice blockf
@@ -20,7 +19,6 @@ if [[ -s ~/.zinit/bin/zinit.zsh ]]; then
 
 	zinit ice as"completion"
 	zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
-
 
     zinit light chrissicool/zsh-256color
     # For GNU ls (the binaries can be gls, gdircolors, e.g. on OS X when installing the
@@ -61,7 +59,7 @@ if [[ -s ~/.zinit/bin/zinit.zsh ]]; then
     zinit load agkozak/zsh-z  # https://github.com/agkozak/zsh-z
 
     zinit ice wait lucid atinit'zpcompinit; zpcdreplay'
-    zinit light zdharma/fast-syntax-highlighting
+    zinit light zdharma-continuum/fast-syntax-highlighting
 else
     autoload -Uz compinit; compinit
 fi
