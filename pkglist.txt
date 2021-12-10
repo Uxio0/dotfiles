@@ -6,7 +6,7 @@ xdo
 fzf
 polybar
 rofi
-termite
+alacritty
 slock
 maim
 pasystray 
