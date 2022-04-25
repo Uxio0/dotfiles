@@ -30,6 +30,7 @@ let g:lightline = {
       \ }
 call plug#end()
 
+set termguicolors
 colorscheme Tomorrow-Night
 
 "Ignore virtualenvs

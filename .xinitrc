@@ -76,6 +76,7 @@ case $1 in
         xinit_run_programs
         # Reparenting Java
         export _JAVA_AWT_WM_NONREPARENTING=1
+        export AWT_TOOLKIT=MToolkit
 
         # https://github.com/lxqt/lxqt-qtplugin#configuration-usage
         # export QT_QPA_PLATFORMTHEME=lxqt
