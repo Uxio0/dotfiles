@@ -60,6 +60,10 @@ if [ -s ~/dotfiles/.Xmodmap ]; then
     xmodmap ~/dotfiles/.Xmodmap
 fi
 
+if [[ "$(hostname)" == 'vbox-new-arch' ]]; then
+    export LIBGL_ALWAYS_SOFTWARE=1
+fi
+
 #Auto lower brightness
 #xset -q (To check options)
 #xset +dpms

@@ -1,8 +1,7 @@
-if [[ -s ~/.zinit/bin/zinit.zsh ]]; then
+if [[ -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     # https://zdharma.github.io/zinit/wiki/INTRODUCTION
-    source ~/.zinit/bin/zinit.zsh
+    source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 
-    # https://github.com/zdharma/zinit/blob/master/doc/INSTALLATION.adoc#manual-installation
     autoload -Uz _zinit
     (( ${+_comps} )) && _comps[zinit]=_zinit
 
@@ -41,13 +40,12 @@ if [[ -s ~/.zinit/bin/zinit.zsh ]]; then
     zinit ice nocd wait'!0' atload'workon_cwd'
     zinit snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
 
-    # Load kubectl completion
-    zinit snippet OMZP::kubectl
-
     # Load OMZ Git library
     zinit snippet OMZ::lib/git.zsh
     # Load Git plugin from OMZ
-    zinit snippet OMZ::plugins/git/git.plugin.zsh
+    zinit snippet OMZP::git
+
+    zinit light-mode lucid wait has"kubectl" for id-as"kubectl_completion" nocompile as"completion" atclone"kubectl completion zsh > _kubectl" atpull"%atclone" run-atpull zdharma-continuum/null
 
     # Load theme from OMZ
     zinit ice pick"async.zsh" src"pure.zsh"
