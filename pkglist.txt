@@ -1,3 +1,4 @@
+pamixer
 bspwm
 sxhkd
 sutils-git
