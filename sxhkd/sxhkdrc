@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + p
-    rofi -show run -font "snap 10" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
+    rofi -show combi -combi-modes "window,run,ssh" -modes combi -show-icons
 
 # make sxhkd reload its configuration files:
 super + Escape

@@ -79,7 +79,7 @@ stty -ixon
 HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
-export EDITOR=vim
+export EDITOR=nvim
 export VISUAL=$EDITOR
 export PATH=~/.local/bin:~/.yarn/bin:${GOPATH//://bin:}/bin:~/.cargo/bin:$PATH
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
