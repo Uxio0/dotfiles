@@ -10,7 +10,6 @@ ln -s$force $folder/.tmux.conf ~
 ln -s$force $folder/.vim ~
 ln -s$force $folder/.xinitrc ~
 ln -s$force $folder/.Xresources ~
-ln -s$force $folder/.Xmodmap ~
 ln -s$force $folder/.xprofile ~
 ln -s$force $folder/.zshrc ~
 ln -s$force $folder/.ncmpcpp ~
