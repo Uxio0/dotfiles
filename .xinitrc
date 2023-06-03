@@ -59,11 +59,8 @@ function xinit_run_programs {
 
 }
 
-# Enable restart X ctrl + alt + back and change keymap with both shifts
-setxkbmap -option terminate:ctrl_alt_bksp,grp:shifts_toggle es,us
-#setxkbmap -option grp:switch,grp:shifts_toggle,grp_led:scroll es,us
-numlockx on
-#xset led named "Scroll Lock"
+# Enable switch CAPS LOCK - ESCAPE, restart X ctrl + alt + back, change keymap with both shifts
+setxkbmap -option caps:escape,terminate:ctrl_alt_bksp,grp:shifts_toggle es,us
 xset r rate 250 60
 
 # Turns off the system bell
