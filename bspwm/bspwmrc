@@ -12,6 +12,7 @@ bspc config remove_unplugged_monitors	true
 
 if [[ `bspc query -M | wc -l` == 2 ]]
 then
+    bspc wm -O DP3 eDP1
     bspc monitor '^1' -d I II III IV V VI VII VIII IX
     bspc monitor '^2' -d X
 else
@@ -34,14 +35,20 @@ bspc rule -a Chromium desktop=^9
 bspc rule -a Google-chrome desktop=^9
 bspc rule -a mplayer2 floating=on
 bspc rule -a Screenkey manage=off
+bspc rule -a zoom state=floating center=on follow=on border=off
 
 # mouse support
 bspc config pointer_modifier mod4
 bspc config click_to_focus button1
 # manage windows left from previous session
 bspc wm --adopt-orphans
+
+# Fix Java app issues
+export _JAVA_AWT_WM_NONREPARENTING=1
+export AWT_TOOLKIT=MToolkit
 bspc config wm_name LG3D
 wmname LG3D #Sometimes it doesnt work
 # do this here so that we know the NetWM anchor window is up
 ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
+
 ~/dotfiles/polybar/launch.sh

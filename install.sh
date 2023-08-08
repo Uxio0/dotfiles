@@ -13,6 +13,7 @@ ln -s$force $folder/.Xresources ~
 ln -s$force $folder/.xprofile ~
 ln -s$force $folder/.zshrc ~
 ln -s$force $folder/.ncmpcpp ~
+ln -s$force $folder/.tigrc ~
 ln -s$force $folder/alacritty ~/.config
 ln -s$force $folder/termite ~/.config
 ln -s$force $folder/bspwm ~/.config

@@ -80,27 +80,19 @@ fi
 
 DISPLAYS=($(xrandr -q | grep ' connected' | sed -e 's/\(.*\)connected.*/\1/g'))
 if [[ ${#DISPLAYS[@]} == 2 ]]; then
-    xrandr --output ${DISPLAYS[@]:1:1} --primary --preferred --auto --left-of ${DISPLAYS[@]:0:1}
+    xrandr --output ${DISPLAYS[@]:1:1} --primary --preferred --auto --right-of ${DISPLAYS[@]:0:1}
 fi
 
 case $1 in
     bspwm)
         xinit_run_programs
-        # Reparenting Java
-        export _JAVA_AWT_WM_NONREPARENTING=1
-        export AWT_TOOLKIT=MToolkit
-
         # https://github.com/lxqt/lxqt-qtplugin#configuration-usage
         # export QT_QPA_PLATFORMTHEME=lxqt
-        wmname LG3D
-        # Install xorg-xprop
-        source ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
 
-        sxhkd &
+        pgrep -x sxhkd > /dev/null || sxhkd &
         clipit &
         # compton --backend glx --paint-on-overlay --vsync opengl-mswc &
         picom &
-
 
 		if [ -f /usr/lib/xfce4/notifyd/xfce4-notifyd ]; then
 			/usr/lib/xfce4/notifyd/xfce4-notifyd &
@@ -115,13 +107,13 @@ case $1 in
         ;;
     xfce4)
         xinit_run_programs
-        sxhkd &
+        pgrep -x sxhkd > /dev/null || sxhkd &
         exec startxfce4
         ;;
     lxqt)
         xinit_run_programs
-        sxhkd &
-        fbxkb &
+        pgrep -x sxhkd > /dev/null || sxhkd &
+        pgrep -x fbxkb > /dev/null || fbxkb &
         exec startlxqt
         ;;
     lxde)
