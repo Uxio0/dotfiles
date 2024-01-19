@@ -22,6 +22,7 @@ ln -s$force $folder/sxhkd ~/.config
 ln -s$force $folder/fontconfig ~/.config
 ln -s$force $folder/polybar ~/.config
 ln -s$force $folder/nvim ~/.config
+ln -s$force $folder/sway ~/.config
 
 #Vim bundle
 # mkdir -p ~/.vim/bundle
