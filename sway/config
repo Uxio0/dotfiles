@@ -34,6 +34,7 @@ output eDP-1 resolution 1920x1080 position 1920,0 scale 1.25
 
 # Workspaces
 assign [class="spotify"] workspace 2
+assign [class="jetbrains-pycharm"] workspace 8
 assign [app_id="firefox"] workspace 8
 assign [class="Google-chrome"] workspace 9
 
@@ -82,7 +83,7 @@ input "type:keyboard" {
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+p exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -147,6 +148,9 @@ input "type:keyboard" {
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+    # Go back to previous workspace
+    bindsym $mod+Tab workspace back_and_forth
 #
 # Layout stuff:
 #

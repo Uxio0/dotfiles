@@ -36,7 +36,7 @@ fi
 
 function xinit_run_programs {
     # Network manager applet
-    nm-applet   2>&1 > /dev/null &
+    nm-applet 2>&1 > /dev/null &
 
     # Bluetooth applet
     blueman-applet 2>&1 > /dev/null &
@@ -47,11 +47,11 @@ function xinit_run_programs {
     # Auto mounts USB to /media/
     udiskie --tray &
 
-    #Auto lock screen
+    # Auto lock screen
     xss-lock slock &
 
-    #SSH agent
-    eval $(ssh-agent)
+    # SSH agent
+    # eval $(ssh-agent)
 
     #Redshift for auto regulate screen colors temperature
     #redshift -l 43.34:8.45&
@@ -80,7 +80,7 @@ fi
 
 DISPLAYS=($(xrandr -q | grep ' connected' | sed -e 's/\(.*\)connected.*/\1/g'))
 if [[ ${#DISPLAYS[@]} == 2 ]]; then
-    xrandr --output ${DISPLAYS[@]:1:1} --primary --preferred --auto --right-of ${DISPLAYS[@]:0:1}
+    xrandr --output ${DISPLAYS[@]:1:1} --primary --preferred --auto --left-of ${DISPLAYS[@]:0:1}
 fi
 
 case $1 in
@@ -126,6 +126,20 @@ case $1 in
         exec startplasma-x11
         # Using wayland
         # XDG_SESSION_TYPE=wayland dbus-run-session startplasma-wayland
+        ;;
+    gnome)
+        export XDG_SESSION_TYPE=x11
+        export GDK_BACKEND=x11
+        exec gnome-session
+        ;;
+    gnome-classic)
+        export XDG_CURRENT_DESKTOP=GNOME-Classic:GNOME
+        export GNOME_SHELL_SESSION_MODE=classic
+        exec gnome-session
+        ;;
+    gnome-wayland)
+        export XDG_SESSION_TYPE=wayland
+        dbus-run-session gnome-session
         ;;
     *)
         export DESKTOP_SESSION=plasma
