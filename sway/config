@@ -34,7 +34,8 @@ output eDP-1 resolution 1920x1080 position 1920,0 scale 1.25
 
 # Workspaces
 assign [class="spotify"] workspace 2
-assign [class="jetbrains-pycharm"] workspace 8
+assign [class="jetbrains-pycharm"] workspace 4
+assign [app_id="org.telegram.desktop"] workspace 7
 assign [app_id="firefox"] workspace 8
 assign [class="Google-chrome"] workspace 9
 
@@ -84,6 +85,9 @@ input "type:keyboard" {
 
     # Start your launcher
     bindsym $mod+p exec $menu
+
+    # Lock screen
+    bindsym $mod+d exec swaylock
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -213,23 +217,25 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# Media key bindings
+
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Search exec bemenu-run
+
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    # status_command while date +'%Y-%m-%d %H:%M:%S %p'; do sleep 1; done
-    status_command i3status
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+    swaybar_command waybar
 }
 
 include /etc/sway/config.d/*

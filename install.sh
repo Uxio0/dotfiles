@@ -23,6 +23,7 @@ ln -s$force $folder/fontconfig ~/.config
 ln -s$force $folder/polybar ~/.config
 ln -s$force $folder/nvim ~/.config
 ln -s$force $folder/sway ~/.config
+ln -s$force $folder/waybar ~/.config
 
 #Vim bundle
 # mkdir -p ~/.vim/bundle
