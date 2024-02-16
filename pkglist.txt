@@ -21,3 +21,10 @@ picom
 ttf-nerd-fonts-symbols-mono
 nerd-fonts-iosevka
 siji-ng
+# Sway
+sway
+swaybg
+swayidle
+swaylock
+waybar
+dmenu

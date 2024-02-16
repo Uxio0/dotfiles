@@ -38,6 +38,7 @@ assign [class="jetbrains-pycharm"] workspace 4
 assign [app_id="org.telegram.desktop"] workspace 7
 assign [app_id="firefox"] workspace 8
 assign [class="Google-chrome"] workspace 9
+for_window [class="zoom"] floating enable
 
 ### Idle configuration
 #
@@ -71,6 +72,12 @@ input "type:keyboard" {
     xkb_options caps:swapescape,terminate:ctrl_alt_bksp,grp:shifts_toggle
     repeat_delay 250
     repeat_rate 60
+}
+
+input "1739:31251:SYNA2393:00_06CB:7A13_Touchpad" {
+    dwt enabled
+    tap enabled
+    middle_emulation enabled
 }
 
 ### Key bindings
@@ -155,6 +162,9 @@ input "type:keyboard" {
 
     # Go back to previous workspace
     bindsym $mod+Tab workspace back_and_forth
+
+    bindsym $mod+greater move workspace to output right
+    bindsym $mod+less move workspace to output left
 #
 # Layout stuff:
 #
@@ -229,6 +239,16 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Search exec bemenu-run
+
+# Kanshi auto screen profiles
+exec_always {
+  pkill kanshi
+  kanshi &
+}
+
+# Startup applications
+exec nm-applet
+exec blueman-applet
 
 #
 # Status Bar:

@@ -1,0 +1,19 @@
+profile office {
+    output DP-1 mode 1920x1080 position 0,0
+    output eDP-1 mode 1920x1080 position 1920,0 scale 1.25
+    exec swaymsg workspace 1, move workspace to DP-1
+    exec swaymsg workspace 2, move workspace to DP-1
+    exec swaymsg workspace 3, move workspace to DP-1
+    exec swaymsg workspace 4, move workspace to DP-1
+    exec swaymsg workspace 5, move workspace to DP-1
+    exec swaymsg workspace 6, move workspace to DP-1
+    exec swaymsg workspace 7, move workspace to DP-1
+    exec swaymsg workspace 8, move workspace to DP-1
+    exec swaymsg workspace 9, move workspace to DP-1
+    exec swaymsg workspace 10, move workspace to eDP-1
+    exec swaymsg 'output * bg ~/Pictures/World_Map_Low_Poly.jpg fill'
+}
+
+profile laptop_only {
+    output eDP-1 mode 1920x1080 position 0,0 scale 1.25
+}
