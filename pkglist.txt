@@ -27,4 +27,6 @@ swaybg
 swayidle
 swaylock
 waybar
-dmenu
+slurp
+grim
+bemenu

@@ -18,7 +18,7 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu bemenu-run | xargs swaymsg exec --
 
 ### Output configuration
 #
@@ -95,6 +95,10 @@ input "1739:31251:SYNA2393:00_06CB:7A13_Touchpad" {
 
     # Lock screen
     bindsym $mod+d exec swaylock
+
+    # Screenshot
+    bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+    bindsym $mod+Shift+f exec slurp | grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -238,13 +242,10 @@ bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86Search exec bemenu-run
+bindsym XF86Search exec $menu
 
 # Kanshi auto screen profiles
-exec_always {
-  pkill kanshi
-  kanshi &
-}
+exec_always pkill kanshi; exec kanshi
 
 # Startup applications
 exec nm-applet

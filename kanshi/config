@@ -11,9 +11,11 @@ profile office {
     exec swaymsg workspace 8, move workspace to DP-1
     exec swaymsg workspace 9, move workspace to DP-1
     exec swaymsg workspace 10, move workspace to eDP-1
-    exec swaymsg 'output * bg ~/Pictures/World_Map_Low_Poly.jpg fill'
+    exec swaymsg 'output DP-1 bg ~/Pictures/Wallpaper1.png fill'
+    exec swaymsg 'output eDP-1 bg ~/Pictures/Wallpaper2.png fill'
 }
 
 profile laptop_only {
     output eDP-1 mode 1920x1080 position 0,0 scale 1.25
+    exec swaymsg 'output * bg ~/Pictures/Wallpaper1.png fill'
 }
