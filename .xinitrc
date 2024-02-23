@@ -51,7 +51,7 @@ function xinit_run_programs {
     xss-lock slock &
 
     # SSH agent
-    # eval $(ssh-agent)
+    eval $(ssh-agent)
 
     #Redshift for auto regulate screen colors temperature
     #redshift -l 43.34:8.45&

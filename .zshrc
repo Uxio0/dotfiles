@@ -152,21 +152,12 @@ weather() {
 	curl 'http://wttr.in'
 }
 
-# ssh-agent
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
-
-
 [[ -s ~/work.sh ]] && . ~/work.sh
 [[ -s ~/thinkpad.sh ]] && . ~/thinkpad.sh
 
-[[ -z "$TMUX" && -n "$DISPLAY" ]] && tmux
-
 # Javascript NVM
 [[ -s /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
+
+[[ -z "$TMUX" && -n "$DISPLAY" ]] && tmux
 
 # vim: ft=sh ts=4 sw=4 tw=0 fdm=marker foldlevel=0 :

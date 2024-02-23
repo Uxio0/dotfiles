@@ -4,25 +4,25 @@ folder=`pwd`
 force="f"
 
 mkdir -p ~/.config
-ln -s$force $folder/conky.conf ~
-ln -s$force $folder/.mpdconf ~
-ln -s$force $folder/.tmux.conf ~
-ln -s$force $folder/.vim ~
-ln -s$force $folder/.xinitrc ~
 ln -s$force $folder/.Xresources ~
-ln -s$force $folder/.xprofile ~
-ln -s$force $folder/.zshrc ~
+ln -s$force $folder/.mpdconf ~
 ln -s$force $folder/.ncmpcpp ~
 ln -s$force $folder/.tigrc ~
+ln -s$force $folder/.vim ~
+ln -s$force $folder/.xinitrc ~
+ln -s$force $folder/.xprofile ~
+ln -s$force $folder/.zshrc ~
 ln -s$force $folder/alacritty ~/.config
-ln -s$force $folder/termite ~/.config
 ln -s$force $folder/bspwm ~/.config
+ln -s$force $folder/conky.conf ~
 ln -s$force $folder/dunst ~/.config
-ln -s$force $folder/sxhkd ~/.config
 ln -s$force $folder/fontconfig ~/.config
-ln -s$force $folder/polybar ~/.config
 ln -s$force $folder/nvim ~/.config
+ln -s$force $folder/polybar ~/.config
 ln -s$force $folder/sway ~/.config
+ln -s$force $folder/sxhkd ~/.config
+ln -s$force $folder/termite ~/.config
+ln -s$force $folder/tmux ~
 ln -s$force $folder/waybar ~/.config
 
 #Vim bundle
