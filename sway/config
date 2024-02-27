@@ -45,9 +45,9 @@ for_window [class="zoom"] floating enable
 # Example configuration:
 #
 exec swayidle -w \
-     timeout 300 'swaylock -f -c 000000' \
+     timeout 300 'swaylock -e -f -c 000000' \
      timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-     before-sleep 'swaylock -f -c 000000'
+     before-sleep 'swaylock -e -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -244,9 +244,6 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Search exec $menu
 
-# Kanshi auto screen profiles
-exec_always pkill kanshi; exec kanshi
-
 # Startup applications
 exec nm-applet
 exec blueman-applet
@@ -258,5 +255,9 @@ exec blueman-applet
 bar {
     swaybar_command waybar
 }
+
+# Kanshi auto screen profiles
+exec_always pkill -HUP kanshi
+exec kanshi
 
 include /etc/sway/config.d/*
