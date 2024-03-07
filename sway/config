@@ -38,7 +38,7 @@ assign [class="jetbrains-pycharm"] workspace 4
 assign [app_id="org.telegram.desktop"] workspace 7
 assign [app_id="firefox"] workspace 8
 assign [class="Google-chrome"] workspace 9
-for_window [class="zoom"] floating enable
+for_window [class="zoom"] floating enable workspace 10
 
 ### Idle configuration
 #
@@ -88,7 +88,7 @@ input "1739:31251:SYNA2393:00_06CB:7A13_Touchpad" {
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+Shift+c kill
 
     # Start your launcher
     bindsym $mod+p exec $menu
@@ -108,7 +108,7 @@ input "1739:31251:SYNA2393:00_06CB:7A13_Touchpad" {
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+q reload
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -257,7 +257,8 @@ bar {
 }
 
 # Kanshi auto screen profiles
-exec_always pkill -HUP kanshi
-exec kanshi
+exec_always pkill kanshi; exec kanshi
+
+exec swaync
 
 include /etc/sway/config.d/*
