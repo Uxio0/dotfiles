@@ -30,3 +30,5 @@ waybar
 slurp
 grim
 bemenu
+kanshi
+foot

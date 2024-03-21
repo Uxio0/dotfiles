@@ -53,15 +53,19 @@ function xinit_run_programs {
     # SSH agent
     eval $(ssh-agent)
 
-    #Redshift for auto regulate screen colors temperature
-    #redshift -l 43.34:8.45&
+    # Redshift for auto regulating screen colors temperature
     # redshift -l 49.26:-123.23 &
-
 }
 
-# Enable switch CAPS LOCK - ESCAPE, restart X ctrl + alt + back, change keymap with both shifts
-setxkbmap -option caps:escape,terminate:ctrl_alt_bksp,grp:shifts_toggle es,us
-xset r rate 250 60
+function setup_keyboard {
+    # Enable switch CAPS LOCK - ESCAPE, restart X ctrl + alt + back, change keymap with both shifts
+    setxkbmap -option caps:escape,terminate:ctrl_alt_bksp,grp:shifts_toggle es,us
+
+    # Set repeat rate
+    xset r rate 250 60
+}
+
+setup_keyboard
 
 # Turns off the system bell
 /usr/bin/xset b off
@@ -73,10 +77,10 @@ if [[ "$(hostname)" == 'vbox-new-arch' ]]; then
     export LIBGL_ALWAYS_SOFTWARE=1
 fi
 
-#Auto lower brightness
-#xset -q (To check options)
-#xset +dpms
-#xset dpms 0 0 300
+# Auto lower brightness
+# xset -q (To check options)
+# xset +dpms
+# xset dpms 0 0 300
 
 DISPLAYS=($(xrandr -q | grep ' connected' | sed -e 's/\(.*\)connected.*/\1/g'))
 if [[ ${#DISPLAYS[@]} == 2 ]]; then

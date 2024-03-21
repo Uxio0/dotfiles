@@ -39,6 +39,10 @@ assign [app_id="org.telegram.desktop"] workspace 7
 assign [app_id="firefox"] workspace 8
 assign [class="Google-chrome"] workspace 9
 for_window [class="zoom"] floating enable workspace 10
+assign [class="chromium"] workspace 9
+
+# Tell apart Windows using Xwayland
+for_window [shell="xwayland"] title_format "[XWayland] %title"
 
 ### Idle configuration
 #
@@ -255,6 +259,12 @@ exec blueman-applet
 bar {
     swaybar_command waybar
 }
+
+# Clipboard
+exec wl-paste -t text --watch clipman store --no-persist
+
+# Virtualbox
+exec VBoxClient-all
 
 # Kanshi auto screen profiles
 exec_always pkill kanshi; exec kanshi
