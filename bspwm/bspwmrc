@@ -20,8 +20,8 @@ else
 fi
 
 # xprop | grep WM_CLASS
-bspc rule -a Spotify desktop=^2
-bspc rule -a vlc desktop=^2
+bspc rule -a Spotify desktop=^10
+bspc rule -a vlc desktop=^10
 bspc rule -a jetbrains-pycharm desktop=^4
 bspc rule -a jetbrains-pycharm-ce desktop=^4
 bspc rule -a jetbrains-idea desktop=^4
@@ -33,9 +33,7 @@ bspc rule -a TelegramDesktop desktop=^7
 bspc rule -a firefox desktop=^8
 bspc rule -a Chromium desktop=^9
 bspc rule -a Google-chrome desktop=^9
-bspc rule -a mplayer2 floating=on
-bspc rule -a Screenkey manage=off
-bspc rule -a zoom state=floating
+bspc rule -a zoom state=floating desktop=^2
 bspc rule -a Nextcloud state=floating
 
 # mouse support
