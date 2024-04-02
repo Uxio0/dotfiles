@@ -1,0 +1,11 @@
+sway
+swaybg
+swayidle
+swaylock
+waybar
+slurp
+grim
+bemenu
+kanshi
+foot
+wl-clipboard
