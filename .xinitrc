@@ -71,21 +71,28 @@ setup_keyboard
 /usr/bin/xset b off
 xsetroot -cursor_name left_ptr &
 
-if [[ "$(hostname)" == 'vbox-new-arch' ]]; then
-    # Running in a virtual machine
-    VBoxClient-all
-    export LIBGL_ALWAYS_SOFTWARE=1
-fi
-
 # Auto lower brightness
 # xset -q (To check options)
 # xset +dpms
 # xset dpms 0 0 300
 
-DISPLAYS=($(xrandr -q | grep ' connected' | sed -e 's/\(.*\)connected.*/\1/g'))
-if [[ ${#DISPLAYS[@]} == 2 ]]; then
-    xrandr --output ${DISPLAYS[@]:1:1} --primary --preferred --auto --left-of ${DISPLAYS[@]:0:1}
-fi
+case $HOSTNAME in
+    vbox-new-arch)
+        # Running in a virtual machine
+        VBoxClient-all
+        export LIBGL_ALWAYS_SOFTWARE=1
+        ;;
+    arch-5900X)
+        xrandr --output HDMI-0 --off --output DP-0 --primary --preferred --mode 2560x1440 --output DP-2 --mode 1920x1080 --right-of DP-0
+        ;;
+    *)
+        # Auto configure displays
+        DISPLAYS=($(xrandr -q | grep ' connected' | sed -e 's/\(.*\)connected.*/\1/g'))
+        if [[ ${#DISPLAYS[@]} == 2 ]]; then
+            xrandr --output ${DISPLAYS[@]:1:1} --primary --preferred --auto --left-of ${DISPLAYS[@]:0:1}
+        fi
+        ;;
+esac
 
 case $1 in
     bspwm)
@@ -95,7 +102,6 @@ case $1 in
 
         pgrep -x sxhkd > /dev/null || sxhkd &
         clipit &
-        # compton --backend glx --paint-on-overlay --vsync opengl-mswc &
         picom &
 
 		if [ -f /usr/lib/xfce4/notifyd/xfce4-notifyd ]; then
