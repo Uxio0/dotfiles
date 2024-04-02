@@ -19,3 +19,21 @@ profile laptop_only {
     output eDP-1 mode 1920x1080 position 0,0 scale 1.25
     exec swaymsg 'output * bg ~/Pictures/Wallpaper1.png fill'
 }
+
+profile desktop {
+    output DP-1 mode 2560x1440 position 0,0
+    output DP-2 mode 1920x1080 position 1920,0
+    output HDMI-A-1 disable
+    exec swaymsg workspace 1, move workspace to DP-1
+    exec swaymsg workspace 2, move workspace to DP-1
+    exec swaymsg workspace 3, move workspace to DP-1
+    exec swaymsg workspace 4, move workspace to DP-1
+    exec swaymsg workspace 5, move workspace to DP-1
+    exec swaymsg workspace 6, move workspace to DP-1
+    exec swaymsg workspace 7, move workspace to DP-1
+    exec swaymsg workspace 8, move workspace to DP-1
+    exec swaymsg workspace 9, move workspace to DP-1
+    exec swaymsg workspace 10, move workspace to DP-2
+    exec swaymsg 'output DP-1 bg ~/Pictures/Wallpaper1.png fill'
+    exec swaymsg 'output DP-2 bg ~/Pictures/Wallpaper2.png fill'
+}
