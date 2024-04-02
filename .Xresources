@@ -45,35 +45,5 @@ Xft.hintstyle:  hintfull
 !Xft.hintstyle:  hintmedium
 !Xft.hintstyle: hintslight
 Xft.lcdfilter:  lcddefault
-Xft.dpi:        96
+!Xft.dpi:        96
 Xft.rgba:       rgb
-
-!infinality-bundle-fonts/otf-inconsolata-pwl-ibx
-URxvt.font: xft:inconsolata for powerline:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:pixelsize=16:antialias=true:hinting=true,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*,xft:FontAwesome:pixelsize=16
-URxvt.boldFont: xft:inconsolata for powerline:bold:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:bold:pixelsize=16:antialias=true:hinting=true
-URxvt.italicFont: xft:inconsolata for powerline:italic:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:italic:pixelsize=16:antialias=true:hinting=true
-URxvt.boldItalicFont: xft:inconsolata for powerline:bold:italic:pixelsize=16:antialias=true:hinting=true,xft:dejavu sans mono:bold:italic:pixelsize=16:antialias=true:hinting=true
-URxvt.letterSpace: -1
-
-!urxvt.font: xft:Liberation Mono:pixelsize=14,xft:Dejavu Sans Mono:pixelsize=14
-!urxvt.boldFont: xft:Liberation Mono:pixelsize=14:style=bold,xft:Dejavu Sans Mono:pixelsize=14:style=bold
-!urxvt.italicFont: xft:Liberation Mono:pixelsize=14:style=italic,xft:Dejavu Sans Mono:pixelsize=14:style=italic
-!urxvt.boldItalicFont: xft:Liberation Mono:pixelsize=14:style=bold italic,xft:Dejavu Sans Mono:pixelsize=14:style=bold italic
-! Fix font space
-!urxvt*letterSpace: -2
-
-urxvt*scrollBar: false
-urxvt*iso14755 : false
-
-
-!Scroll Buffer
-urxvt.saveLines:10000
-
-!Extensions
-!URxvt.perl-ext-common:  default,matcher
-URxvt.perl-ext-common:  default,clipboard
-URxvt.keysym.M-c:   perl:clipboard:copy
-URxvt.keysym.M-v:   perl:clipboard:paste
-URxvt.url-launcher:     /usr/bin/firefox
-URxvt.matcher.button:   1
-URxvt.colorUL: #4682B4
