@@ -33,13 +33,13 @@ output eDP-1 resolution 1920x1080 position 1920,0 scale 1.25
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 # Workspaces
-assign [class="spotify"] workspace 2
+for_window [class="zoom"] floating enable workspace 2
 assign [class="jetbrains-pycharm"] workspace 4
 assign [app_id="org.telegram.desktop"] workspace 7
 assign [app_id="firefox"] workspace 8
 assign [class="Google-chrome"] workspace 9
-for_window [class="zoom"] floating enable workspace 10
 assign [class="chromium"] workspace 9
+assign [class="spotify"] workspace 10
 
 # Tell apart Windows using Xwayland
 for_window [shell="xwayland"] title_format "[XWayland] %title"
@@ -92,7 +92,7 @@ input "1739:31251:SYNA2393:00_06CB:7A13_Touchpad" {
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+c kill
+    bindsym $mod+c kill
 
     # Start your launcher
     bindsym $mod+p exec $menu
