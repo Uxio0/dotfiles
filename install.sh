@@ -24,3 +24,6 @@ done
 
 #Neovim vim-plug https://github.com/junegunn/vim-plug#unix-1
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Oh my zsh
+git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh/
