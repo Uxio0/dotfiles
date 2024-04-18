@@ -1,133 +1,129 @@
-if [[ -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    # https://zdharma.github.io/zinit/wiki/INTRODUCTION
-    source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-    autoload -Uz _zinit
-    (( ${+_comps} )) && _comps[zinit]=_zinit
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-    zinit light zdharma-continuum/history-search-multi-word
-    zinit light zsh-users/zsh-autosuggestions
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
-    # `blockf` will block the traditional method of adding completions, zinit uses its own
-    zinit ice blockf
-    zinit light zsh-users/zsh-completions
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-    # Aws completion
-    zinit ice wait"0" lucid
-    zinit snippet OMZ::plugins/aws/aws.plugin.zsh
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-	zinit ice as"completion"
-	zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-    zinit light chrissicool/zsh-256color
-    # For GNU ls (the binaries can be gls, gdircolors, e.g. on OS X when installing the
-    # coreutils package from Homebrew; you can also use https://github.com/ogham/exa)
-    zinit ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
-    zinit light trapd00r/LS_COLORS
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-    # Load completion library for those sweet [tab] squares
-    zinit snippet OMZ::lib/completion.zsh
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
 
-    zinit ice wait"0" lucid
-    zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
-    # ZSH_TMUX_AUTOSTART=true
-    # ZSH_TMUX_AUTOCONNECT=false
-    # zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
-    # zinit light jreese/zsh-titles
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-    # Check if we are in a virtualenv directory when zshrc is loaded
-    zinit ice nocd wait'!0' atload'workon_cwd'
-    zinit snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-    # Load OMZ Git library
-    zinit snippet OMZ::lib/git.zsh
-    # Load Git plugin from OMZ
-    zinit snippet OMZP::git
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
-    zinit light-mode lucid wait has"kubectl" for id-as"kubectl_completion" nocompile as"completion" atclone"kubectl completion zsh > _kubectl" atpull"%atclone" run-atpull zdharma-continuum/null
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
 
-    # Load theme from OMZ
-    zinit ice pick"async.zsh" src"pure.zsh"
-    zinit light sindresorhus/pure
-    # setopt promptsubst
-    # zinit snippet OMZ::themes/alanpeabody.zsh-theme
-    # zinit light denysdovhan/spaceship-prompt
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-    zinit load agkozak/zsh-z  # https://github.com/agkozak/zsh-z
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
 
-    zinit ice wait lucid atinit'zpcompinit; zpcdreplay'
-    zinit light zdharma-continuum/fast-syntax-highlighting
-else
-    autoload -Uz compinit; compinit
-fi
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-alias cal="cal -m"
-alias ls="ls --color=auto"
-alias k=kubectl
-alias vim="nvim"
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+    aliases
+    docker
+    fzf
+    gh
+    git
+    kubectl
+    nvm
+    pip
+    virtualenv
+    virtualenvwrapper
+    z
+    zsh-autosuggestions
+)
 
-bindkey -e emacs
+source $ZSH/oh-my-zsh.sh
 
-# DEL KEY http://zsh.sourceforge.net/FAQ/zshfaq03.html#l25
-bindkey "\e[3~" delete-char
+# User configuration
 
-## ctrl-s will no longer freeze the terminal.
-# stty erase "^?"
-stty -ixon
+# export MANPATH="/usr/local/man:$MANPATH"
 
-HISTFILE=~/.zhistory
-HISTSIZE=1000
-SAVEHIST=1000
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+#
 export EDITOR=nvim
 export VISUAL=$EDITOR
 export PATH=~/.local/bin:~/.yarn/bin:${GOPATH//://bin:}/bin:~/.cargo/bin:$PATH
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 export DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1
 
-setopt append_history
-setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups
-setopt hist_ignore_space
-setopt hist_verify
-setopt inc_append_history
-setopt share_history
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-# FZF
-if [[ -s /usr/share/fzf/key-bindings.zsh ]]; then
-	.  /usr/share/fzf/key-bindings.zsh
-	.  /usr/share/fzf/completion.zsh
-fi
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vim=nvim
+alias vi=nvim
+alias k=kubectl
 
-###### Functions ########
-# extract function
-extract() {
-	if [[ -f $1 ]]; then
-		case $1 in
-			*.7z) 7z x $1;;
-			*.bz2) bunzip2 $1;;
-			*.gz) gunzip $1;;
-			*.rar) unrar x $1;;
-			*.tar) tar xvf $1;;
-			*.tar.bz2) tar xvjf $1;;
-			*.tar.gz) tar xvzf $1;;
-			*.tbz2) tar xvjf $1;;
-			*.tgz) tar xvzf $1;;
-			*.zip) unzip $1;;
-			*.Z) uncompress $1;;
-			*) echo "unable to extract '$1'..." ;;
-		esac
-	else
-		echo "'$1' is not a valid file!"
-	fi
-}
-#Compress function
-compress() {
-	name=${1##*/}
-	tar -cv $1 | lzma -9 > $name.tar.lzma
-}
-
+# Functions
+#
 replaceAg() {
 	if [ "$#" -eq 2 ]; then
 		for f in $(ag $1 -l); do sed -i "s/$1/$2/g" $f; done
@@ -154,9 +150,6 @@ weather() {
 
 [[ -s ~/work.sh ]] && . ~/work.sh
 [[ -s ~/thinkpad.sh ]] && . ~/thinkpad.sh
-
-# Javascript NVM
-[[ -s /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
 
 [[ -z "$TMUX" && -n "$DISPLAY" ]] && tmux
 
