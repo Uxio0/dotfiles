@@ -33,7 +33,7 @@ bspc rule -a TelegramDesktop desktop=^7
 bspc rule -a firefox desktop=^8
 bspc rule -a Chromium desktop=^9
 bspc rule -a Google-chrome desktop=^9
-bspc rule -a zoom state=floating desktop=^2
+bspc rule -a zoom state=floating
 bspc rule -a Nextcloud state=floating
 
 # mouse support
@@ -42,12 +42,8 @@ bspc config click_to_focus button1
 # manage windows left from previous session
 bspc wm --adopt-orphans
 
-# Fix Java app issues
-export _JAVA_AWT_WM_NONREPARENTING=1
-export AWT_TOOLKIT=MToolkit
 bspc config wm_name LG3D
-wmname LG3D #Sometimes it doesnt work
 # do this here so that we know the NetWM anchor window is up
 ~/dotfiles/bin/java_nonreparenting_wm_hack.sh
 
-~/dotfiles/polybar/launch.sh
+~/dotfiles/config/polybar/launch.sh

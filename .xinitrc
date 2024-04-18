@@ -110,9 +110,17 @@ case $1 in
             dunst &
         fi
 
-        # Install feh
+        # Set background using feh
         sh ~/.fehbg
         [ -f ~/.runonce ] && sh ~/.runonce
+
+
+        export XDG_CURRENT_DESKTOP=bspwm
+        # Fix Java app issues
+        export _JAVA_AWT_WM_NONREPARENTING=1
+        export AWT_TOOLKIT=MToolkit
+        wmname LG3D
+
         exec bspwm
         ;;
     xfce4)
