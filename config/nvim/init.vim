@@ -5,6 +5,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 "Colors
 Plug 'chriskempson/base16-vim'
 Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'lifepillar/vim-gruvbox8'
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf.vim'
@@ -18,11 +19,11 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 Plug 'w0rp/ale'
 "Multiple syntax files
 Plug 'sheerun/vim-polyglot'
-"Auto Pair () []
-Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-rooter'
 "Powerline
 Plug 'itchyny/lightline.vim'
+"Git
+Plug 'tpope/vim-fugitive'
 "Comment out a line -> <leader>cc, un-comment -> <leader>cu
 Plug 'scrooloose/nerdcommenter'
 let g:lightline = {
