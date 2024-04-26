@@ -6,7 +6,7 @@
 !#include "colors/solarized"
 !#include "colors/wombat"
 !#include "colors/hybrid"
-#include "colors/tomorrow"
+!#include "colors/tomorrow"
 !URxvt.intensityStyles: false
 
 !*background: rgb:1a/1a/1a

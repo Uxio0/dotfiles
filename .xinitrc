@@ -24,8 +24,6 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-# start some nice programs
-
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
   [ -x "$f" ] && . "$f"
@@ -99,6 +97,7 @@ case $1 in
         xinit_run_programs
         # https://github.com/lxqt/lxqt-qtplugin#configuration-usage
         # export QT_QPA_PLATFORMTHEME=lxqt
+        /usr/lib/pam_kwallet_init
 
         pgrep -x sxhkd > /dev/null || sxhkd &
         clipit &
@@ -117,8 +116,7 @@ case $1 in
 
         export XDG_CURRENT_DESKTOP=bspwm
         # Fix Java app issues
-        export _JAVA_AWT_WM_NONREPARENTING=1
-        export AWT_TOOLKIT=MToolkit
+        export _JAVA_AWT_WM_NONREPARENTING=1 AWT_TOOLKIT=MToolkit
         wmname LG3D
 
         exec bspwm

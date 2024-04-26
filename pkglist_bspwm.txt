@@ -1,6 +1,7 @@
 alacritty
 bspwm
 feh
+gnome-themes-extra
 lxappearance-gtk3
 maim
 pamixer
@@ -16,5 +17,3 @@ xdo
 xfce4-notifyd
 xss-lock
 xtitle
-
-
