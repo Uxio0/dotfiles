@@ -19,7 +19,6 @@ if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
 
-# Swap mayus and ESC for ViM
 if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi

@@ -27,3 +27,4 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.g
 
 # Oh my zsh
 git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh/
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
