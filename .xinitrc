@@ -93,10 +93,13 @@ esac
 
 case $1 in
     bspwm)
+        export XDG_CURRENT_DESKTOP=bspwm
+        # Fix Java app issues
+        export _JAVA_AWT_WM_NONREPARENTING=1 AWT_TOOLKIT=MToolkit
         xinit_run_programs
         # https://github.com/lxqt/lxqt-qtplugin#configuration-usage
         # export QT_QPA_PLATFORMTHEME=lxqt
-        /usr/lib/pam_kwallet_init
+        [ -f /usr/lib/pam_kwallet_init ] && /usr/lib/pam_kwallet_init
 
         pgrep -x sxhkd > /dev/null || sxhkd &
         clipit &
@@ -111,12 +114,6 @@ case $1 in
         # Set background using feh
         sh ~/.fehbg
         [ -f ~/.runonce ] && sh ~/.runonce
-
-
-        export XDG_CURRENT_DESKTOP=bspwm
-        # Fix Java app issues
-        export _JAVA_AWT_WM_NONREPARENTING=1 AWT_TOOLKIT=MToolkit
-        wmname LG3D
 
         exec bspwm
         ;;

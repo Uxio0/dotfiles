@@ -106,6 +106,7 @@ export VISUAL=$EDITOR
 export PATH=~/.local/bin:~/.yarn/bin:${GOPATH//://bin:}/bin:~/.cargo/bin:$PATH
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 export DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1
+export GIT_PAGER=cat
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
