@@ -9,6 +9,7 @@ pasystray
 picom
 polybar
 rofi
+scrot
 slock
 sxhkd
 wmname

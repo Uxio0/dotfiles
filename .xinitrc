@@ -94,6 +94,7 @@ esac
 case $1 in
     bspwm)
         export XDG_CURRENT_DESKTOP=bspwm
+        export QT_QPA_PLATFORMTHEME=qt6ct
         # Fix Java app issues
         export _JAVA_AWT_WM_NONREPARENTING=1 AWT_TOOLKIT=MToolkit
         xinit_run_programs
@@ -116,6 +117,9 @@ case $1 in
         [ -f ~/.runonce ] && sh ~/.runonce
 
         exec bspwm
+        ;;
+    i3)
+        exec i3
         ;;
     xfce4)
         xinit_run_programs

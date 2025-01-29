@@ -1,7 +1,11 @@
 fzf
 neovim
-thunar
-zsh
 noto-fonts
+noto-fonts-cjk
 noto-fonts-emoji
 otf-font-awesome
+qt6ct
+thunar
+xorg-apps
+xorg-server
+zsh
