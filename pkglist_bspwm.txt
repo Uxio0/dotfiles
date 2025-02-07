@@ -1,4 +1,3 @@
-alacritty
 bspwm
 feh
 gnome-themes-extra

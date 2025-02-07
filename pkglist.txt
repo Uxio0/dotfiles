@@ -1,3 +1,4 @@
+alacritty
 fzf
 neovim
 noto-fonts
@@ -6,6 +7,7 @@ noto-fonts-emoji
 otf-font-awesome
 qt6ct
 thunar
+sesh-bin
 xorg-apps
 xorg-server
 zsh

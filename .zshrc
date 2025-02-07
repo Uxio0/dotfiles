@@ -81,7 +81,7 @@ plugins=(
     pip
     virtualenv
     virtualenvwrapper
-    z
+    zoxide
     zsh-autosuggestions
 )
 
