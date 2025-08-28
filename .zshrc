@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=~/.local/bin:~/.yarn/bin:~/go/bin:~/.cargo/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -79,6 +80,7 @@ plugins=(
     kubectl
     nvm
     pip
+    tmux
     virtualenv
     virtualenvwrapper
     zoxide
@@ -103,7 +105,6 @@ source $ZSH/oh-my-zsh.sh
 #
 export EDITOR=nvim
 export VISUAL=$EDITOR
-export PATH=~/.local/bin:~/.yarn/bin:${GOPATH//://bin:}/bin:~/.cargo/bin:$PATH
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 export DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1
 
