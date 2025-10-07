@@ -152,6 +152,6 @@ weather() {
 [[ -s ~/work.sh ]] && . ~/work.sh
 [[ -s ~/thinkpad.sh ]] && . ~/thinkpad.sh
 
-[[ -z "$TMUX" && -n "$DISPLAY" ]] && tmux
+[[ -z "$TMUX" && -n "$DISPLAY" && "$TERM" == foot ]] && exec tmux
 
 # vim: ft=sh ts=4 sw=4 tw=0 fdm=marker foldlevel=0 :

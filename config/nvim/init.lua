@@ -19,6 +19,16 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
+-- Remove trailing
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  command = [[%s/\s\+$//e]],
+})
+
+-- Highlight trailing
+vim.cmd [[highlight ExtraWhitespace ctermbg=red guibg=red]]
+vim.cmd [[match ExtraWhitespace /\s\+$/]]
+
 require("nvim-tree").setup()
 vim.keymap.set("n", "<leader>e", require('nvim-tree.api').tree.toggle, { desc = "Nvim Tree" })
 
