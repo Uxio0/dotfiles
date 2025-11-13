@@ -1,4 +1,5 @@
 alacritty
+bat
 fzf
 neovim
 noto-fonts
@@ -6,8 +7,11 @@ noto-fonts-cjk
 noto-fonts-emoji
 otf-font-awesome
 qt6ct
-thunar
+ripgrep-all
 sesh-bin
+thunar
 xorg-apps
 xorg-server
 zsh
+zsh-autosuggestions
+zoxide

@@ -71,6 +71,11 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# Respect gitignore https://github.com/junegunn/fzf?tab=readme-ov-file#respecting-gitignore
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 plugins=(
     aliases
     docker
@@ -88,7 +93,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -108,6 +112,14 @@ export VISUAL=$EDITOR
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 export DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1
 
+# Pipeline commands fail if intermediate command fails
+setopt PIPE_FAIL
+
+# Man pages
+export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
+# Color for ip command
+export alias ip='ip -color=auto'
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -125,28 +137,44 @@ alias k=kubectl
 
 # Functions
 #
-replaceAg() {
-	if [ "$#" -eq 2 ]; then
-		for f in $(ag $1 -l); do sed -i "s/$1/$2/g" $f; done
-	else
-		echo "Illegal number of parameters"
-	fi
+
+replaceRg() {
+  if (( $# != 2 )); then
+    echo "Uso: replaceRg <pattern> <replacement>" >&2
+    return 1
+  fi
+
+  rg -l -0 -- "$1" | while IFS= read -r -d $'\0' f; do
+    sed -i "s/$1/$2/g" -- "$f"
+  done
 }
 
-deleteAg() {
-	if [ "$#" -eq 1 ]; then
-		for f in $(ag $1 -l); do sed -i "/$1/d" $f; done
-	else
-		echo "Illegal number of parameters"
-	fi
+pyclean() {
+	find . -name '__pycache__' -o -name '*.py[co]' -delete
 }
 
-pyclean () {
-    find . -regex "\(.*__pycache__.*\|*.py[co]\)" -delete
-}
+fsearch() {
+  if [ -z "$1" ]; then
+    echo "Uso: fsearch <patrón>"
+    return 1
+  fi
 
-weather() {
-	curl 'http://wttr.in'
+  : "${EDITOR:=nvim}"  # Usa $EDITOR o nvim por defecto
+
+  local selected
+  selected="$(
+    rg --line-number --no-heading --color=never "$1" \
+    | fzf --ansi \
+          --delimiter ':' \
+          --preview 'bat --style=numbers --color=always {1} --highlight-line {2}' \
+          --preview-window=right:70%
+  )" || return 1
+
+  local file line
+  file="$(echo "$selected" | cut -d: -f1)"
+  line="$(echo "$selected" | cut -d: -f2)"
+
+  [ -n "$file" ] && [ -n "$line" ] && "$EDITOR" +"$line" "$file"
 }
 
 [[ -s ~/work.sh ]] && . ~/work.sh
