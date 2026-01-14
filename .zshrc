@@ -87,7 +87,6 @@ plugins=(
     pip
     tmux
     virtualenv
-    virtualenvwrapper
     zoxide
     zsh-autosuggestions
 )
