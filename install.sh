@@ -1,30 +1,27 @@
 #!/bin/bash
 
-
 # Link dotfiles
 
-folder=`pwd`
-force="f"
+folder=$(pwd)
 
-mkdir -p ~/.config
-ln -s$force $folder/.Xresources ~
-ln -s$force $folder/.tigrc ~
-ln -s$force $folder/.vim ~
-ln -s$force $folder/.xinitrc ~
-ln -s$force $folder/.zshrc ~
+mkdir -p $HOME/.config
+ln -sf "$folder/.Xresources" $HOME
+ln -sf "$folder/.tigrc" $HOME
+ln -sf "$folder/.vim" $HOME
+ln -sf "$folder/.xinitrc" $HOME
+ln -sf "$folder/.zshrc" $HOME
 
-for d in config/*/ ; do
-    ln -s$force $folder/$d ~/.config
+for d in config/*/; do
+  [ -d "$d" ] || continue
+  ln -sf "$folder/$d" $HOME/.config
 done
-
-#Vim bundle
-# mkdir -p ~/.vim/bundle
-# mkdir -p ~/.vim/{swap,undo,backup}
-# git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 #Neovim vim-plug https://github.com/junegunn/vim-plug#unix-1
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Oh my zsh
-git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh/
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+ZSH="${ZSH:-$HOME/.oh-my-zsh/}"
+ZSH_CUSTOM="${ZSH_CUSTOM:-$ZSH/custom}"
+git clone https://github.com/ohmyzsh/ohmyzsh "$ZSH"
+git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"

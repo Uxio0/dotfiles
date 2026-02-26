@@ -27,7 +27,7 @@ ZSH_THEME="af-magic"
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' mode reminder # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -89,6 +89,7 @@ plugins=(
     virtualenv
     zoxide
     zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -135,45 +136,52 @@ alias vi=nvim
 alias k=kubectl
 
 # Functions
-#
 
 replaceRg() {
-  if (( $# != 2 )); then
-    echo "Uso: replaceRg <pattern> <replacement>" >&2
-    return 1
-  fi
+    if (($# != 2)); then
+        echo "Uso: replaceRg <pattern> <replacement>" >&2
+        return 1
+    fi
 
-  rg -l -0 -- "$1" | while IFS= read -r -d $'\0' f; do
-    sed -i "s/$1/$2/g" -- "$f"
-  done
+    rg -l -0 -- "$1" | while IFS= read -r -d $'\0' f; do
+        sed -i "s/$1/$2/g" -- "$f"
+    done
 }
 
 pyclean() {
-	find . -name '__pycache__' -o -name '*.py[co]' -delete
+    find . -name '__pycache__' -o -name '*.py[co]' -delete
 }
 
 fsearch() {
-  if [ -z "$1" ]; then
-    echo "Uso: fsearch <patrón>"
-    return 1
-  fi
+    if [ -z "$1" ]; then
+        echo "Uso: fsearch <patrón>"
+        return 1
+    fi
 
-  : "${EDITOR:=nvim}"  # Usa $EDITOR o nvim por defecto
+    : "${EDITOR:=nvim}" # Usa $EDITOR o nvim por defecto
 
-  local selected
-  selected="$(
-    rg --line-number --no-heading --color=never "$1" \
-    | fzf --ansi \
-          --delimiter ':' \
-          --preview 'bat --style=numbers --color=always {1} --highlight-line {2}' \
-          --preview-window=right:70%
-  )" || return 1
+    local selected
+    selected="$(
+        rg --line-number --no-heading --color=never "$1" |
+            fzf --ansi \
+                --delimiter ':' \
+                --preview 'bat --style=numbers --color=always {1} --highlight-line {2}' \
+                --preview-window=right:70%
+    )" || return 1
 
-  local file line
-  file="$(echo "$selected" | cut -d: -f1)"
-  line="$(echo "$selected" | cut -d: -f2)"
+    local file line
+    file="$(echo "$selected" | cut -d: -f1)"
+    line="$(echo "$selected" | cut -d: -f2)"
 
-  [ -n "$file" ] && [ -n "$line" ] && "$EDITOR" +"$line" "$file"
+    [ -n "$file" ] && [ -n "$line" ] && "$EDITOR" +"$line" "$file"
+}
+
+flac_to_opus() {
+    fd -e flac -x ffmpeg -y -i {} -c:a libopus -map_metadata 0 -b:a 160k {.}.opus
+}
+
+flac_to_aac() {
+    fd -e flac -x ffmpeg -i {} -c:a libfdk_aac -vbr 5 -c:v copy -disposition:v:0 attached_pic -movflags +faststart {.}.m4a
 }
 
 [[ -s ~/work.sh ]] && . ~/work.sh
